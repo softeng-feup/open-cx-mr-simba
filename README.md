@@ -95,13 +95,15 @@ For each user story you should write also the acceptance tests (textually in Ghe
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. MoSCoW method) and the team should add an estimative of the effort to implemente it, in t-shirt sizes (XS, S, M, L, XL).
 
 ### #1
-> Como participante ou orador da conferência, queria que a aplicação me ajudasse a encontrar as atividades que possam ser do meu interesse, e que mantivesse a minha agenda/horário com os vários dias, de modo a melhorar a minha organização.
+
+> As a participant or speaker in the conference, I want the application to help me find activities that might be of my interest, and keep my schedule for the different days of the conference so that I can be more organized.
 
 ### #2
-> Os utilizadores devem poder fazer o seu próprio horário personalizado para cada dia, de acordo com os seus interesses.
-> 
+> As a user I want to make my own personalized schedule for each day, according to my interests.
+
 ### #3
-> Os utilizadores devem ser informados do começo de uma sessão que esteja no horário, alguns minutos antes de tal, de modo a estes não perderem as suas atividades de interesse.
+
+> As a user I want to be informed, minutes before, that a session that is in my schedule is going to start, so that I don't miss activities that are of my interest.
 
 ### #4
 > Como participante estrangeiro da conferência, não conhecendo bem o meio em que esta está a decorrer, gostaria de saber quando é que passo por sítios/locais em que estão a/irão decorrer atividades do meu interesse.
