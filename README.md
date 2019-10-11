@@ -31,31 +31,30 @@ Please contact us!
 
 Thank you!
 
-*team members names*
-David Silva
-Eduardo Ribeiro
-Luís Cunha
-José Gomes
+*David Silva*  
+*Eduardo Ribeiro*  
+*Luís Cunha*  
+*José Gomes*
 
 ## Product Vision
-Start by defining a clear and concise vision for your module, to help members of the team, contributors, and users into focusing their often disparate views into a concise, visual, and short textual form. It provides a "high concept" of the product for marketers, developers, and managers.
 
-A product vision describes the essential of the product and sets the direction to where a product is headed, and what the product will deliver in the future.
-
-To learn more about how to write a good product vision, please see also:
-* [How To Create A Convincing Product Vision To Guide Your Team, by uxstudioteam.com](https://uxstudioteam.com/ux-blog/product-vision/)
-* [Product Management: Product Vision, by ProductPlan](https://www.productplan.com/glossary/product-vision/)
-* [Vision, by scrumbook.org](http://scrumbook.org/value-stream/vision.html)
-* [How to write a vision, by dummies.com](https://www.dummies.com/business/marketing/branding/how-to-write-vision-and-mission-statements-for-your-brand/)
-* [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
+A mobile app connected with the event-space to let the atendees organize themselves better and allow them to better manage their time, so they can get the best out of the conference.
 
 ## Elevator Pitch
-Draft a small text to help you quickly introduce and describe your product in a short time and a few words, a technique usually known as elevator pitch.
 
-Take a look at the following links to learn some techniques:
-* [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
-* [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
-* [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
+
+### Version 1.a
+Our idea for a product that would let the atendees of the conference have a better experience is an agenda application that lets the participants to better organize their schedule. Our app will let the users plan their schedule for each one of the 4 days of the conference. They can of course add and remove activities from their schedule as they will.
+
+Also, to remind the user that an activity is about to begin, the app will send a push notification approximately 5/10 mins before each activity, so they don't forget it.
+
+However, what sets us apart from other agenda apps is our use of bluetooth beacons, that are distributed throughout the different rooms and areas of the conference. If a user gets close to one of them, and an activity will start shortly in that area, they will receive a push notification warning them about it, so they are informed about everything that is happening around them.
+
+### Version 1.b
+Have you ever found yourself in a conference spending more time keeping track of events and getting accquainted to the venue rather than networking and getting knowledge?
+Our solution for that is an agenda app for your smartphone that lets you, as a participant, organize you schedule. The app let's you plan out your daily activities and warns you before it's time to do them.
+
+However, what sets us apart from other agenda apps is our use of bluetooth beacons, that are distributed throughout the different rooms and areas of the conference. If you get close to one of them, and an activity will start shortly in that area, you will receive a push notification warning you about it, so that you are connected with everything that is happening around you.
 
 ## Requirements
 
@@ -65,9 +64,9 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram 
 
-Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
+ 
 
-Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun. 
+![Use case diagram](docs/use_case_diagram_1.jpg)
 
 Briefly describe each use case mentioning the following:
 
@@ -95,10 +94,53 @@ For each user story you should write also the acceptance tests (textually in Ghe
 
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. MoSCoW method) and the team should add an estimative of the effort to implemente it, in t-shirt sizes (XS, S, M, L, XL).
 
+### #1
+> Como participante ou orador da conferência, queria que a aplicação me ajudasse a encontrar as atividades que possam ser do meu interesse, e que mantivesse a minha agenda/horário com os vários dias, de modo a melhorar a minha organização.
+
+### #2
+> Os utilizadores devem poder fazer o seu próprio horário personalizado para cada dia, de acordo com os seus interesses.
+> 
+### #3
+> Os utilizadores devem ser informados do começo de uma sessão que esteja no horário, alguns minutos antes de tal, de modo a estes não perderem as suas atividades de interesse.
+
+### #4
+> Como participante estrangeiro da conferência, não conhecendo bem o meio em que esta está a decorrer, gostaria de saber quando é que passo por sítios/locais em que estão a/irão decorrer atividades do meu interesse.
+
+### #5
+> Como participante na conferência, gostaria de poder criar as minhas próprias atividades e adicioná-las ao horário (ex: almoçar, encontrar-me com conhecidos, reuniões, etc), de modo a poder ter na aplicação tudo o que fizer que for relacionado com a conferência.
+
+### #6
+>Indicação por parte do utilizador de certas áreas de interesse, sendo que a app sugere certas sessões que tenham a ver
+
+### #7
+>triangulação com beacons para o utilizador saber onde está
+
+### #8
+>"modo organizador" que utiliza as informações de localização para oferecer insights aos organizadores sobre o estado do seu evento
+
+### #9
+>sistema de "amigos" que utiliza os beacons para informar os utilizadores da presença de "colegas" na conferência
+
+### #10
+>advertising através de push notifications pelos beacons
+
 ### Domain model
 
 A simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
 
 
 
+### Useful links
 
+
+To learn more about how to write a good product vision, please see also:
+* [How To Create A Convincing Product Vision To Guide Your Team, by uxstudioteam.com](https://uxstudioteam.com/ux-blog/product-vision/)
+* [Product Management: Product Vision, by ProductPlan](https://www.productplan.com/glossary/product-vision/)
+* [Vision, by scrumbook.org](http://scrumbook.org/value-stream/vision.html)
+* [How to write a vision, by dummies.com](https://www.dummies.com/business/marketing/branding/how-to-write-vision-and-mission-statements-for-your-brand/)
+* [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
+
+To learn more about how to write a good elevator pitch take a look at the following links to learn some techniques:
+* [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
+* [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
+* [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
