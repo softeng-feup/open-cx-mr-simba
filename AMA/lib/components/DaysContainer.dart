@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
-class DaysContainer extends StatelessWidget {
+class DaysContainer extends StatefulWidget {
   DaysContainer({this.day, this.date});
-
-  // vai ter o numero de atividades, por isso na verdade tera um state
-
+  
   final int day;
   final String date;
+
+  @override
+  DaysContainerState createState() => DaysContainerState();
+}
+
+
+
+class DaysContainerState extends State<DaysContainer> {
+  int numActivities = 0;
+  String activityString = "activities";
+
+  void changeNumActivities(int numActivities) {
+      setState(() {
+        this.numActivities = numActivities;
+
+        if(this.numActivities == 1)
+          this.activityString = "activity";
+        else
+          this.activityString = "activities";
+      });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +62,13 @@ class DaysContainer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-                Text('Day $day',
+                Text('Day ' + widget.day.toString(),
                   style: TextStyle(fontSize: 35, color: AppColors.mainColor),),
 
-                Text('$date',
+                Text(widget.date,
                   style: TextStyle(fontSize: 16, color: Colors.grey),),
 
-                Text('0 activities',
+                Text('$numActivities $activityString',
                   style: TextStyle(fontSize: 20, color: Colors.white),),
             ],
           ),
