@@ -32,7 +32,10 @@ class DaysContainerState extends State<DaysContainer> {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      onPressed: () {},
+      onPressed: () {
+        String routeOnTap = "/day" + widget.day.toString() + "Screen";
+        Navigator.pushNamed(context, routeOnTap);
+      },
       color: Colors.transparent,
 
       // elevation: 0,
