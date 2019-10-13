@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/AppColors.dart' as AppColors;
 
 class DaysContainer extends StatelessWidget {
   DaysContainer({this.day, this.date});
@@ -12,32 +13,43 @@ class DaysContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: () {},
+      color: Colors.transparent,
+
+      // elevation: 0,
+      // animationDuration: Duration(seconds: 1),
+      // hoverElevation: 10,
+      // splashColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(18.0)),
+
       padding: EdgeInsets.all(0.0),
       child: Container(
         decoration: const BoxDecoration(
+
+          borderRadius: BorderRadius.all(Radius.circular(18.0)),
+
         gradient: LinearGradient(
           colors: <Color>[
           Color(0xFF0D47A1),
           Color(0xFF1976D2),
-          Color(0xFF42A5F5),
+          Color(0xFF0D47A1),
           ],
          ),
         ),
 
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
 
-        padding: const EdgeInsets.all(10.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
                 Text('Day $day',
-                  style: TextStyle(fontSize: 20, color: Colors.greenAccent),),
+                  style: TextStyle(fontSize: 35, color: AppColors.mainColor),),
 
                 Text('$date',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),),
 
                 Text('0 activities',
-                  style: TextStyle(fontSize: 16, color: Colors.white),),
+                  style: TextStyle(fontSize: 20, color: Colors.white),),
             ],
           ),
         ),

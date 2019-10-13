@@ -1,5 +1,6 @@
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:flutter/material.dart';
+import './constants/AppColors.dart' as AppColors;
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: AppColors.mainColor,
       ),
       home: //MyHomePage(title: 'AMA'),
             DaysScreen(),
