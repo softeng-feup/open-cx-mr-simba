@@ -14,6 +14,32 @@ class DaysScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: AppColors.mainColor,
+        
+      ),
+      drawer: Drawer(
+          semanticLabel: "menu",
+          child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Menu'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+
       ),
       body: Container(
           color: AppColors.backgroundColor,
