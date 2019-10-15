@@ -33,8 +33,9 @@ class DaysScreen extends StatelessWidget {
             ListTile(
               title: Text('About'),
               onTap: () {
-                Navigator.pushNamed(context, '/about');
+                Navigator.pushNamed(context, '/about'); 
               },
+              trailing: Icon(Icons.info)
             ),
           ],
         ),
