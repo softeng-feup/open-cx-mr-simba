@@ -22,11 +22,14 @@ class DaysScreen extends StatelessWidget {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Menu'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+            Container(
+              height: 100.00,
+              child: DrawerHeader(
+                child: Text('Menu'),
+                decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                ),
+              )
             ),
             ListTile(
               title: Text('About'),
