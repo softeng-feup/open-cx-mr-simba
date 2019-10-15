@@ -1,6 +1,5 @@
+import 'package:ama/screens/PageViewScreen.dart';
 import 'package:flutter/material.dart';
-import '../components/DaysContainer.dart';
-import '../constants/Dates.dart' as Dates;
 import '../constants/AppColors.dart' as AppColors;
 
 class DaysScreen extends StatelessWidget {
@@ -35,13 +34,16 @@ class DaysScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/about'); 
               },
-              trailing: Icon(Icons.info)
+              leading: Icon(Icons.info)
             ),
           ],
         ),
 
       ),
-      body: Container(
+      body: 
+      PageViewScreen()
+      
+      /*Container(
           color: AppColors.backgroundColor,
           child: Column(
             children: <Widget>[
@@ -56,15 +58,15 @@ class DaysScreen extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 30,
                       children: <Widget>[
-                        DaysContainer(day: 1, date: Dates.date1),
-                        DaysContainer(day: 2, date: Dates.date2),
-                        DaysContainer(day: 3, date: Dates.date3),
-                        DaysContainer(day: 4, date: Dates.date4),
+                        DayContainer(day: 1, date: Dates.date1),
+                        DayContainer(day: 2, date: Dates.date2),
+                        DayContainer(day: 3, date: Dates.date3),
+                        DayContainer(day: 4, date: Dates.date4),
                       ],
                     )),
               ))
             ],
-          )),
+          )),*/
     );
   }
 }
