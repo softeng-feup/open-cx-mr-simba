@@ -33,8 +33,9 @@ Thank you!
 
 *David Silva*  
 *Eduardo Ribeiro*  
+*José Gomes*  
 *Luís Cunha*  
-*José Gomes*
+
 
 ## Product Vision
 
