@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../components/DaysContainer.dart';
 import '../constants/Dates.dart' as Dates;
 import '../constants/AppColors.dart' as AppColors;
-import '../constants/Utility.dart' as Utility;
 
 class DaysScreen extends StatelessWidget {
   @override
