@@ -10,7 +10,7 @@ class DaysScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "AMA - Agenda Mobile App",
+          "<AMA - Agenda Mobile App>",
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: AppColors.mainColor,
@@ -31,10 +31,7 @@ class DaysScreen extends StatelessWidget {
             ListTile(
               title: Text('About'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/about');
               },
             ),
           ],
@@ -45,13 +42,6 @@ class DaysScreen extends StatelessWidget {
           color: AppColors.backgroundColor,
           child: Column(
             children: <Widget>[
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 15.0, horizontal: 10.0),
-                child:  Text(Utility.daysScreenText, style: TextStyle(color: AppColors.mainColor, fontSize: 23), textAlign: TextAlign.center,),
-              ),
-
               Expanded(
                   child: Center(
                 child: Container(
