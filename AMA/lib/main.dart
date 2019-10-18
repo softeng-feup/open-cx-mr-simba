@@ -1,3 +1,4 @@
+import 'package:ama/data/Session.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/Day1Screen.dart';
 import 'package:ama/screens/Day2Screen.dart';
@@ -10,6 +11,7 @@ import './constants/AppColors.dart' as AppColors;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
 
     );
   }
+
 }
 
 class MyHomePage extends StatefulWidget {

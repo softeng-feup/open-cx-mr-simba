@@ -1,13 +1,11 @@
+import 'package:ama/data/Session.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
 class ActivityContainer extends StatelessWidget {
-  ActivityContainer({this.name, this.time, this.place, this.description});
+  ActivityContainer({this.activity});
 
-  final String name;
-  final DateTime time; // use DateTime.parse(String) to initialize the time field
-  final String place;
-  final String description;
+  final Session activity;
 
   @override
   Widget build(BuildContext context) {
