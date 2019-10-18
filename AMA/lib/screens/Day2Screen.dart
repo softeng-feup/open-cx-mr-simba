@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
+import '../components/ActivityContainer.dart';
 
 class Day2Screen extends StatefulWidget {
 
@@ -20,6 +21,11 @@ class Day2ScreenState extends State<Day2Screen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
+
+        body: Container(
+          color: AppColors.backgroundColor,
+          child: ActivityContainer(name: "MIEIC Talks", time: DateTime.parse("2019-07-20 20:15:00"), place: "Queijos - Sala B002"),
+        )
     );
   }
 }
