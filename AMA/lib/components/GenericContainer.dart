@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class GenericContainer extends StatelessElement {
+class GenericContainer extends StatelessWidget {
 
   @override
-  Widget build() {
+  Widget build(BuildContext context) {
     // TODO: implement build
-    return super.build();
+    return null;
   }
 }

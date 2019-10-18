@@ -1,9 +1,6 @@
 import 'package:ama/data/Session.dart';
+import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
-import 'package:ama/screens/Day1Screen.dart';
-import 'package:ama/screens/Day2Screen.dart';
-import 'package:ama/screens/Day3Screen.dart';
-import 'package:ama/screens/Day4Screen.dart';
 import 'package:ama/screens/AboutScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
@@ -18,17 +15,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: AppColors.mainColor,
+        primarySwatch: Colors.blue,
       ),
 
       initialRoute: '/',
       routes: {
         '/': (context) => DaysScreen(),
         '/about': (context) => AboutScreen(),
-        '/day1Screen': (context) => Day1Screen(),
-        '/day2Screen': (context) => Day2Screen(),
-        '/day3Screen': (context) => Day3Screen(),
-        '/day4Screen': (context) => Day4Screen()
+        '/day1Screen': (context) => DayScheduleScreen(day: 1),
+        '/day2Screen': (context) => DayScheduleScreen(day: 2),
+        '/day3Screen': (context) => DayScheduleScreen(day: 3),
+        '/day4Screen': (context) => DayScheduleScreen(day: 4),
       },
 
     );

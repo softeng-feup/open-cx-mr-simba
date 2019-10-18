@@ -9,7 +9,7 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "About",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AppColors.mainColor,
       ),

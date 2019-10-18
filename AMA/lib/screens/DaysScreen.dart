@@ -9,7 +9,7 @@ class DaysScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "<AMA - Agenda Mobile App>",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AppColors.mainColor,
         
@@ -23,7 +23,7 @@ class DaysScreen extends StatelessWidget {
             Container(
               height: 100.00,
               child: DrawerHeader(
-                child: Text('Menu'),
+                child: Text('Menu', style: TextStyle(color: Colors.white),),
                 decoration: BoxDecoration(
                 color: AppColors.mainColor,
                 ),
