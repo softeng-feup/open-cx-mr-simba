@@ -1,3 +1,4 @@
+import 'package:ama/constants/Dates.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
@@ -5,7 +6,7 @@ class DaysContainer extends StatefulWidget {
   DaysContainer({this.day, this.date});
   
   final int day;
-  final String date;
+  final Date date;
 
   @override
   DaysContainerState createState() => DaysContainerState();
@@ -68,7 +69,7 @@ class DaysContainerState extends State<DaysContainer> {
                 Text('Day ' + widget.day.toString(),
                   style: TextStyle(fontSize: 35, color: AppColors.mainColor),),
 
-                Text(widget.date,
+                Text(widget.date.toString(),
                   style: TextStyle(fontSize: 16, color: Colors.grey),),
 
                 Text('$numActivities $activityString',

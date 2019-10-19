@@ -1,10 +1,11 @@
+import 'package:ama/constants/Dates.dart';
 import 'package:flutter/material.dart';
 
 class DayContainer extends StatefulWidget {
   DayContainer({this.day, this.date});
 
   final int day;
-  final String date;
+  final Date date;
 
   @override
   DayContainerState createState() => DayContainerState();
@@ -32,61 +33,55 @@ class DayContainerState extends State<DayContainer> {
           String routeOnTap = "/day" + widget.day.toString() + "Screen";
           Navigator.pushNamed(context, routeOnTap);
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-          ),
-          child: Image.asset('images/cal.jpeg', fit: BoxFit.cover),
-        ));
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: new SmallCalendarPage(date: widget.date)));
   }
 }
 
-/*
-    RaisedButton(
-      onPressed: () {
-        String routeOnTap = "/day" + widget.day.toString() + "Screen";
-        Navigator.pushNamed(context, routeOnTap);
-      },
-      color: Colors.transparent,
+class SmallCalendarPage extends StatelessWidget {
+  const SmallCalendarPage({
+    Key key,
+    this.date,
+  }) : super(key: key);
 
-      // elevation: 0,
-      // animationDuration: Duration(seconds: 1),
-      // hoverElevation: 10,
-      // splashColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(18.0)),
+  final Date date;
 
-      padding: EdgeInsets.all(0.0),
-      child: Container(
-        decoration: const BoxDecoration(
-
-          borderRadius: BorderRadius.all(Radius.circular(18.0)),
-
-        gradient: LinearGradient(
-          colors: <Color>[
-          Color(0xFF0D47A1),
-          Color(0xFF1976D2),
-          Color(0xFF0D47A1),
-          ],
-         ),
-        ),
-
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
-
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-                Text('Day ' + widget.day.toString(),
-                  style: TextStyle(fontSize: 35, color: AppColors.mainColor),),
-
-                Text(widget.date,
-                  style: TextStyle(fontSize: 16, color: Colors.grey),),
-
-                Text('$numActivities $activityString',
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
-            ],
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 40 / 100,
+      decoration: BoxDecoration(
+        borderRadius: new BorderRadius.circular(20),
+        color: Colors.white,
+        border: Border.all(width: 2),
+      ),
+      child: ClipRRect(
+        borderRadius: new BorderRadius.circular(16),
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: new Text(date.getWeekDay(), style: TextStyle(fontSize: 30)),
+            backgroundColor: Colors.red,
+          ),
+          body: Center(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  date.getDay(),
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.black),
+                ),
+                Text(
+                  date.getMonthStr(),
+                  style: TextStyle(fontSize: 25, color: Colors.grey),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-
-    );*/
+    );
+  }
+}
