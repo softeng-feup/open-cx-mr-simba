@@ -1,34 +1,36 @@
+import 'package:ama/data/Session.dart';
+import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
-import 'package:ama/screens/Day1Screen.dart';
-import 'package:ama/screens/Day2Screen.dart';
-import 'package:ama/screens/Day3Screen.dart';
-import 'package:ama/screens/Day4Screen.dart';
+import 'package:ama/screens/AboutScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: AppColors.mainColor,
+        primarySwatch: Colors.blue,
       ),
 
       initialRoute: '/',
       routes: {
         '/': (context) => DaysScreen(),
-        '/day1Screen': (context) => Day1Screen(),
-        '/day2Screen': (context) => Day2Screen(),
-        '/day3Screen': (context) => Day3Screen(),
-        '/day4Screen': (context) => Day4Screen()
+        '/about': (context) => AboutScreen(),
+        '/day1Screen': (context) => DayScheduleScreen(day: 1),
+        '/day2Screen': (context) => DayScheduleScreen(day: 2),
+        '/day3Screen': (context) => DayScheduleScreen(day: 3),
+        '/day4Screen': (context) => DayScheduleScreen(day: 4),
       },
 
     );
   }
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -75,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("widget.title"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

@@ -1,8 +1,6 @@
+import 'package:ama/screens/PageViewScreen.dart';
 import 'package:flutter/material.dart';
-import '../components/DaysContainer.dart';
-import '../constants/Dates.dart' as Dates;
 import '../constants/AppColors.dart' as AppColors;
-import '../constants/Utility.dart' as Utility;
 
 class DaysScreen extends StatelessWidget {
   @override
@@ -10,22 +8,45 @@ class DaysScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "AMA - Agenda Mobile App",
-          style: TextStyle(color: Colors.black),
+          "<AMA - Agenda Mobile App>",
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AppColors.mainColor,
+        
       ),
-      body: Container(
+      drawer: Drawer(
+          semanticLabel: "menu",
+          child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 100.00,
+              child: DrawerHeader(
+                child: Text('Menu', style: TextStyle(color: Colors.white),),
+                decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                ),
+              )
+            ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, '/about'); 
+              },
+              leading: Icon(Icons.info)
+            ),
+          ],
+        ),
+
+      ),
+      body: 
+      PageViewScreen()
+      
+      /*Container(
           color: AppColors.backgroundColor,
           child: Column(
             children: <Widget>[
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 15.0, horizontal: 10.0),
-                child:  Text(Utility.daysScreenText, style: TextStyle(color: AppColors.mainColor, fontSize: 23), textAlign: TextAlign.center,),
-              ),
-
               Expanded(
                   child: Center(
                 child: Container(
@@ -37,15 +58,15 @@ class DaysScreen extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 30,
                       children: <Widget>[
-                        DaysContainer(day: 1, date: Dates.date1),
-                        DaysContainer(day: 2, date: Dates.date2),
-                        DaysContainer(day: 3, date: Dates.date3),
-                        DaysContainer(day: 4, date: Dates.date4),
+                        DayContainer(day: 1, date: Dates.date1),
+                        DayContainer(day: 2, date: Dates.date2),
+                        DayContainer(day: 3, date: Dates.date3),
+                        DayContainer(day: 4, date: Dates.date4),
                       ],
                     )),
               ))
             ],
-          )),
+          )),*/
     );
   }
 }
