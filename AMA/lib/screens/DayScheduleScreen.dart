@@ -7,14 +7,18 @@ class DayScheduleScreen extends StatefulWidget {
   DayScheduleScreen({this.day});
 
   final int day;
+  final Set<Session> _sessions = Set.from([]);
+
+  Set<Session> getSessions() {
+    return _sessions;
+  }
 
   @override
   DayScheduleScreenState createState() => DayScheduleScreenState();
+
 }
 
 class DayScheduleScreenState extends State<DayScheduleScreen> {
-
-  static Set<Session> _sessions = Set.from([]); // sessions selected for that day
 
   Session session1 = Session(
   key: "dc03a3e9-5dbd-4af4-973c-0941b84ef00b",
@@ -35,23 +39,23 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
   location: "Hotel Bristol Palace | Bellini"
   );
 
-  bool removeSession(Session session) {
+  bool _removeSession(Session session) {
 
     bool removed;
 
     setState(() {
-      removed = _sessions.remove(session);
+      removed = widget.getSessions().remove(session);
     });
 
     return removed;
   }
 
-  bool addSession(Session session) {
+  bool _addSession(Session session) {
 
     bool added;
 
     setState(() {
-      added = _sessions.add(session);
+      added = widget.getSessions().add(session);
     });
 
     return added;
@@ -85,11 +89,11 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 70.0),
 
-              itemCount: _sessions.length,
+              itemCount: widget.getSessions().length,
 
               itemBuilder: (context, idx) {
                   return SessionContainer(
-                    activity: _sessions.elementAt(idx),
+                    activity: widget.getSessions().elementAt(idx),
                   );
               }
 
@@ -225,7 +229,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
         ),
 
-        floatingActionButton: FloatingActionButton.extended(onPressed: () {addSession(session1);},
+        floatingActionButton: FloatingActionButton.extended(onPressed: () {_addSession(session1);},
             backgroundColor: AppColors.mainColor,
             foregroundColor: Colors.white,
             elevation: 20.0,

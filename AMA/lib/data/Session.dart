@@ -1,6 +1,3 @@
-import 'package:ama/data/Item.dart';
-import 'package:ama/data/Person.dart';
-
 class Session {
   Session({this.key,
            this.title,
@@ -26,4 +23,12 @@ class Session {
   String location;
   String description;
 
+
+  @override
+  bool operator ==(other) {
+    return this.key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
