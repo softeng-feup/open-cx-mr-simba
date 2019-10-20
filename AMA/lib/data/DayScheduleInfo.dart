@@ -1,12 +1,14 @@
+import 'dart:collection';
+
 import 'package:ama/data/Session.dart';
 
 class DayScheduleInfo {
   DayScheduleInfo(int day) { this._day = day; }
 
   int _day;
-  Set<Session> _sessions = Set.from([]);
+  SplayTreeSet<Session> _sessions = SplayTreeSet();
 
-  Set<Session> getSessions() {
+  SplayTreeSet<Session> getSessions() {
     return _sessions;
 }
 

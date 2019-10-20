@@ -1,4 +1,4 @@
-class Session {
+class Session extends Comparable<dynamic> {
   Session({this.key,
            this.title,
            this.chairString,
@@ -31,4 +31,12 @@ class Session {
 
   @override
   int get hashCode => this.key.hashCode;
+
+  @override
+  int compareTo(other) {
+    if(this.key == other.key)
+      return 0;
+
+    return this.timeString.compareTo(other.timeString);
+  }
 }

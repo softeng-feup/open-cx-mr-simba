@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:ama/data/DayScheduleInfo.dart';
 import 'package:ama/data/Session.dart';
 import 'package:flutter/material.dart';
