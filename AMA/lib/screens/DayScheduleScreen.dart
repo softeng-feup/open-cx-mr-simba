@@ -14,23 +14,44 @@ class DayScheduleScreen extends StatefulWidget {
 
 class DayScheduleScreenState extends State<DayScheduleScreen> {
 
-  Set<Session> sessions = Set.from([]); // sessions selected for that day
+  static Set<Session> _sessions = Set.from([]); // sessions selected for that day
+
+  Session session1 = Session(
+  key: "dc03a3e9-5dbd-4af4-973c-0941b84ef00b",
+  title: "Student Research Competition: Oral Presentation",
+  chairString: "Philipp Haller",
+  chairKey: "philipphaller",
+  itemKeys: ["programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
+  "programming-2019-src-reading-logic-as-code-or-as-natural-language-text-short-presentation-",
+  "programming-2019-src-a-framework-for-big-step-semantics-short-presentation-",
+  "programming-2019-src-rml-runtime-monitoring-language-short-presentation-",
+  "programming-2019-src-baccaml-the-meta-hybrid-just-in-time-compiler-short-presentation-",
+  "programming-2019-src-magritte-a-modern-shell-language-short-presentation-"],
+  description: "The ACM Student Research Competition (SRC), sponsored by Microsoft Research, offers a unique forum for ACM student members at the undergraduate and graduate levels to present their original research at &lt;Programming&gt; before a panel of judges and conference attendees, and creates opportunities for learning and networking among researchers and practitioners. The SRC gives visibility to not only up-and-coming young researchers, but also to the field of computer science research and its community.",
+  type: "Invited Students",
+  day: "2019-04-03",
+  timeString: "09:30 - 11:00",
+  startTime: DateTime.parse("2019-04-03 09:30"),
+  location: "Hotel Bristol Palace | Bellini"
+  );
 
   bool removeSession(Session session) {
+
     bool removed;
 
     setState(() {
-      removed = sessions.remove(session);
+      removed = _sessions.remove(session);
     });
 
     return removed;
   }
 
   bool addSession(Session session) {
+
     bool added;
 
     setState(() {
-      added = sessions.add(session);
+      added = _sessions.add(session);
     });
 
     return added;
@@ -44,7 +65,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
-        title: Text("Day " + widget.day.toString() + " Screen"),
+        title: Text("Day " + widget.day.toString() + " Schedule"),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
@@ -64,11 +85,11 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 70.0),
 
-              itemCount: sessions.length,
+              itemCount: _sessions.length,
 
               itemBuilder: (context, idx) {
                   return SessionContainer(
-                    activity: sessions.elementAt(idx),
+                    activity: _sessions.elementAt(idx),
                   );
               }
 
@@ -204,7 +225,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
         ),
 
-        floatingActionButton: FloatingActionButton.extended(onPressed: () => {},
+        floatingActionButton: FloatingActionButton.extended(onPressed: () {addSession(session1);},
             backgroundColor: AppColors.mainColor,
             foregroundColor: Colors.white,
             elevation: 20.0,

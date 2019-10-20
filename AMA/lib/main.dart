@@ -1,13 +1,16 @@
-import 'package:ama/data/Session.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/AboutScreen.dart';
 import 'package:flutter/material.dart';
-import './constants/AppColors.dart' as AppColors;
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+  final DayScheduleScreen scheduleScreen1 = DayScheduleScreen(day: 1);
+  final DayScheduleScreen scheduleScreen2 = DayScheduleScreen(day: 2);
+  final DayScheduleScreen scheduleScreen3 = DayScheduleScreen(day: 3);
+  final DayScheduleScreen scheduleScreen4 = DayScheduleScreen(day: 4);
 
   // This widget is the root of your application.
   @override
@@ -22,10 +25,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => DaysScreen(),
         '/about': (context) => AboutScreen(),
-        '/day1Screen': (context) => DayScheduleScreen(day: 1),
-        '/day2Screen': (context) => DayScheduleScreen(day: 2),
-        '/day3Screen': (context) => DayScheduleScreen(day: 3),
-        '/day4Screen': (context) => DayScheduleScreen(day: 4),
+        '/day1Screen': (context) => scheduleScreen1,
+        '/day2Screen': (context) => scheduleScreen2,
+        '/day3Screen': (context) => scheduleScreen3,
+        '/day4Screen': (context) => scheduleScreen4,
       },
 
     );
