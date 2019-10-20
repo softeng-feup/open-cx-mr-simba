@@ -1,3 +1,5 @@
+import 'package:ama/data/Database.dart';
+import 'package:ama/data/DayScheduleInfo.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/AboutScreen.dart';
@@ -7,10 +9,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  final DayScheduleScreen scheduleScreen1 = DayScheduleScreen(day: 1);
-  final DayScheduleScreen scheduleScreen2 = DayScheduleScreen(day: 2);
-  final DayScheduleScreen scheduleScreen3 = DayScheduleScreen(day: 3);
-  final DayScheduleScreen scheduleScreen4 = DayScheduleScreen(day: 4);
+  final Database database = new Database();
 
   // This widget is the root of your application.
   @override
@@ -25,10 +24,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => DaysScreen(),
         '/about': (context) => AboutScreen(),
-        '/day1Screen': (context) => scheduleScreen1,
-        '/day2Screen': (context) => scheduleScreen2,
-        '/day3Screen': (context) => scheduleScreen3,
-        '/day4Screen': (context) => scheduleScreen4,
+        '/day1Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay1),
+        '/day2Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay2),
+        '/day3Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay3),
+        '/day4Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay4),
       },
 
     );

@@ -30,5 +30,5 @@ class Session {
   }
 
   @override
-  int get hashCode => key.hashCode;
+  int get hashCode => this.key.hashCode;
 }
