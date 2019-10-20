@@ -1,10 +1,12 @@
 
 import 'package:ama/data/DaySessionsInfo.dart';
+import 'package:ama/data/Session.dart';
 import 'package:ama/main.dart';
 import 'package:ama/screens/AboutScreen.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/DaySessionsScreen.dart';
+import 'package:ama/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
 
@@ -43,7 +45,13 @@ class RouteGenerator {
         if(args is DaySessionsInfo) {
           return MaterialPageRoute(builder: (_) => DaySessionsScreen(sessionsInfo: args));
         }
+        return _errorRoute();
 
+
+      case '/sessionScreen':
+        if(args is Session) {
+          return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
+        }
         return _errorRoute();
 
 

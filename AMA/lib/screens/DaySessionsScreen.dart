@@ -30,15 +30,14 @@ class DaySessionsScreen extends StatelessWidget {
                     left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
                 itemCount: sessionsInfo.getSessions().length,
                 itemBuilder: (context, idx) {
-                  return FlatButton(
-                    onPressed: () {
-                      sessionsInfo.addFunction(sessionsInfo.getSessions().elementAt(idx));
-                      Navigator.of(context).pop();
-                    },
-                    child: SessionContainer(
-                      activity: sessionsInfo.getSessions().elementAt(idx),
-                    ),
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                      child: SessionContainer(
+                        activity: sessionsInfo.getSessions().elementAt(idx),
+                      ),
                   );
                 })));
   }
+
+  // TODO: swipe left para aparecer botao que adiciona sessao ao horario
 }

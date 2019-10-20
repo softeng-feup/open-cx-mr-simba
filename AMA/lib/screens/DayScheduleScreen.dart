@@ -119,10 +119,15 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
                   left: 10.0, right: 10.0, top: 10.0, bottom: 70.0),
               itemCount: widget.info.getSessions().length,
               itemBuilder: (context, idx) {
-                return SessionContainer(
-                  activity: widget.info.getSessions().elementAt(idx),
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: SessionContainer(
+                    activity: widget.info.getSessions().elementAt(idx),
+                  ),
                 );
               }
+
+            // TODO: swipe left para aparecer botao que retira sessao do horario
 
               /*children: <Widget>[
                SessionContainer(
@@ -255,6 +260,8 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
         ),
         floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
+
+                // TODO: usar funcoes json para extrair as sessoes de cada dia
 
                 SplayTreeSet<Session> set = SplayTreeSet.from([DayScheduleScreen.session3, DayScheduleScreen.session1, DayScheduleScreen.session2]);
 
