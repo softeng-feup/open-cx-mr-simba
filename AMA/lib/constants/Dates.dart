@@ -42,7 +42,10 @@ class Date{
 
   @override
   String toString() {
-    
     return this._weekDay + ", " + this._day + "/" + this._month + "/" + this._year;
+  }
+
+  String toDateString() {
+    return this._year + "-" + this._month + "-" + this._day;
   }
 }

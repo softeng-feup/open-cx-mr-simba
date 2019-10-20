@@ -1,5 +1,5 @@
+import 'package:ama/RouteGenerator.dart';
 import 'package:ama/data/Database.dart';
-import 'package:ama/data/DayScheduleInfo.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/AboutScreen.dart';
@@ -9,7 +9,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  final Database database = new Database();
+  static final Database database = new Database();
 
   // This widget is the root of your application.
   @override
@@ -21,14 +21,7 @@ class MyApp extends StatelessWidget {
       ),
 
       initialRoute: '/',
-      routes: {
-        '/': (context) => DaysScreen(),
-        '/about': (context) => AboutScreen(),
-        '/day1Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay1),
-        '/day2Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay2),
-        '/day3Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay3),
-        '/day4Screen': (context) => DayScheduleScreen(info: database.scheduleInfoDay4),
-      },
+      onGenerateRoute: RouteGenerator.generateRoute,
 
     );
   }
