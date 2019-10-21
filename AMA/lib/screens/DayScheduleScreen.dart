@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:ama/components/GenericContainer.dart';
+import 'package:ama/components/SlidableSessionContainer.dart';
 import 'package:ama/data/DayScheduleInfo.dart';
 import 'package:ama/data/DaySessionsInfo.dart';
 import 'package:ama/data/Session.dart';
@@ -136,36 +137,14 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
                         left: 10.0, right: 10.0, top: 10.0, bottom: 70.0),
                     itemCount: widget.info.getSessions().length,
                     itemBuilder: (context, idx) {
-                      return Slidable(
-                        actionPane: SlidableScrollActionPane(),
-                        actionExtentRatio: 0.25,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 15.0),
-                          child: SessionContainer(
-                            activity: widget.info.getSessions().elementAt(idx),
-                          ),
-                        ),
-
-                        secondaryActions: <Widget>[
-                          SlideAction(
-                            closeOnTap: true,
-                            color: AppColors.backgroundColor,
-                            child: RawMaterialButton(
-                              padding: const EdgeInsets.all(10.0),
-                              onPressed: () {
-                                _removeSession(widget.info.getSessions().elementAt(idx));
-                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Session deleted from schedule")));
-                              },
-
-                              child: Icon(Icons.delete, color: Colors.white, size: 40.0),
-                              shape: CircleBorder(),
-                              elevation: 0.0,
-                              fillColor: Colors.red,
-                            ),
-
-                          )
-                        ],
-
+                      return SlidableSessionContainer(
+                        session: widget.info.getSessions().elementAt(idx),
+                        icon: Icons.delete,
+                        color: Colors.red,
+                        onPressFunction: () {
+                          _removeSession(widget.info.getSessions().elementAt(idx));
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Session deleted from schedule")));
+                        },
                       );
                     }
 
