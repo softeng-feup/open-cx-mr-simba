@@ -16,15 +16,22 @@ class GenericContainer extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.containerColor,
           borderRadius: BorderRadius.all(Radius.circular(18.0))),
-      child: Column(
-        children: <Widget>[
-          Text(title,
-              style: TextStyle(
-                  color: AppColors.mainColor, fontWeight: FontWeight.bold)),
-          Text(text,
-              style: TextStyle(
-                  color: AppColors.mainColor, fontWeight: FontWeight.w200)),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(title,
+                style: TextStyle(
+                    color: AppColors.mainColor, fontWeight: FontWeight.w900, fontSize: 21), textAlign: TextAlign.left,),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(text,
+                  style: TextStyle(
+                      color: AppColors.mainColor, fontWeight: FontWeight.w400, fontSize: 16)),
+            ),
+          ],
+        ),
       ),
     );
   }

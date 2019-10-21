@@ -1,8 +1,5 @@
 import 'package:ama/RouteGenerator.dart';
 import 'package:ama/data/Database.dart';
-import 'package:ama/screens/DayScheduleScreen.dart';
-import 'package:ama/screens/DaysScreen.dart';
-import 'package:ama/screens/AboutScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

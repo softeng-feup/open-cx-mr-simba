@@ -2,6 +2,8 @@ import 'package:ama/components/SessionContainer.dart';
 import 'package:ama/data/DaySessionsInfo.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
+import 'package:flutter_slidable/flutter_slidable.dart';
+
 
 class DaySessionsScreen extends StatelessWidget {
   DaySessionsScreen({this.sessionsInfo});
@@ -30,11 +32,49 @@ class DaySessionsScreen extends StatelessWidget {
                     left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
                 itemCount: sessionsInfo.getSessions().length,
                 itemBuilder: (context, idx) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                      child: SessionContainer(
-                        activity: sessionsInfo.getSessions().elementAt(idx),
-                      ),
+                  return Slidable(
+                    actionPane: SlidableScrollActionPane(),
+                    actionExtentRatio: 0.25,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                        child: SessionContainer(
+                          activity: sessionsInfo.getSessions().elementAt(idx),
+                        ),
+                    ),
+
+                    secondaryActions: <Widget>[
+                      SlideAction(
+                        closeOnTap: true,
+                        color: AppColors.backgroundColor,
+                        child: RawMaterialButton(
+                          padding: const EdgeInsets.all(10.0),
+
+                          onPressed: () {
+                            bool added = sessionsInfo.addFunction(
+                                sessionsInfo.getSessions().elementAt(idx));
+
+                            String text;
+
+                            if(added) {
+                              text = "Session added to schedule";
+                            }
+                            else {
+                              text = "Session already added to schedule";
+                            }
+
+                            Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
+                          },
+
+                          child: Icon(Icons.check, color: Colors.white, size: 40.0),
+                          shape: CircleBorder(),
+                          elevation: 0.0,
+                          fillColor: Colors.green,
+                        ),
+
+                      )
+                    ],
+
+
                   );
                 })));
   }
