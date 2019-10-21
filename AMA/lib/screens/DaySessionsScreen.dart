@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-
 class DaySessionsScreen extends StatelessWidget {
   DaySessionsScreen({this.sessionsInfo});
 
@@ -43,16 +42,15 @@ class DaySessionsScreen extends StatelessWidget {
 
                       String text;
 
-                      if(added)
+                      if (added)
                         text = "Session added to schedule";
                       else
                         text = "Session already added to schedule";
 
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));},
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text(text)));
+                    },
                   );
                 })));
   }
-
-
-// TODO: swipe left para aparecer botao que adiciona sessao ao horario
 }
