@@ -1,3 +1,4 @@
+import 'package:ama/components/GenericContainer.dart';
 import 'package:ama/data/Session.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
@@ -26,7 +27,17 @@ class SessionScreen extends StatelessWidget {
         color: AppColors.backgroundColor,
         child: Column(
           children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                child: GenericContainer(title: "Title:", text: session.title),
+              ),
 
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              child: FlatButton(
+                  padding: EdgeInsets.all(0.0),
+                  child: GenericContainer(title: "Chairs:", text: "Tap to see more")),
+            ),
           ],
         ),
       ),

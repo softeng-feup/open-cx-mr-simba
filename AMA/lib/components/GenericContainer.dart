@@ -18,7 +18,7 @@ class GenericContainer extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(18.0))
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
