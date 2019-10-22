@@ -56,13 +56,14 @@ class JsonMapper {
     );
   }
 
-  static SplayTreeSet<Session> sessionSet(Map<String, dynamic> jsonMap) {
+  static SplayTreeSet<Session> sessionSet(Map<String, dynamic> jsonMap, String date) {
     List<dynamic> dynamicList = jsonMap['Sessions'];
     SplayTreeSet<Session> sessions = SplayTreeSet<Session>();
 
     dynamicList.forEach((f) {
       Session s = JsonMapper.session(f);
-      sessions.add(s);
+      if (s.day == date)
+        sessions.add(s);
     });
 
     return sessions;

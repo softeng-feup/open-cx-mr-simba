@@ -129,6 +129,8 @@ At the end, it is good to add a rough indication of the value of the user story 
 
 ### Domain model
 
+
+![Domain Model](docs/domain_model.jpg)
 A simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
 
 

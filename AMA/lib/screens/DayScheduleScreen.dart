@@ -1,86 +1,112 @@
 import 'dart:collection';
 
+import 'package:ama/components/GenericContainer.dart';
+import 'package:ama/components/SlidableSessionContainer.dart';
+import 'package:ama/data/DayScheduleInfo.dart';
+import 'package:ama/data/DaySessionsInfo.dart';
 import 'package:ama/data/Session.dart';
 import 'package:ama/json/JsonController.dart';
 import 'package:ama/json/JsonMapper.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
-import '../components/ActivityContainer.dart';
+import '../constants/Utility.dart' as Utility;
 
 class DayScheduleScreen extends StatefulWidget {
-  DayScheduleScreen({this.day});
+  DayScheduleScreen({this.info});
 
-  final int day;
+  final DayScheduleInfo info;
 
   @override
   DayScheduleScreenState createState() => DayScheduleScreenState();
 }
 
 class DayScheduleScreenState extends State<DayScheduleScreen> {
-
-  Set<Session> sessions = Set.from([]); // sessions selected for that day
-
-  bool removeSession(Session session) {
+  bool _removeSession(Session session) {
     bool removed;
 
     setState(() {
-      removed = sessions.remove(session);
+      removed = widget.info.getSessions().remove(session);
     });
 
     return removed;
   }
 
-  bool addSession(Session session) {
+  bool _addSession(Session session) {
     bool added;
 
     setState(() {
-      added = sessions.add(session);
+      added = widget.info.getSessions().add(session);
     });
 
     return added;
   }
 
-  List<Widget> _buildActivityContainerList() {
-    SplayTreeSet<Session> sessions = JsonMapper.sessionSet(JsonController().getJson());
-    List<Widget> widgets = List<Widget>();
-
-    sessions.forEach((f) {
-      widgets.add(ActivityContainer(activity: f));
-    });
-
-    return widgets;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: Text("Day " + widget.day.toString() + " Screen"),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
+        appBar: AppBar(
+          backgroundColor: AppColors.mainColor,
+          title: Text("Day " + widget.info.getDay().toString() + " Schedule"),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          onPressed: () => Navigator.of(context).pop(),
         ),
-      ),
-      body: 
-        Container(
-
+        body: Container(
           color: AppColors.backgroundColor,
-          // aqui deve-se fazer display de todas as sessoes do dia
-
-          child: ListView(
-
-            scrollDirection: Axis.vertical,
-
-              padding: const EdgeInsets.all(10),
-
-            children: _buildActivityContainerList(),
-
+          child: Column(
+            children: <Widget>[
+              Visibility(
+                maintainSize: false,
+                visible: (widget.info.getSessions().length == 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: GenericContainer(
+                      title: Utility.noSessionsTitle,
+                      text: Utility.noSessionsText),
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10.0, top: 10.0, bottom: 70.0),
+                    itemCount: widget.info.getSessions().length,
+                    itemBuilder: (context, idx) {
+                      return SlidableSessionContainer(
+                        session: widget.info.getSessions().elementAt(idx),
+                        icon: Icons.delete,
+                        color: Colors.red,
+                        onPressFunction: () {
+                          _removeSession(
+                              widget.info.getSessions().elementAt(idx));
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Session deleted from schedule")));
+                        },
+                      );
+                    }),
+              ),
+            ],
           ),
         ),
-    );
+        floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              SplayTreeSet<Session> set = JsonMapper.sessionSet(JsonController().getJson(), widget.info.getDate().toDateString());
+
+              Navigator.pushNamed(context, '/daySessionsScreen',
+                  arguments:
+                      DaySessionsInfo(widget.info.getDate(), set, _addSession));
+            }, // adicionar depois push para SessionsScreen (ir ao json buscar as sessoes desse dia)
+            backgroundColor: AppColors.mainColor,
+            foregroundColor: Colors.white,
+            elevation: 20.0,
+            icon: Icon(Icons.add),
+            label: Text(
+              "ADD",
+              style: TextStyle(fontSize: 25),
+            )));
   }
 }
