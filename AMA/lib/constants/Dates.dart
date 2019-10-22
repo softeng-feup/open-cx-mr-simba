@@ -5,10 +5,10 @@ library Dates;
 // const String date3 = 'Wed, 25/03/2020';
 // const String date4 = 'Thu, 26/03/2020';
 
- Date date1 = new Date('Mon','23','03','2020');
- Date date2 = new Date('Tue','24','03','2020');
- Date date3 = new Date('Wed','25','03','2020');
- Date date4 = new Date('Thu','26','03','2020');
+ Date date1 = new Date('Mon','01','04','2019');
+ Date date2 = new Date('Tue','02','04','2019');
+ Date date3 = new Date('Wed','03','04','2019');
+ Date date4 = new Date('Thu','04','04','2019');
 
 class Date{
   final String _weekDay;
