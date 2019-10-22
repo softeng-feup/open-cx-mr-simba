@@ -3,7 +3,10 @@ import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/AboutScreen.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() async { 
+  
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
 

@@ -69,9 +69,9 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
               activity: Session(
                   key: "dc03a3e9-5dbd-4af4-973c-0941b84ef00b",
                   title: "Student Research Competition: Oral Presentation",
-                  chairString: "Philipp Haller",
-                  chairKey: "philipphaller",
-                  itemKeys: ["programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
+                  chairsString: "Philipp Haller",
+                  chairs: ["philipphaller"],
+                  items: ["programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
                              "programming-2019-src-reading-logic-as-code-or-as-natural-language-text-short-presentation-",
                              "programming-2019-src-a-framework-for-big-step-semantics-short-presentation-",
                              "programming-2019-src-rml-runtime-monitoring-language-short-presentation-",
