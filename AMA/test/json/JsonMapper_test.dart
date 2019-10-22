@@ -48,7 +48,7 @@ main() {
 
   /*
   test('Decode Sessions', () {
-    SplayTreeSet<Session> set = JsonMapper.sessionSet(jsonDecode(sessions));
+    SplayTreeSet<Session> set = JsonMapper.sessionSet(jsonDecode(sessions), "2019-04-03");
 
     assert(set != null);
     expect(2, set.length);
