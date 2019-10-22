@@ -1,4 +1,4 @@
-import 'package:ama/screens/PageViewScreen.dart';
+import 'package:ama/screens/MainScreenPager.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
@@ -35,6 +35,6 @@ class DaysScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: Container(color: AppColors.backgroundColor,child: PageViewScreen()));
+        body: Container(color: AppColors.backgroundColor,child: MainScreenPager()));
   }
 }

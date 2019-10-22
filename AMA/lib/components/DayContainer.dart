@@ -1,49 +1,35 @@
 import 'package:ama/constants/Dates.dart';
 import 'package:flutter/material.dart';
 
-class DayContainer extends StatefulWidget {
-  DayContainer({this.dayNo, this.date});
+class MainScreenPage extends StatelessWidget {
+  MainScreenPage({this.dayNo, this.date});
 
   final int dayNo;
   final Date date;
 
   @override
-  DayContainerState createState() => DayContainerState();
-}
-
-class DayContainerState extends State<DayContainer> {
-  int numActivities = 0;
-  String activityString = "activities";
-
-  void changeNumActivities(int numActivities) {
-    setState(() {
-      this.numActivities = numActivities;
-
-      if (this.numActivities == 1)
-        this.activityString = "activity";
-      else
-        this.activityString = "activities";
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          String routeOnTap = "/day" + widget.dayNo.toString() + "Screen";
+          String routeOnTap = "/day" + dayNo.toString() + "Screen";
           Navigator.pushNamed(context, routeOnTap);
         },
         child: Align(
             alignment: Alignment.topCenter,
             child: new SmallCalendarPage(
-              date: widget.date,
-              dayNo: widget.dayNo,
-              activityCount: numActivities,
+              date: date,
+              dayNo: dayNo,
+              activityCount: 0,
             )));
   }
 }
 
-class SmallCalendarPage extends StatelessWidget {
+class SmallCalendarPage extends StatefulWidget {
+
+  final Date date;
+  final int dayNo;
+  final int activityCount;
+
   const SmallCalendarPage({
     Key key,
     this.date,
@@ -51,14 +37,29 @@ class SmallCalendarPage extends StatelessWidget {
     this.activityCount,
   }) : super(key: key);
 
-  final Date date;
-  final int dayNo;
-  final int activityCount;
+  @override
+  State<StatefulWidget> createState() => SmallCalendarPageState(activityCount);
+  
+}
+
+class SmallCalendarPageState extends State<SmallCalendarPage> {
+
+  int activityCnt;
+  String activityString;
+
+  SmallCalendarPageState(activityCount) : this.activityCnt = activityCount;
+
+  void incrementActivityCnt(){
+
+    setState(() {
+      this.activityCnt++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     String activityString;
-    (this.activityCount == 1)
+    (this.activityCnt == 1)
         ? (activityString = "activity")
         : (activityString = "activities");
 
@@ -74,31 +75,31 @@ class SmallCalendarPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: new Text(date.getWeekDay(), style: TextStyle(fontSize: 30)),
+            title: new Text(widget.date.getWeekDay(), style: TextStyle(fontSize: 30)),
             backgroundColor: Colors.red,
             leading: Padding(
               padding: const EdgeInsets.all(8.5),
               child:
-                  Text("#" + dayNo.toString(), style: TextStyle(fontSize: 30)),
+                  Text("#" + widget.dayNo.toString(), style: TextStyle(fontSize: 30)),
             ),
           ),
           body: Center(
             child: Column(
               children: <Widget>[
                 Text(
-                  date.getDay(),
+                  widget.date.getDay(),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.15,
                       color: Colors.black),
                 ),
                 Text(
-                  date.getMonthStr(),
+                  widget.date.getMonthStr(),
                   style: TextStyle(fontSize: 25, color: Colors.grey),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
                   child: Text(
-                    activityCount.toString() + " " + activityString,
+                    widget.activityCount.toString() + " " + activityString,
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),
