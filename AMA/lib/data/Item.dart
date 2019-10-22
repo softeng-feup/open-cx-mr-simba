@@ -3,8 +3,9 @@ class Item {
         this.title,
         this.type,
         this.url,
-        this.authorStrings,
-        this.authorKeys,
+        this.peopleString,
+        this.authors,
+        this.affiliationString,
         this.affiliations,
         this.description});
 
@@ -12,9 +13,9 @@ class Item {
   String title;
   String type;
   String url;
-  List<String> authorStrings;
-  List<String> authorKeys;
-  String affiliations;
+  String peopleString;
+  List<String> authors;
+  String affiliationString;
+  List<String> affiliations;
   String description;
-
 }
