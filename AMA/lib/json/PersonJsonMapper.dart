@@ -1,13 +1,6 @@
 import 'package:ama/data/Person.dart';
-import 'dart:convert';
 
 class PersonJsonMapper {
-  static Person fromJson(String jsonString) {
-    Map<String, dynamic> json = jsonDecode(jsonString);
-
-    return PersonJsonMapper.fromJsonMap(json);    
-  }
-
   static Person fromJsonMap(Map<String, dynamic> json) {
     return Person(
       name:  json['Name'],
@@ -17,12 +10,6 @@ class PersonJsonMapper {
       url: json['URL'],
       imageURL: json['URLphoto']
     );
-  }
-
-  static List<Person> fromJsonArray(String json) {
-    Map<String, dynamic> decodedMap = jsonDecode(json);
-    
-    return PersonJsonMapper.fromJsonArrayMap(decodedMap);
   }
 
   static List<Person> fromJsonArrayMap(Map<String, dynamic> jsonMap) {
