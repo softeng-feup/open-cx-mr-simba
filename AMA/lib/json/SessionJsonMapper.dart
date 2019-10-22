@@ -18,6 +18,8 @@ class SessionJsonMapper {
 
   static List<String> getStringList(Map<String, dynamic> json, String key) {
     List<dynamic> dynamicList = json[key];
+    if (dynamicList == null) return null;
+    
     List<String> strings = new List<String>();
 
     dynamicList.forEach((f) {
