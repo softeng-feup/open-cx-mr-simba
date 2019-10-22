@@ -19,8 +19,8 @@ class DayScheduleScreen extends StatefulWidget {
   static Session session1 = Session(
       key: "dc03a3e9-5daf4-973c-0941b84ef00b",
       title: "Student Research Competition: Oral Presentation",
-      chairString: "Philipp Haller",
-      chairKey: "philipphaller",
+      chairStrings: ["Philipp Haller"],
+      chairKeys: ["philipphaller"],
       itemKeys: [
         "programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
         "programming-2019-src-reading-logic-as-code-or-as-natural-language-text-short-presentation-",
@@ -40,8 +40,8 @@ class DayScheduleScreen extends StatefulWidget {
   static Session session2 = Session(
       key: "dc03a3e9-5dbd-4af4-973c-0940b",
       title: "Student Research Competition: Oral Presentation",
-      chairString: "Philipp Haller",
-      chairKey: "philipphaller",
+      chairStrings: ["Philipp Haller"],
+      chairKeys: ["philipphaller"],
       itemKeys: [
         "programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
         "programming-2019-src-reading-logic-as-code-or-as-natural-language-text-short-presentation-",
@@ -61,8 +61,8 @@ class DayScheduleScreen extends StatefulWidget {
   static Session session3 = Session(
       key: "dc03a3e9-5dbd-4af4-973c-0941b84ef00b",
       title: "Student Research Competition: Oral Presentation",
-      chairString: "Philipp Haller",
-      chairKey: "philipphaller",
+      chairStrings: ["Philipp Haller"],
+      chairKeys: ["philipphaller"],
       itemKeys: [
         "programming-2019-src-cantor-pairing-in-a-reversible-programming-language-short-presentation-",
         "programming-2019-src-reading-logic-as-code-or-as-natural-language-text-short-presentation-",

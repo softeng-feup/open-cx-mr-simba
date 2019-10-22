@@ -1,8 +1,8 @@
 class Session extends Comparable<dynamic> {
   Session({this.key,
            this.title,
-           this.chairString,
-           this.chairKey,
+           this.chairStrings,
+           this.chairKeys,
            this.itemKeys,
            this.type,
            this.day,
@@ -13,8 +13,8 @@ class Session extends Comparable<dynamic> {
 
   String key;
   String title;
-  String chairString; // name of the chair
-  String chairKey; // chair key, so we can get the info about the chair in the json file
+  List<String> chairStrings; // names of the chairs
+  List<String> chairKeys; // chair keys, so we can get the info about the chairs in the json file
   List<String> itemKeys; // item keys, so we can get info about the these items in the json file
   String type;
   String day;
@@ -22,7 +22,6 @@ class Session extends Comparable<dynamic> {
   String timeString;
   String location;
   String description;
-
 
   @override
   bool operator ==(other) {

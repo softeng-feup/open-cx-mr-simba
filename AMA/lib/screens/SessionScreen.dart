@@ -24,6 +24,11 @@ class SessionScreen extends StatelessWidget {
 
       body: Container(
         color: AppColors.backgroundColor,
+        child: Column(
+          children: <Widget>[
+
+          ],
+        ),
       ),
     );
   }

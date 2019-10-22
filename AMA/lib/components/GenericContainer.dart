@@ -15,7 +15,8 @@ class GenericContainer extends StatelessWidget {
       width: deviceWidth * 0.95,
       decoration: BoxDecoration(
           color: AppColors.containerColor,
-          borderRadius: BorderRadius.all(Radius.circular(18.0))),
+          borderRadius: BorderRadius.all(Radius.circular(18.0))
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
         child: Column(
