@@ -46,10 +46,12 @@ main() {
     print(s.startTime);
   });
 
+  /*
   test('Decode Sessions', () {
     SplayTreeSet<Session> set = JsonMapper.sessionSet(jsonDecode(sessions));
 
     assert(set != null);
     expect(2, set.length);
   });
+  */
 }

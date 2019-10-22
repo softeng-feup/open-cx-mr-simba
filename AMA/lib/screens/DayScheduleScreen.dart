@@ -99,7 +99,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
               Navigator.pushNamed(context, '/daySessionsScreen',
                   arguments:
                       DaySessionsInfo(widget.info.getDate(), set, _addSession));
-            }, // adicionar depois push para SessionsScreen (ir ao json buscar as sessoes desse dia)
+            },
             backgroundColor: AppColors.mainColor,
             foregroundColor: Colors.white,
             elevation: 20.0,
