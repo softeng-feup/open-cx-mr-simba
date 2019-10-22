@@ -24,10 +24,10 @@ class _PageViewScreenState extends State<PageViewScreen> {
   @override
   Widget build(BuildContext context) {
     return PageView(children: <Widget>[
-      Padding(padding: EdgeInsets.all(40), child: DayContainer(day: 1, date: Dates.date1)),
-      Padding(padding: EdgeInsets.all(40), child: DayContainer(day: 2, date: Dates.date2)),
-      Padding(padding: EdgeInsets.all(40), child: DayContainer(day: 3, date: Dates.date3)),
-      Padding(padding: EdgeInsets.all(40), child: DayContainer(day: 4, date: Dates.date4)),
+      Padding(padding: EdgeInsets.all(40), child: DayContainer(dayNo: 1, date: Dates.date1)),
+      Padding(padding: EdgeInsets.all(40), child: DayContainer(dayNo: 2, date: Dates.date2)),
+      Padding(padding: EdgeInsets.all(40), child: DayContainer(dayNo: 3, date: Dates.date3)),
+      Padding(padding: EdgeInsets.all(40), child: DayContainer(dayNo: 4, date: Dates.date4)),
     ],
     controller: _pageController
     );

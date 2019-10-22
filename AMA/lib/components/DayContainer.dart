@@ -2,9 +2,9 @@ import 'package:ama/constants/Dates.dart';
 import 'package:flutter/material.dart';
 
 class DayContainer extends StatefulWidget {
-  DayContainer({this.day, this.date});
+  DayContainer({this.dayNo, this.date});
 
-  final int day;
+  final int dayNo;
   final Date date;
 
   @override
@@ -30,12 +30,16 @@ class DayContainerState extends State<DayContainer> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          String routeOnTap = "/day" + widget.day.toString() + "Screen";
+          String routeOnTap = "/day" + widget.dayNo.toString() + "Screen";
           Navigator.pushNamed(context, routeOnTap);
         },
         child: Align(
-          alignment: Alignment.topCenter,
-          child: new SmallCalendarPage(date: widget.date)));
+            alignment: Alignment.topCenter,
+            child: new SmallCalendarPage(
+              date: widget.date,
+              dayNo: widget.dayNo,
+              activityCount: numActivities,
+            )));
   }
 }
 
@@ -43,12 +47,21 @@ class SmallCalendarPage extends StatelessWidget {
   const SmallCalendarPage({
     Key key,
     this.date,
+    this.dayNo,
+    this.activityCount,
   }) : super(key: key);
 
   final Date date;
+  final int dayNo;
+  final int activityCount;
 
   @override
   Widget build(BuildContext context) {
+    String activityString;
+    (this.activityCount == 1)
+        ? (activityString = "activity")
+        : (activityString = "activities");
+
     return Container(
       height: MediaQuery.of(context).size.height * 40 / 100,
       decoration: BoxDecoration(
@@ -63,6 +76,11 @@ class SmallCalendarPage extends StatelessWidget {
             centerTitle: true,
             title: new Text(date.getWeekDay(), style: TextStyle(fontSize: 30)),
             backgroundColor: Colors.red,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.5),
+              child:
+                  Text("#" + dayNo.toString(), style: TextStyle(fontSize: 30)),
+            ),
           ),
           body: Center(
             child: Column(
@@ -76,6 +94,13 @@ class SmallCalendarPage extends StatelessWidget {
                 Text(
                   date.getMonthStr(),
                   style: TextStyle(fontSize: 25, color: Colors.grey),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: Text(
+                    activityCount.toString() + " " + activityString,
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
                 ),
               ],
             ),
