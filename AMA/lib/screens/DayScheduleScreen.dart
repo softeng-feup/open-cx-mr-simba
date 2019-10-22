@@ -41,7 +41,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
   }
 
   List<Widget> _buildActivityContainerList() {
-    List<Session> sessions = JsonMapper.sessionSet(JsonController().getJson());
+    SplayTreeSet<Session> sessions = JsonMapper.sessionSet(JsonController().getJson());
     List<Widget> widgets = List<Widget>();
 
     sessions.forEach((f) {

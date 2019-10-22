@@ -1,4 +1,4 @@
-class Session {
+class Session extends Comparable<dynamic> {
   final String key;
   final String title;
   final String chairsString; // name of the chair
@@ -33,8 +33,9 @@ class Session {
 
   @override
   int compareTo(other) {
-    if (this.key == other.key) return 0;
-    
+    if (this.key == other.key) 
+      return 0;
+  
     return this.timeString.compareTo(other.timeString);
   }
 }

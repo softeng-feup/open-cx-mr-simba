@@ -50,14 +50,15 @@ class JsonMapper {
       chairsString: json['ChairsString'] as String,
       items: JsonMapper.stringList(json, "Items"),
       location: json['Location'],
+      startTime: DateTime.parse(json['Day'] + ' ' + json['Time'].substring(0, 5) + ':00'),
       timeString: json['Time'],
       day: json['Day']
     );
   }
 
-  static List<Session> sessionSet(Map<String, dynamic> jsonMap) {
+  static SplayTreeSet<Session> sessionSet(Map<String, dynamic> jsonMap) {
     List<dynamic> dynamicList = jsonMap['Sessions'];
-    List<Session> sessions = List<Session>();
+    SplayTreeSet<Session> sessions = SplayTreeSet<Session>();
 
     dynamicList.forEach((f) {
       Session s = JsonMapper.session(f);
