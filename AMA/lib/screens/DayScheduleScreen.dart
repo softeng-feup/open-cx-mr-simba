@@ -1,6 +1,8 @@
+import 'dart:collection';
+
 import 'package:ama/data/Session.dart';
 import 'package:ama/json/JsonController.dart';
-import 'package:ama/json/SessionJsonMapper.dart';
+import 'package:ama/json/JsonMapper.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 import '../components/ActivityContainer.dart';
@@ -39,7 +41,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
   }
 
   List<Widget> _buildActivityContainerList() {
-    List<Session> sessions = SessionJsonMapper.fromJsonArrayMap(JsonController().getJson());
+    List<Session> sessions = JsonMapper.sessionSet(JsonController().getJson());
     List<Widget> widgets = List<Widget>();
 
     sessions.forEach((f) {
