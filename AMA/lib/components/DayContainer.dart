@@ -1,4 +1,5 @@
 import 'package:ama/constants/Dates.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
 class MainScreenPage extends StatelessWidget {
@@ -14,18 +15,21 @@ class MainScreenPage extends StatelessWidget {
           String routeOnTap = "/day" + dayNo.toString() + "Screen";
           Navigator.pushNamed(context, routeOnTap);
         },
-        child: Align(
-            alignment: Alignment.topCenter,
-            child: new SmallCalendarPage(
-              date: date,
-              dayNo: dayNo,
-              activityCount: 0,
-            )));
+        child: Column(
+          children: <Widget>[
+            Align(
+                alignment: Alignment.topCenter,
+                child: new SmallCalendarPage(
+                  date: date,
+                  dayNo: dayNo,
+                  activityCount: 0,
+                )),
+          ],
+        ));
   }
 }
 
 class SmallCalendarPage extends StatefulWidget {
-
   final Date date;
   final int dayNo;
   final int activityCount;
@@ -39,18 +43,15 @@ class SmallCalendarPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => SmallCalendarPageState(activityCount);
-  
 }
 
 class SmallCalendarPageState extends State<SmallCalendarPage> {
-
   int activityCnt;
   String activityString;
 
   SmallCalendarPageState(activityCount) : this.activityCnt = activityCount;
 
-  void incrementActivityCnt(){
-
+  void incrementActivityCnt() {
     setState(() {
       this.activityCnt++;
     });
@@ -59,7 +60,7 @@ class SmallCalendarPageState extends State<SmallCalendarPage> {
   @override
   Widget build(BuildContext context) {
     String activityString;
-    activityString = (this.activityCnt == 1) ?  "activity" : "activities";
+    activityString = (this.activityCnt == 1) ? "activity" : "activities";
 
     return Container(
       height: MediaQuery.of(context).size.height * 40 / 100,
@@ -73,12 +74,13 @@ class SmallCalendarPageState extends State<SmallCalendarPage> {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: new Text(widget.date.getWeekDay(), style: TextStyle(fontSize: 30)),
+            title: new Text(widget.date.getWeekDay(),
+                style: TextStyle(fontSize: 30)),
             backgroundColor: Colors.red,
             leading: Padding(
               padding: const EdgeInsets.all(8.5),
-              child:
-                  Text("#" + widget.dayNo.toString(), style: TextStyle(fontSize: 30)),
+              child: Text("#" + widget.dayNo.toString(),
+                  style: TextStyle(fontSize: 30)),
             ),
           ),
           body: Center(

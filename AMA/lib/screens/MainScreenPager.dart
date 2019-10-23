@@ -1,6 +1,8 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import '../components/DayContainer.dart';
 import '../constants/Dates.dart' as Dates;
+import '../constants/AppColors.dart' as AppColors;
 
 class MainScreenPager extends StatefulWidget {
   _MainScreenPagerState createState() => _MainScreenPagerState();
@@ -8,6 +10,7 @@ class MainScreenPager extends StatefulWidget {
 
 class _MainScreenPagerState extends State<MainScreenPager> {
   PageController _pageController;
+  int selectedPage;
 
   @override
   void initState() {
@@ -21,15 +24,47 @@ class _MainScreenPagerState extends State<MainScreenPager> {
     super.dispose();
   }
 
+  _onPageViewChange(int page) {
+    setState(() {
+      selectedPage = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageView(children: <Widget>[
-      Padding(padding: EdgeInsets.all(40), child: MainScreenPage(dayNo: 1, date: Dates.date1)),
-      Padding(padding: EdgeInsets.all(40), child: MainScreenPage(dayNo: 2, date: Dates.date2)),
-      Padding(padding: EdgeInsets.all(40), child: MainScreenPage(dayNo: 3, date: Dates.date3)),
-      Padding(padding: EdgeInsets.all(40), child: MainScreenPage(dayNo: 4, date: Dates.date4)),
-    ],
-    controller: _pageController
+    List<Widget> pages = [
+      Padding(
+          padding: EdgeInsets.all(40),
+          child: MainScreenPage(dayNo: 1, date: Dates.date1)),
+      Padding(
+          padding: EdgeInsets.all(40),
+          child: MainScreenPage(dayNo: 2, date: Dates.date2)),
+      Padding(
+          padding: EdgeInsets.all(40),
+          child: MainScreenPage(dayNo: 3, date: Dates.date3)),
+      Padding(
+          padding: EdgeInsets.all(40),
+          child: MainScreenPage(dayNo: 4, date: Dates.date4)),
+    ];
+
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: PageView(
+            children: pages,
+            onPageChanged: _onPageViewChange,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: DotsIndicator(
+              dotsCount: pages.length,
+              position: selectedPage,
+              decorator: DotsDecorator(
+                color: Colors.grey,
+              )),
+        )
+      ],
     );
   }
 }
