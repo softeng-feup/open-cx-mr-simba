@@ -59,9 +59,7 @@ class SmallCalendarPageState extends State<SmallCalendarPage> {
   @override
   Widget build(BuildContext context) {
     String activityString;
-    (this.activityCnt == 1)
-        ? (activityString = "activity")
-        : (activityString = "activities");
+    activityString = (this.activityCnt == 1) ?  "activity" : "activities";
 
     return Container(
       height: MediaQuery.of(context).size.height * 40 / 100,
