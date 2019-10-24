@@ -78,7 +78,7 @@ As an agenda application, the main requirements of our product are connected to 
 
 ### Use case diagram 
 
-![Use case diagram](docs/use_case_diagram_1.jpg)
+![Use case diagram](docs/use_case_diagram_1.png)
 
 Description of the use cases shown:
 
@@ -287,7 +287,7 @@ Description of the use cases shown:
 
 ### Domain model
 
-![Domain Model](docs/domain_model.png)
+![Domain Model](docs/domain_model.jpg)
 
 ---
 
