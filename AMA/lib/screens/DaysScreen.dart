@@ -32,6 +32,12 @@ class DaysScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/about');
                   },
                   leading: Icon(Icons.info)),
+
+              ListTile(title: Text('Session Search', style: TextStyle(color: Colors.black)),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/bluetoothScreen');
+                  },
+                  leading: Icon(Icons.bluetooth)),
             ],
           ),
         ),

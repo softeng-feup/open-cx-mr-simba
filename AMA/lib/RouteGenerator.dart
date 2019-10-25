@@ -3,6 +3,7 @@ import 'package:ama/data/DaySessionsInfo.dart';
 import 'package:ama/data/Session.dart';
 import 'package:ama/main.dart';
 import 'package:ama/screens/AboutScreen.dart';
+import 'package:ama/screens/BluetoothSearchScreen.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/DaySessionsScreen.dart';
@@ -53,6 +54,10 @@ class RouteGenerator {
           return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
         }
         return _errorRoute();
+
+
+      case '/bluetoothScreen':
+        return MaterialPageRoute(builder: (_) => BluetoothSearchScreen());
 
 
       default:

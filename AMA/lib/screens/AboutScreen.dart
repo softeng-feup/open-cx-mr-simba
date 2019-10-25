@@ -13,6 +13,13 @@ class AboutScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AppColors.mainColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Container(
         color: AppColors.backgroundColor,
