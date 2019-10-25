@@ -68,7 +68,7 @@ Here are shown the several iterations of the elevator pitch, so that you can see
 
 Our idea for a product that would let the atendees of the conference have a better experience is an agenda application that lets the participants to better organize their schedule. Our app will let the users plan their schedule for each one of the 4 days of the conference. They can of course add and remove activities from their schedule as they will.
 
-Also, to remind the user that an activity is about to begin, the app will send a push notification approximately 5/10 mins before each activity, so they don't forget it.
+However, what sets us apart from other agenda apps is our use of bluetooth beacons, that are distributed throughout the different rooms and areas of the conference. If you get close to one of them, and an activity will start shortly in that area, you will receive a push notification warning you about it, so that you are connected with everything that is happening around you."
 
 However, what sets us apart from other agenda apps is our use of bluetooth beacons, that are distributed throughout the different rooms and areas of the conference. If a user gets close to one of them, and an activity will start shortly in that area, they will receive a push notification warning them about it, so they are informed about everything that is happening around them.""
 
@@ -93,7 +93,7 @@ As an agenda application, the main requirements of our product are connected to 
 
 ### Use case diagram 
 
-![Use case diagram](docs/use_case_diagram_1.jpg)
+* **Preconditions and Postconditions**: The schedules need to have at least one activity in them; besides that, there are no major preconditions necessary for the use case's execution.
 
 Description of the use cases shown:
 
@@ -400,6 +400,7 @@ Due to a big portion of the first iteration being spent learning Flutter, and al
 
 ## Project management
 
+The project management tool that we decided to adopt was Trello.
 
 The project management tool that we decided to adopt was Trello. Because it is simple to use, free and as a lot of usefull functionalities such as setting deadlines, adding attachements adding responsitbilities and notifications.
 
