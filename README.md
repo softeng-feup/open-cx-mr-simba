@@ -72,6 +72,10 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram 
 
+### Todo  list:
+- [ ] Use-case diagram
+- [ ] Use-case naming
+- [ ] Use-case description
  
 
 ![Use case diagram](docs/use_case_diagram_1.jpg)
@@ -86,21 +90,14 @@ Briefly describe each use case mentioning the following:
 * **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
 
 ### User stories
-This section will contain the requirements of the product described as **user stories**, organized in a global **user story map** with **user roles** or **themes**.
 
-For each theme, or role, you may add a small description here. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
+### Todo list
+- [x] User story descriptions
+- [ ] MoSCow Notation
+- [ ] Story Map
+- [ ] Acceptance tests
+- [ ] Mockups
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is 
-
-*As a < user role >, I want < goal > so that < reason >.*
-
-You add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the INVEST guidelines.
-
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockups or drafts, if applicable.
-
-For each user story you should write also the acceptance tests (textually in Gherkin), ie, a description of situations that will help to confirm that the system satisfies the requirements addressed in the user story.
-
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. MoSCoW method) and the team should add an estimative of the effort to implemente it, in t-shirt sizes (XS, S, M, L, XL).
 
 ### #1
 
@@ -114,25 +111,25 @@ At the end, it is good to add a rough indication of the value of the user story 
 > As a user I want to be informed, minutes before, that a session that is in my schedule is going to start, so that I don't miss activities that are of my interest.
 
 ### #4
-> Como participante estrangeiro da conferência, não conhecendo bem o meio em que esta está a decorrer, gostaria de saber quando é que passo por sítios/locais em que estão a/irão decorrer atividades do meu interesse.
+> As a foreign atendee of the conference, now knowing the country and venue where it is taking place, I would like to known when I pass by points of interest such as rooms where activities of my liking are going to happen and/or bathrooms, places to eat, so that I feel less difficulty in being a foreign country.
 
 ### #5
-> Como participante na conferência, gostaria de poder criar as minhas próprias atividades e adicioná-las ao horário (ex: almoçar, encontrar-me com conhecidos, reuniões, etc), de modo a poder ter na aplicação tudo o que fizer que for relacionado com a conferência.
+> As an atendee of the conference I would like to be able to create my own activities and add them to the schedule (example: have lunch, meet up with collegues, business-meetings, etc.) so that I can have in the same app everything I do that is related to the conference. 
 
 ### #6
->Indicação por parte do utilizador de certas áreas de interesse, sendo que a app sugere certas sessões que tenham a ver
+> As an atendee of the the conference I would like to give the app my areas of interest so that the app may suggest sessions and/or activities that are of my interest.
 
 ### #7
->triangulação com beacons para o utilizador saber onde está
+> As an atendee of the conference I would like to be able to find my exact location in the venue so that I don't get lost.
 
 ### #8
->"modo organizador" que utiliza as informações de localização para oferecer insights aos organizadores sobre o estado do seu evento
+> As an organizer of the conference I would like to get insights on the conference (attending numbers, heat maps of concentration of people, favorite topics ) so that I may know how I can improve the experience at the conference and any future ones
 
 ### #9
->sistema de "amigos" que utiliza os beacons para informar os utilizadores da presença de "colegas" na conferência
+> As an atendee of the conference I would like to be able to add my friends and collegues to a friend's list in the app so that I am aware if people I know are attending the same conference as I am.
 
 ### #10
->advertising através de push notifications pelos beacons
+> As a conference organizer I would like to be able to give sponsors a place where they can advertise to the atendees of the conference so that I have a away of finance the conference and any future events.
 
 ### Domain model
 
@@ -142,17 +139,74 @@ A simple UML class diagram with all the key concepts (names, attributes) and rel
 
 
 
-### Useful links
+---
+
+## Architecture and Design
+The architecture of a software system encompasses the set of key decisions about its overall organization. 
+
+A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
+
+To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
+
+In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+
+### Logical architecture
+The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+
+It can be beneficial to present the system both in a horizontal or vertical decomposition:
+* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
+* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+
+### Physical architecture
+The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
+
+It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+
+### Prototype
+To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+
+In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+
+---
+
+## Implementation
+Regular product increments are a good practice of product management. 
+
+While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+
+Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+
+---
+## Test
+
+There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+
+In this section it is only expected to include the following:
+* test plan describing the list of features to be tested and the testing methods and tools;
+* test case specifications to verify the functionalities, using unit tests and acceptance tests.
+ 
+A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+
+---
+## Configuration and change management
+
+Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
+
+For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 
-To learn more about how to write a good product vision, please see also:
-* [How To Create A Convincing Product Vision To Guide Your Team, by uxstudioteam.com](https://uxstudioteam.com/ux-blog/product-vision/)
-* [Product Management: Product Vision, by ProductPlan](https://www.productplan.com/glossary/product-vision/)
-* [Vision, by scrumbook.org](http://scrumbook.org/value-stream/vision.html)
-* [How to write a vision, by dummies.com](https://www.dummies.com/business/marketing/branding/how-to-write-vision-and-mission-statements-for-your-brand/)
-* [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
+---
 
-To learn more about how to write a good elevator pitch take a look at the following links to learn some techniques:
-* [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
-* [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
-* [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
+## Project management
+
+Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+
+In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
+
+Example of tools to do this are:
+  * [Trello.com](https://trello.com)
+  * [Github Projects](https://github.com/features/project-management/com)
+  * [Pivotal Tracker](https://www.pivotaltracker.com)
+  * [Jira](https://www.atlassian.com/software/jira)
+
+We recommend to use the simplest tool that can possibly work for the team.
