@@ -1,5 +1,7 @@
 import 'package:ama/components/GenericContainer.dart';
 import 'package:ama/data/Session.dart';
+import 'package:ama/json/JsonController.dart';
+import 'package:ama/json/JsonMapper.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
@@ -37,7 +39,7 @@ class SessionScreen extends StatelessWidget {
               child: FlatButton(
                   padding: EdgeInsets.all(0.0),
                   child: GenericContainer(title: "Chairs:", text: "Tap to see more"),
-                  onPressed: () => {}
+                  onPressed: () => Navigator.pushNamed(context, '/personScreen', arguments: JsonMapper.peopleWithKeys(JsonController().getJson(), session.chairs))
                   ),
             ),
           ],
