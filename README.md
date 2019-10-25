@@ -384,7 +384,7 @@ In iteration #2 the goal is to start developing the BLE(Bluetooth Low Energy) mo
 
 ## Implementation  
 
-
+Due to a big portion of the first iteration being spent learning Flutter, and although we have developed some features, the code that was implemented is not properly structured and is on a early development stage , as such, this section will be detailed in the following iteration.
 
 ---
 ## Test  
