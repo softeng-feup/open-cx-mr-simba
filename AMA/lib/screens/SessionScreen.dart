@@ -24,23 +24,41 @@ class SessionScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-
       body: Container(
         color: AppColors.backgroundColor,
         child: Column(
           children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                child: GenericContainer(title: "Title:", text: session.title),
-              ),
-
             Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              child: GenericContainer(title: "Title", text: session.title),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              child:
+                  GenericContainer(title: "Title", text: session.description),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              child: GenericContainer(title: "Title", text: session.location),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              child: GenericContainer(title: "Title", text: session.location),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: FlatButton(
                   padding: EdgeInsets.all(0.0),
-                  child: GenericContainer(title: "Chairs:", text: "Tap to see more"),
-                  onPressed: () => Navigator.pushNamed(context, '/personScreen', arguments: JsonMapper.peopleWithKeys(JsonController().getJson(), session.chairs))
-                  ),
+                  child: GenericContainer(
+                      title: "Chairs", text: session.chairsString),
+                  onPressed: () => Navigator.pushNamed(context, '/personScreen',
+                      arguments: JsonMapper.peopleWithKeys(
+                          JsonController().getJson(), session.chairs))),
             ),
           ],
         ),
