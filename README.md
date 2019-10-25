@@ -57,6 +57,13 @@ Our solution for that is an agenda app for your smartphone that lets you, as a p
 
 However, what sets us apart from other agenda apps is our use of bluetooth beacons, that are distributed throughout the different rooms and areas of the conference. If you get close to one of them, and an activity will start shortly in that area, you will receive a push notification warning you about it, so that you are connected with everything that is happening around you.
 
+### Version 2.a
+Have you ever found yourself in a conference spending more time keeping track of events and getting accquainted to the venue rather than networking and getting knowledge?
+Our solution for that is an agenda app for your smartphone that lets you, as a participant, organize you schedule. The app let's you plan out your daily activities and warns you before it's time to do them.
+
+However, what sets us apart from other agenda apps is that our app is connected with the event space and, as such, you get custom location-related notifications. If you get close to one of them, and an activity will start shortly in that area, you will receive a push notification warning you about it, so that you are connected with everything that is happening around you.
+
+
 ## Requirements
 
 In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
