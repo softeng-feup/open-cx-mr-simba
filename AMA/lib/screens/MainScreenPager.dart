@@ -15,7 +15,7 @@ class _MainScreenPagerState extends State<MainScreenPager> {
   @override
   void initState() {
     super.initState();
-    selectedPage = 1;
+    selectedPage = 0;
     _pageController = PageController();
   }
 
