@@ -36,26 +36,10 @@ class SessionScreen extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child:
-                  GenericContainer(title: "Title", text: session.description),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: GenericContainer(title: "Title", text: session.location),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: GenericContainer(title: "Title", text: session.location),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: FlatButton(
                   padding: EdgeInsets.all(0.0),
                   child: GenericContainer(
-                      title: "Chairs", text: session.chairsString),
+                      title: "Chairs", text: "tap to see more"),
                   onPressed: () => Navigator.pushNamed(context, '/personScreen',
                       arguments: JsonMapper.peopleWithKeys(
                           JsonController().getJson(), session.chairs))),

@@ -3,8 +3,8 @@ import 'package:ama/data/Person.dart';
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart' as AppColors;
 
-class PersonScreen extends StatelessWidget {
-  PersonScreen({this.people});
+class PeopleScreen extends StatelessWidget {
+  PeopleScreen({this.people});
 
   final List<Person> people;
 
@@ -25,15 +25,16 @@ class PersonScreen extends StatelessWidget {
 
       body: Container(
         color: AppColors.backgroundColor,
-        child: Column(
-          children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                child: GenericContainer(title: "Title:", text: people[0].name),
-              ),
-          ],
-        ),
-      ),
-    );
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          padding: const EdgeInsets.only(
+              left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
+          itemCount: people.length,
+          itemBuilder: (context, idx) {
+            return GenericContainer(
+              title: people.elementAt(idx).name,
+              text: people.elementAt(idx).affiliation
+            );
+          })));
   }
 }

@@ -6,7 +6,7 @@ import 'package:ama/screens/AboutScreen.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/DaySessionsScreen.dart';
-import 'package:ama/screens/PersonScreen.dart';
+import 'package:ama/screens/PeopleScreen.dart';
 import 'package:ama/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
@@ -58,7 +58,7 @@ class RouteGenerator {
 
       case '/personScreen':
         if(args is List<Person>) {
-          return MaterialPageRoute(builder: (_) => PersonScreen(people: args));
+          return MaterialPageRoute(builder: (_) => PeopleScreen(people: args));
         }
         return _errorRoute();
 
