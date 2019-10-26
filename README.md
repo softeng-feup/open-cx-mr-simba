@@ -93,7 +93,7 @@ As an agenda application, the main requirements of our product are connected to 
 
 ### Use case diagram 
 
-* **Preconditions and Postconditions**: The schedules need to have at least one activity in them; besides that, there are no major preconditions necessary for the use case's execution.
+![Use case diagram](docs/use_case_diagram_1.png)
 
 Description of the use cases shown:
 
