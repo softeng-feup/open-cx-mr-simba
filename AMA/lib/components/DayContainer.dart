@@ -58,7 +58,6 @@ class SmallCalendarPageState extends State<SmallCalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    String activityString;
     activityString = (this.activityCnt == 1) ?  "activity" : "activities";
 
     return Container(
@@ -68,44 +67,51 @@ class SmallCalendarPageState extends State<SmallCalendarPage> {
         color: Colors.white,
         border: Border.all(width: 2),
       ),
-      child: ClipRRect(
-        borderRadius: new BorderRadius.circular(16),
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: new Text(widget.date.getWeekDay(), style: TextStyle(fontSize: 30)),
-            backgroundColor: Colors.red,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.5),
-              child:
-                  Text("#" + widget.dayNo.toString(), style: TextStyle(fontSize: 30)),
-            ),
+      child: this.drawCalendar(),
+    );
+  }
+
+
+  Widget drawCalendar() {
+    return ClipRRect(
+      borderRadius: new BorderRadius.circular(16),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: new Text(widget.date.getWeekDay(), style: TextStyle(fontSize: 30)),
+          backgroundColor: Colors.red,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.5),
+            child:
+            Text("#" + widget.dayNo.toString(), style: TextStyle(fontSize: 30)),
           ),
-          body: Center(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  widget.date.getDay(),
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.15,
-                      color: Colors.black),
+        ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              Text(
+                widget.date.getDay(),
+                style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * 0.15,
+                    color: Colors.black),
+              ),
+              Text(
+                widget.date.getMonthStr(),
+                style: TextStyle(fontSize: 25, color: Colors.grey),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: Text(
+                  widget.activityCount.toString() + " " + activityString,
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
-                Text(
-                  widget.date.getMonthStr(),
-                  style: TextStyle(fontSize: 25, color: Colors.grey),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
-                  child: Text(
-                    widget.activityCount.toString() + " " + activityString,
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+
+
 }

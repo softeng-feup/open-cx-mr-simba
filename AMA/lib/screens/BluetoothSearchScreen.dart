@@ -36,36 +36,39 @@ class BluetoothSearchScreen extends StatelessWidget {
                     text: Utility.sessionSearchText
                   ),
                 ),
-
-                Visibility(
-                  maintainSize: false,
-                  visible: _bluetoothController.isBluetoothAvailable(), // TODO: not working
-
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 160.0),
-                    child: RawMaterialButton(
-                      onPressed: () {
-
-                        // TODO: comeca a dar scan de devices e recebe informacao
-                        // processamento feito em BluetoothController; esta classe nao sabe como
-                        // a ligacao bluetooth acontece, apenas recebe a informacao
-                        // passa as informacoes para outra pagina, para dar display
-                        // a outra pagina vai buscar ao json a informacao correta e da display
-
-
-                      },
-                      child: Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
-                      shape: new CircleBorder(),
-                      elevation: 5.0,
-                      fillColor: AppColors.mainColor,
-                      padding: const EdgeInsets.all(70.0),
-                    ),
-                  ),
-                ),
-
+                this.drawButton(),
               ],
             ),
           )
+      );
+    }
+
+
+    Widget drawButton() {
+      return Visibility(
+        maintainSize: false,
+        visible: true,//_bluetoothController.isBluetoothAvailable(), // TODO: not working
+
+        child: Padding(
+          padding: const EdgeInsets.only(top: 160.0),
+          child: RawMaterialButton(
+            onPressed: () {
+
+              // TODO: comeca a dar scan de devices e recebe informacao
+              // processamento feito em BluetoothController; esta classe nao sabe como
+              // a ligacao bluetooth acontece, apenas recebe a informacao
+              // passa as informacoes para outra pagina, para dar display
+              // a outra pagina vai buscar ao json a informacao correta e da display
+
+
+            },
+            child: Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
+            shape: new CircleBorder(),
+            elevation: 5.0,
+            fillColor: AppColors.mainColor,
+            padding: const EdgeInsets.all(70.0),
+          ),
+        ),
       );
     }
 }

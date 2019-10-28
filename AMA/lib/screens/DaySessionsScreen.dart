@@ -22,33 +22,40 @@ class DaySessionsScreen extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        body: Container(
-            color: AppColors.backgroundColor,
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.only(
-                    left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
-                itemCount: sessionsInfo.getSessions().length,
-                itemBuilder: (context, idx) {
-                  return SlidableSessionContainer(
-                    session: sessionsInfo.getSessions().elementAt(idx),
-                    icon: Icons.check,
-                    color: Colors.green,
-                    onPressFunction: () {
-                      bool added = sessionsInfo.addFunction(
-                          sessionsInfo.getSessions().elementAt(idx));
+        body: this.drawSessionsList(),
+      );
+  }
 
-                      String text;
 
-                      if (added)
-                        text = "Session added to schedule";
-                      else
-                        text = "Session already added to schedule";
+  Widget drawSessionsList() {
+    return Container(
+        color: AppColors.backgroundColor,
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsets.only(
+                left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
+            itemCount: sessionsInfo.getSessions().length,
+            itemBuilder: (context, idx) {
+              return SlidableSessionContainer(
+                session: sessionsInfo.getSessions().elementAt(idx),
+                icon: Icons.check,
+                color: Colors.green,
+                onPressFunction: () {
+                  bool added = sessionsInfo.addFunction(
+                      sessionsInfo.getSessions().elementAt(idx));
 
-                      Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text(text)));
-                    },
-                  );
-                })));
+                  String text;
+
+                  if (added)
+                    text = "Session added to schedule";
+                  else
+                    text = "Session already added to schedule";
+
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text(text)));
+                },
+              );
+            })
+    );
   }
 }
