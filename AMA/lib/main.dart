@@ -1,7 +1,9 @@
-import 'package:ama/json/JsonController.dart';
 import 'package:ama/RouteGenerator.dart';
-import 'package:ama/data/Database.dart';
 import 'package:flutter/material.dart';
+import 'controller/json/JsonController.dart';
+
+// TODO: depois se calhar meter este controller dentro do controller principal
+// TODO: cena das activities (meter tb no controller)
 
 void main() async { 
   await JsonController().parseJsonFromURL('https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json');
@@ -9,8 +11,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
-  static final Database database = new Database();
 
   // This widget is the root of your application.
   @override

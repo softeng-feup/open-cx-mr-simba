@@ -1,12 +1,13 @@
 import 'package:ama/components/SlidableSessionContainer.dart';
-import 'package:ama/data/DaySessionsInfo.dart';
+import 'package:ama/controller/Controller.dart';
+import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/AppColors.dart' as AppColors;
 
 class DaySessionsScreen extends StatelessWidget {
   DaySessionsScreen({this.sessionsInfo});
 
-  final DaySessionsInfo sessionsInfo;
+  final DayScheduleInfo sessionsInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +42,7 @@ class DaySessionsScreen extends StatelessWidget {
                 icon: Icons.check,
                 color: Colors.green,
                 onPressFunction: () {
-                  bool added = sessionsInfo.addFunction(
-                      sessionsInfo.getSessions().elementAt(idx));
-
-                  String text;
-
-                  if (added)
-                    text = "Session added to schedule";
-                  else
-                    text = "Session already added to schedule";
+                  String text = Controller.instance().removeSessionFromSchedule(sessionsInfo.getDay(), sessionsInfo.getSessions().elementAt(idx));
 
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text(text)));

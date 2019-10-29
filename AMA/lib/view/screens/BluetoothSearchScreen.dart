@@ -1,8 +1,8 @@
 import 'package:ama/components/GenericContainer.dart';
+import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
-import '../constants/Utility.dart' as Utility;
-import '../bluetooth/BluetoothController.dart';
+import '../../constants/AppColors.dart' as AppColors;
+import '../../constants/Utility.dart' as Utility;
 
 class BluetoothSearchScreen extends StatelessWidget {
 
@@ -56,7 +56,7 @@ class BluetoothSearchScreen extends StatelessWidget {
 
               // TODO: comeca a dar scan de devices e recebe informacao
               // processamento feito em BluetoothController; esta classe nao sabe como
-              // a ligacao bluetooth acontece, apenas recebe a informacao
+              // a ligacao controller.bluetooth acontece, apenas recebe a informacao
               // passa as informacoes para outra pagina, para dar display
               // a outra pagina vai buscar ao json a informacao correta e da display
 

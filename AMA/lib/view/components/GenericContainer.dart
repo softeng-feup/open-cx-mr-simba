@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/AppColors.dart' as AppColors;
 
 class GenericContainer extends StatelessWidget {
   GenericContainer({this.title, this.text});

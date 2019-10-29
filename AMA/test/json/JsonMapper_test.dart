@@ -1,8 +1,8 @@
 import 'dart:collection';
 
-import 'package:ama/json/JsonMapper.dart';
-import 'package:ama/data/Person.dart';
-import 'package:ama/data/Session.dart';
+import 'package:ama/json1/JsonMapper.dart';
+import 'package:ama/model/Person.dart';
+import 'package:ama/model/Session.dart';
 import 'package:test/test.dart';
 import 'dart:convert';
 

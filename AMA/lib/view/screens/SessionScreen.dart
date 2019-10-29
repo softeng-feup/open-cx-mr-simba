@@ -1,7 +1,7 @@
 import 'package:ama/components/GenericContainer.dart';
-import 'package:ama/data/Session.dart';
+import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/AppColors.dart' as AppColors;
 
 class SessionScreen extends StatelessWidget {
   SessionScreen({this.session});

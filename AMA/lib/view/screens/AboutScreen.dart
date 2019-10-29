@@ -1,7 +1,7 @@
 import 'package:ama/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
-import '../constants/Utility.dart' as Utility;
+import '../../constants/AppColors.dart' as AppColors;
+import '../../constants/Utility.dart' as Utility;
 
 class AboutScreen extends StatelessWidget {
   @override

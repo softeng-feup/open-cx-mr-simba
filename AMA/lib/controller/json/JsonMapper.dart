@@ -1,9 +1,7 @@
 import 'dart:collection';
-
-import 'package:ama/data/Item.dart';
-
-import '../data/Person.dart';
-import '../data/Session.dart';
+import 'package:ama/model/Item.dart';
+import 'package:ama/model/Person.dart';
+import 'package:ama/model/Session.dart';
 
 class JsonMapper {
   static List<String> stringList(Map<String, dynamic> json, String key) {

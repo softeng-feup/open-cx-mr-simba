@@ -1,8 +1,7 @@
+import 'package:ama/components/DayContainer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import '../components/DayContainer.dart';
-import '../constants/Dates.dart' as Dates;
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/Dates.dart' as Dates;
 
 class MainScreenPager extends StatefulWidget {
   _MainScreenPagerState createState() => _MainScreenPagerState();

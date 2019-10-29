@@ -1,8 +1,8 @@
 import 'package:ama/components/SessionContainer.dart';
-import 'package:ama/data/Session.dart';
+import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/AppColors.dart' as AppColors;
 
 class SlidableSessionContainer extends StatelessWidget {
   SlidableSessionContainer(
