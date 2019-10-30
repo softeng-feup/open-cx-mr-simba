@@ -1,4 +1,4 @@
-import 'package:ama/components/GenericContainer.dart';
+import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 import '../../constants/Utility.dart' as Utility;

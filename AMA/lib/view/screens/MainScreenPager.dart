@@ -1,4 +1,4 @@
-import 'package:ama/components/DayContainer.dart';
+import 'package:ama/view/components/DayContainer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import '../../constants/Dates.dart' as Dates;

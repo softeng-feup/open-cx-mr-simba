@@ -3,7 +3,7 @@ import '../constants/Dates.dart' as Dates;
 
 class Model {
 
-  List<DayScheduleInfo> _daySchedule;
+  List<DayScheduleInfo> _daySchedule = [];
 
   Model() {
     _daySchedule.add(DayScheduleInfo(1, Dates.date1));

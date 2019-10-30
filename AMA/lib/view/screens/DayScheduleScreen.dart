@@ -1,9 +1,9 @@
 import 'dart:collection';
-import 'package:ama/components/GenericContainer.dart';
-import 'package:ama/components/SlidableSessionContainer.dart';
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Session.dart';
+import 'package:ama/view/components/GenericContainer.dart';
+import 'package:ama/view/components/SlidableSessionContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 import '../../constants/Utility.dart' as Utility;

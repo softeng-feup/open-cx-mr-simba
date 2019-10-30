@@ -1,10 +1,9 @@
-import 'package:flutter_blue/flutter_blue.dart';
 import '../../constants/Utility.dart' as Utility;
 
 class BluetoothController {
 
 
-  FlutterBlue _flutterBlue;
+  // FlutterBlue _flutterBlue;
 
   BluetoothController() {
     /*this._flutterBlue = FlutterBlue.instance;*/

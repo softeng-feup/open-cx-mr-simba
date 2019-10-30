@@ -1,11 +1,10 @@
 import 'dart:collection';
-
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Session.dart';
-
 import 'json/JsonController.dart';
 import 'json/JsonMapper.dart';
+import '../constants/Utility.dart' as Utility;
 
 class Controller {
 
@@ -44,8 +43,22 @@ class Controller {
   }
 
 
+  String getTextActivities(int day) {
+    int numActivities = _model.getSchedules().elementAt(day - 1).getSessions().length;
+    return numActivities.toString() + " " + (numActivities == 1 ? "activity" : "activities");
+  }
+
+
+
+
+
   SplayTreeSet<Session> getDaySessions(String dateString) {
     return JsonMapper.sessionSet(JsonController().getJson(), dateString);
+  }
+
+
+  Future getJson() {
+    return JsonController().parseJsonFromURL(Utility.jsonURL);
   }
 
 }

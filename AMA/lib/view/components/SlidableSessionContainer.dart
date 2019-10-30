@@ -1,5 +1,5 @@
-import 'package:ama/components/SessionContainer.dart';
 import 'package:ama/model/Session.dart';
+import 'package:ama/view/components/SessionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../constants/AppColors.dart' as AppColors;

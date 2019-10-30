@@ -1,6 +1,6 @@
-import 'package:ama/components/SlidableSessionContainer.dart';
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
+import 'package:ama/view/components/SlidableSessionContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 
@@ -42,8 +42,7 @@ class DaySessionsScreen extends StatelessWidget {
                 icon: Icons.check,
                 color: Colors.green,
                 onPressFunction: () {
-                  String text = Controller.instance().removeSessionFromSchedule(sessionsInfo.getDay(), sessionsInfo.getSessions().elementAt(idx));
-
+                  String text = Controller.instance().addSessionToSchedule(sessionsInfo.getDay(), sessionsInfo.getSessions().elementAt(idx));
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text(text)));
                 },

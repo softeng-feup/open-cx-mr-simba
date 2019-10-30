@@ -6,6 +6,7 @@ class DayScheduleInfo {
   DayScheduleInfo(int day, Date date) {
     this._day = day;
     this._date = date;
+    this._sessions = SplayTreeSet();
   }
 
   DayScheduleInfo.daySessions(int day, Date date, SplayTreeSet<Session> sessions) {
@@ -16,7 +17,7 @@ class DayScheduleInfo {
 
   int _day;
   Date _date;
-  SplayTreeSet<Session> _sessions = SplayTreeSet();
+  SplayTreeSet<Session> _sessions;
 
   SplayTreeSet<Session> getSessions() {
     return _sessions;
