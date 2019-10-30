@@ -11,6 +11,7 @@ class JsonController {
 
   JsonController._internal();
 
+  // TODO: por agora assumindo que o json retorna sempre
   Future parseJsonFromURL(String url) async {
     http.Client client;
     http.Response response;

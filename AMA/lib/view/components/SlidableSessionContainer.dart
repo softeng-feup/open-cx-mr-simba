@@ -13,9 +13,12 @@ class SlidableSessionContainer extends StatelessWidget {
   final Color color;
   final Function onPressFunction;
 
+  final _slidableKey = GlobalKey<SlidableState>();
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
+      key: _slidableKey,
       actionPane: SlidableScrollActionPane(),
       actionExtentRatio: 0.25,
       child: Padding(
@@ -31,7 +34,7 @@ class SlidableSessionContainer extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             onPressed: () {
               onPressFunction();
-              // Slidable.of(context).close(); // TODO: fazer com que slider feche (diz que é null)
+              _slidableKey.currentState.close();
             },
             child: Icon(icon, color: Colors.white, size: 40.0),
             shape: CircleBorder(),

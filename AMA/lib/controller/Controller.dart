@@ -57,8 +57,8 @@ class Controller {
   }
 
 
-  Future getJson() {
-    return JsonController().parseJsonFromURL(Utility.jsonURL);
+  Future getJson() async {
+    await JsonController().parseJsonFromURL(Utility.jsonURL);
   }
 
 }
