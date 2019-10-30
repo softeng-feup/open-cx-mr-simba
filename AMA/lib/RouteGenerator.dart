@@ -1,14 +1,14 @@
-
-import 'package:ama/data/DaySessionsInfo.dart';
-import 'package:ama/data/Session.dart';
-import 'package:ama/main.dart';
-import 'package:ama/screens/AboutScreen.dart';
-import 'package:ama/screens/DayScheduleScreen.dart';
-import 'package:ama/screens/DaysScreen.dart';
-import 'package:ama/screens/DaySessionsScreen.dart';
-import 'package:ama/screens/SessionScreen.dart';
+import 'package:ama/model/DayScheduleInfo.dart';
+import 'package:ama/view/screens/AboutScreen.dart';
+import 'package:ama/view/screens/BluetoothSearchScreen.dart';
+import 'package:ama/view/screens/DayScheduleScreen.dart';
+import 'package:ama/view/screens/DaySessionsScreen.dart';
+import 'package:ama/view/screens/DaysScreen.dart';
+import 'package:ama/view/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
+import 'controller/Controller.dart';
+import 'model/Session.dart';
 
 class RouteGenerator {
 
@@ -26,23 +26,23 @@ class RouteGenerator {
 
 
       case '/day1Screen':
-        return MaterialPageRoute(builder: (_) => DayScheduleScreen(info: MyApp.database.scheduleInfoDay1));
+        return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(1)));
 
 
       case '/day2Screen':
-        return MaterialPageRoute(builder: (_) => DayScheduleScreen(info: MyApp.database.scheduleInfoDay2));
+        return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(2)));
 
 
       case '/day3Screen':
-        return MaterialPageRoute(builder: (_) => DayScheduleScreen(info: MyApp.database.scheduleInfoDay3));
+        return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(3)));
 
 
       case '/day4Screen':
-        return MaterialPageRoute(builder: (_) => DayScheduleScreen(info: MyApp.database.scheduleInfoDay4));
+        return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(4)));
 
 
       case '/daySessionsScreen':
-        if(args is DaySessionsInfo) {
+        if(args is DayScheduleInfo) {
           return MaterialPageRoute(builder: (_) => DaySessionsScreen(sessionsInfo: args));
         }
         return _errorRoute();
@@ -53,6 +53,10 @@ class RouteGenerator {
           return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
         }
         return _errorRoute();
+
+
+      case '/bluetoothScreen':
+        return MaterialPageRoute(builder: (_) => BluetoothSearchScreen());
 
 
       default:

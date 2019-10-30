@@ -1,6 +1,6 @@
-import 'package:ama/screens/MainScreenPager.dart';
+import 'package:ama/view/screens/MainScreenPager.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
+import '../../constants/AppColors.dart' as AppColors;
 
 class DaysScreen extends StatelessWidget {
   @override
@@ -26,15 +26,30 @@ class DaysScreen extends StatelessWidget {
                       color: AppColors.mainColor,
                     ),
                   )),
-              ListTile(
-                  title: Text('About', style: TextStyle(color: Colors.black)),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/about');
-                  },
-                  leading: Icon(Icons.info)),
+              this.drawAboutTile(context),
+              this.drawSessionSearch(context),
             ],
           ),
         ),
         body: Container(color: AppColors.backgroundColor,child: MainScreenPager()));
+  }
+
+
+  Widget drawAboutTile(BuildContext context) {
+    return ListTile(
+        title: Text('About', style: TextStyle(color: Colors.black)),
+        onTap: () {
+          Navigator.pushNamed(context, '/about');
+        },
+        leading: Icon(Icons.info));
+  }
+
+
+  Widget drawSessionSearch(BuildContext context) {
+    return ListTile(title: Text('Session Search', style: TextStyle(color: Colors.black)),
+        onTap: () {
+          Navigator.pushNamed(context, '/bluetoothScreen');
+        },
+        leading: Icon(Icons.bluetooth));
   }
 }

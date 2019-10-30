@@ -1,7 +1,7 @@
-import 'package:ama/components/GenericContainer.dart';
+import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppColors.dart' as AppColors;
-import '../constants/Utility.dart' as Utility;
+import '../../constants/AppColors.dart' as AppColors;
+import '../../constants/Utility.dart' as Utility;
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -13,6 +13,13 @@ class AboutScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AppColors.mainColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Container(
         color: AppColors.backgroundColor,
