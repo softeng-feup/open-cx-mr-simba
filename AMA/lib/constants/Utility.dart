@@ -11,3 +11,5 @@ const String sessionSearchText = "Welcome to our Session Search feature, were yo
 const int numSecondsForTimeoutBLE = 15;
 
 const String jsonURL = 'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
+
+const String BTNotAvailableText = "Unfortunately, it seems like this device does not suport Bluetooth connection, so this functionality cannot be used. We are sorry.";

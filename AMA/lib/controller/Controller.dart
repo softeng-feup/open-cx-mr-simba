@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Session.dart';
@@ -22,6 +23,10 @@ class Controller {
     return _instance;
   }
 
+
+  // ----------------------------
+  // regular controller methods
+  // ----------------------------
 
   DayScheduleInfo getDaySchedule(int day) {
     return _model.getSchedules().elementAt(day - 1);
@@ -51,6 +56,9 @@ class Controller {
 
 
 
+  // ----------------------------
+  // json methods
+  // ----------------------------
 
   SplayTreeSet<Session> getDaySessions(String dateString) {
     return JsonMapper.sessionSet(JsonController().getJson(), dateString);
@@ -60,5 +68,23 @@ class Controller {
   Future getJson() async {
     await JsonController().parseJsonFromURL(Utility.jsonURL);
   }
+
+
+  // ----------------------------
+  // bluetooth methods
+  // ----------------------------
+
+  bool isBluetoothAvailable() {
+    return BluetoothController.instance().isBluetoothAvailable();
+  }
+
+  bool isBluetoothEnabled() {
+    return BluetoothController.instance().isBluetoothEnabled();
+  }
+
+  searchForBeacons() {
+    BluetoothController.instance().searchForBeacons();
+  }
+
 
 }

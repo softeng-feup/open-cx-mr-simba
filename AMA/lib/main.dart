@@ -2,7 +2,7 @@ import 'package:ama/RouteGenerator.dart';
 import 'package:ama/controller/Controller.dart';
 import 'package:flutter/material.dart';
 
-void main() async { 
+void main() async {
   Controller.instance().getJson();
   runApp(MyApp());
 }

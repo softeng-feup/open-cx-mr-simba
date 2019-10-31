@@ -1,4 +1,4 @@
-import 'package:ama/controller/bluetooth/BluetoothController.dart';
+import 'package:ama/controller/Controller.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
@@ -6,11 +6,13 @@ import '../../constants/Utility.dart' as Utility;
 
 class BluetoothSearchScreen extends StatelessWidget {
 
-  /*final BluetoothController _bluetoothController = new BluetoothController();*/
-
   @override
     Widget build(BuildContext context) {
-      return Scaffold(
+
+    bool isAvailable = Controller.instance().isBluetoothAvailable();
+    bool isEnabled = Controller.instance().isBluetoothEnabled();
+
+    return Scaffold(
           appBar: AppBar(
             title: Text(
               "Session Search",
@@ -36,7 +38,9 @@ class BluetoothSearchScreen extends StatelessWidget {
                     text: Utility.sessionSearchText
                   ),
                 ),
-                this.drawButton(),
+                this.drawBTUnavailableMessage(isAvailable),
+                this.drawBTDisabledMessage(isEnabled),
+                this.drawButton(isAvailable, isEnabled),
               ],
             ),
           )
@@ -44,10 +48,29 @@ class BluetoothSearchScreen extends StatelessWidget {
     }
 
 
-    Widget drawButton() {
+    Widget drawBTUnavailableMessage(bool isAvailable) {
+      return Visibility (
+        maintainSize: false,
+        visible: !isAvailable,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 160.0),
+          child: GenericContainer(
+              title: "Bluetooth not available", text: Utility.BTNotAvailableText,
+        ),
+        )
+      );
+    }
+
+
+    Widget drawBTDisabledMessage(bool isEnabled) {
+
+    }
+
+
+    Widget drawButton(bool isAvailable, bool isEnabled) {
       return Visibility(
         maintainSize: false,
-        visible: true,//_bluetoothController.isBluetoothAvailable(), // TODO: not working
+        visible: false,// TODO: se se puder usar BT
 
         child: Padding(
           padding: const EdgeInsets.only(top: 160.0),
