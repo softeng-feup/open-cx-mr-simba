@@ -3,7 +3,7 @@ import 'package:ama/controller/Controller.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  Controller.instance().getJson();
+  await Controller.instance().getJson();
   runApp(MyApp());
 }
 

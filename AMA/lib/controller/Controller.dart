@@ -74,17 +74,43 @@ class Controller {
   // bluetooth methods
   // ----------------------------
 
-  bool isBluetoothAvailable() {
-    return BluetoothController.instance().isBluetoothAvailable();
+  Future<String> isBluetoothAvailable() async {
+    final aux = await BluetoothController.instance().isBluetoothAvailable();
+    if(aux)
+      return Utility.BTAvailableText;
+    else
+      return Utility.BTNotAvailableText;
   }
 
-  bool isBluetoothEnabled() {
-    return BluetoothController.instance().isBluetoothEnabled();
+  Future<String> isBluetoothEnabled() async {
+    final aux = await BluetoothController.instance().isBluetoothEnabled();
+    if(aux)
+      return Utility.BTEnabledText;
+    else
+      return Utility.BTDisabledText;
   }
 
-  searchForBeacons() {
+  List<String> searchForBeaconLocations() {
     BluetoothController.instance().searchForBeacons();
+    // TODO: ir buscar valores das localizacoes aos beacons
+    return [];
   }
 
+  // TODO: verificar que esta bem
+  SplayTreeSet<Session> getSessionsNearby(List<String> locations) {
+    DateTime currentTime = new DateTime.now();
+    String currentDateString = currentTime.toString().substring(0, 10);
+    SplayTreeSet<Session> nearbySessions = SplayTreeSet();
+    for(String location in locations) {
+      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(JsonController().getJson(), currentDateString, location);
+      sessionsInLocation.forEach((s) {
+          DateTime startTime = s.startTime;
+          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
+            nearbySessions.add(s);
+          }
+      });
+    }
+    return nearbySessions;
+  }
 
 }

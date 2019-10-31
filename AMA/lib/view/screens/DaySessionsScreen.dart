@@ -26,11 +26,14 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
 
 
   Future _updateDaySessions() async {
-    Controller.instance().getJson();
+    await Controller.instance().getJson();
 
-    setState(() {
-      _sessions = Controller.instance().getDaySessions(widget.sessionsInfo.getDate().toDateString());
-    });
+    if(this.mounted) {
+      setState(() {
+        _sessions = Controller.instance().getDaySessions(
+            widget.sessionsInfo.getDate().toDateString());
+      });
+    }
   }
 
   @override
@@ -51,11 +54,13 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
           IconButton(
             icon: Icon(Icons.refresh, size: 30),
             color: Colors.white,
-            onPressed: () {
-              _updateDaySessions();
-              _scaffoldKey.currentState.showSnackBar(
-                  SnackBar(content: Text("Sessions updated with sucess")));
-            },
+            onPressed: () async {
+                await _updateDaySessions();
+                if(this.mounted) {
+                  _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(content: Text("Sessions updated with sucess")));
+                }
+              },
           )
         ],
       ),

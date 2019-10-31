@@ -1,6 +1,10 @@
+import 'dart:collection';
+
 import 'package:ama/controller/Controller.dart';
+import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../../constants/AppColors.dart' as AppColors;
 import '../../constants/Utility.dart' as Utility;
 
@@ -8,11 +12,7 @@ class BluetoothSearchScreen extends StatelessWidget {
 
   @override
     Widget build(BuildContext context) {
-
-    bool isAvailable = Controller.instance().isBluetoothAvailable();
-    bool isEnabled = Controller.instance().isBluetoothEnabled();
-
-    return Scaffold(
+      return Scaffold(
           appBar: AppBar(
             title: Text(
               "Session Search",
@@ -29,18 +29,17 @@ class BluetoothSearchScreen extends StatelessWidget {
           ),
           body: Container(
             color: AppColors.backgroundColor,
-            child: Column(
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.all(10.0),
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
-                  child: GenericContainer(
-                    title: "Know what's around you",
-                    text: Utility.sessionSearchText
-                  ),
+                GenericContainer(
+                  title: "Know what's around you",
+                  text: Utility.sessionSearchText
                 ),
-                this.drawBTUnavailableMessage(isAvailable),
-                this.drawBTDisabledMessage(isEnabled),
-                this.drawButton(isAvailable, isEnabled),
+                this.drawCheckAvailabilityButton(),
+                this.drawCheckEnableButton(),
+                this.drawButton(),
               ],
             ),
           )
@@ -48,42 +47,104 @@ class BluetoothSearchScreen extends StatelessWidget {
     }
 
 
-    Widget drawBTUnavailableMessage(bool isAvailable) {
-      return Visibility (
-        maintainSize: false,
-        visible: !isAvailable,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 160.0),
-          child: GenericContainer(
-              title: "Bluetooth not available", text: Utility.BTNotAvailableText,
+    Widget drawCheckAvailabilityButton() {
+
+      bool answerVisible = false;
+      String availableText;
+
+      return Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          children: <Widget>[
+            RawMaterialButton(
+              onPressed: () async {
+                answerVisible = false;
+                availableText = await Controller.instance().isBluetoothAvailable();
+                answerVisible = true;
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Check BT Availability", style: TextStyle(color: Colors.white, fontSize: 25)),
+              ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
+              elevation: 0.0,
+              fillColor: AppColors.mainColor,
+              padding: const EdgeInsets.all(10.0),
+            ),
+
+            Visibility (
+              maintainSize: false,
+              visible: answerVisible,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 160.0),
+                child: GenericContainer(
+                    title: "Bluetooth Availability", text: availableText,
+              ),
+              )
+            ),
+          ],
         ),
-        )
       );
     }
 
 
-    Widget drawBTDisabledMessage(bool isEnabled) {
+    Widget drawCheckEnableButton() {
+      bool answerVisible = false;
+      String enabledText;
 
-    }
+      return Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          children: <Widget>[
+            RawMaterialButton(
+              onPressed: () async {
+                answerVisible = false;
+                enabledText = await Controller.instance().isBluetoothEnabled();
+                answerVisible = true;
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Check if BT is Enabled", style: TextStyle(color: Colors.white, fontSize: 25)),
+              ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
+              elevation: 0.0,
+              fillColor: AppColors.mainColor,
+              padding: const EdgeInsets.all(10.0),
+            ),
+
+            Visibility (
+                maintainSize: false,
+                visible: answerVisible,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 160.0),
+                  child: GenericContainer(
+                    title: "Bluetooth Availability", text: enabledText,
+                  ),
+                )
+            ),
+           ],
+         ),
+        );
+      }
 
 
-    Widget drawButton(bool isAvailable, bool isEnabled) {
+    Widget drawButton() {
       return Visibility(
         maintainSize: false,
-        visible: false,// TODO: se se puder usar BT
+        visible: false,// TODO: mostrar botao se se puder usar BT (available e enabled)
 
         child: Padding(
           padding: const EdgeInsets.only(top: 160.0),
           child: RawMaterialButton(
             onPressed: () {
-
-              // TODO: comeca a dar scan de devices e recebe informacao
               // processamento feito em BluetoothController; esta classe nao sabe como
               // a ligacao controller.bluetooth acontece, apenas recebe a informacao
               // passa as informacoes para outra pagina, para dar display
               // a outra pagina vai buscar ao json a informacao correta e da display
 
-
+              List<String> locations = Controller.instance().searchForBeaconLocations();
+              SplayTreeSet<Session> nearbySessions = Controller.instance().getSessionsNearby(locations);
+              // TODO: fazer display de nearbySessions numa nova pagina
             },
             child: Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
             shape: new CircleBorder(),
