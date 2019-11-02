@@ -74,20 +74,23 @@ class Controller {
   // bluetooth methods
   // ----------------------------
 
-  Future<String> isBluetoothAvailable() async {
+  Future<bool> isBluetoothAvailable() async {
     final aux = await BluetoothController.instance().isBluetoothAvailable();
-    if(aux)
-      return Utility.BTAvailableText;
-    else
-      return Utility.BTNotAvailableText;
+    return aux;
   }
 
-  Future<String> isBluetoothEnabled() async {
+  Future<bool> isBluetoothEnabled() async {
     final aux = await BluetoothController.instance().isBluetoothEnabled();
-    if(aux)
-      return Utility.BTEnabledText;
-    else
-      return Utility.BTDisabledText;
+    
+    return aux;
+  }
+
+  Future<bool> isBluetoothOK() async {
+
+    final aux1 = await BluetoothController.instance().isBluetoothEnabled();
+    final aux2 = await BluetoothController.instance().isBluetoothAvailable();
+    
+    return aux1 && aux2;
   }
 
   List<String> searchForBeaconLocations() {
