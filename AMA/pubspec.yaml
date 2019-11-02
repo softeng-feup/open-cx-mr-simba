@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter_slidable: "^0.5.4"
   flutter_blue: "0.6.2"
+  flutter_gherkin: ^1.1.4
   dots_indicator: ^1.0.0
 
   flutter:
