@@ -67,7 +67,7 @@ class SmallCalendarPage extends StatelessWidget {
           leading: Padding(
             padding: const EdgeInsets.all(8.5),
             child:
-            Text("#" + dayNo.toString(), style: TextStyle(fontSize: 30)),
+            Text("#" + dayNo.toString(), style: TextStyle(fontSize: 30), key: Key("identifierDay" + dayNo.toString())),
           ),
         ),
         body: Center(
@@ -87,6 +87,7 @@ class SmallCalendarPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Text( text,
                   style: TextStyle(fontSize: 20, color: Colors.black),
+                  key: Key("numberOfActivitiesDay" + dayNo.toString()),
                 ),
               ),
             ],

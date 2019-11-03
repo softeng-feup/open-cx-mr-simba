@@ -98,14 +98,17 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
   Widget drawAddButton() {
     return FloatingActionButton.extended(
-        onPressed: () {
+        onPressed: () async {
 
-          SplayTreeSet<Session> set = Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
+          SplayTreeSet<Session> set = await Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
 
-          Navigator.pushNamed(context, '/daySessionsScreen',
-              arguments:
-              DayScheduleInfo.daySessions(widget.schedule.getDay(), widget.schedule.getDate(), set));
-        },
+          if(this.mounted) {
+            Navigator.pushNamed(context, '/daySessionsScreen',
+                arguments:
+                DayScheduleInfo.daySessions(
+                    widget.schedule.getDay(), widget.schedule.getDate(), set));
+            }
+          },
         backgroundColor: AppColors.mainColor,
         foregroundColor: Colors.white,
         elevation: 20.0,

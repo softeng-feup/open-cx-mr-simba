@@ -60,13 +60,18 @@ class Controller {
   // json methods
   // ----------------------------
 
-  SplayTreeSet<Session> getDaySessions(String dateString) {
-    return JsonMapper.sessionSet(JsonController().getJson(), dateString);
+  void updateURLPath(String url) {
+    _model.setJsonURL(url);
   }
 
 
-  Future getJson() async {
-    await JsonController().parseJsonFromURL(Utility.jsonURL);
+  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
+    return JsonMapper.sessionSet(await JsonController().getJson(_model.getJsonURL()), dateString);
+  }
+
+
+  Future extractJson() async {
+    await JsonController().parseJsonFromURL(_model.getJsonURL());
   }
 
 
@@ -90,19 +95,19 @@ class Controller {
       return Utility.BTDisabledText;
   }
 
-  List<String> searchForBeaconLocations() {
+  List<String> searchForBeaconLocations()  {
     BluetoothController.instance().searchForBeacons();
     // TODO: ir buscar valores das localizacoes aos beacons
     return [];
   }
 
   // TODO: verificar que esta bem
-  SplayTreeSet<Session> getSessionsNearby(List<String> locations) {
+  Future<SplayTreeSet<Session>> getSessionsNearby(List<String> locations) async {
     DateTime currentTime = new DateTime.now();
     String currentDateString = currentTime.toString().substring(0, 10);
     SplayTreeSet<Session> nearbySessions = SplayTreeSet();
     for(String location in locations) {
-      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(JsonController().getJson(), currentDateString, location);
+      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, location);
       sessionsInLocation.forEach((s) {
           DateTime startTime = s.startTime;
           if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {

@@ -5,5 +5,5 @@ void main() async {
 
   enableFlutterDriverExtension();
 
-  await app.main();
+  await app.main(['../test_driver/testFile.json']);
 }

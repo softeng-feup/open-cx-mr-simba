@@ -17,6 +17,7 @@ class BluetoothSearchScreen extends StatelessWidget {
             title: Text(
               "Session Search",
               style: TextStyle(color: Colors.white),
+              key: Key("Screen title"),
             ),
             leading: IconButton(
               icon: Icon(
@@ -136,14 +137,14 @@ class BluetoothSearchScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 160.0),
           child: RawMaterialButton(
-            onPressed: () {
+            onPressed: () async {
               // processamento feito em BluetoothController; esta classe nao sabe como
               // a ligacao controller.bluetooth acontece, apenas recebe a informacao
               // passa as informacoes para outra pagina, para dar display
               // a outra pagina vai buscar ao json a informacao correta e da display
 
               List<String> locations = Controller.instance().searchForBeaconLocations();
-              SplayTreeSet<Session> nearbySessions = Controller.instance().getSessionsNearby(locations);
+              SplayTreeSet<Session> nearbySessions = await Controller.instance().getSessionsNearby(locations);
               // TODO: fazer display de nearbySessions numa nova pagina
             },
             child: Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),

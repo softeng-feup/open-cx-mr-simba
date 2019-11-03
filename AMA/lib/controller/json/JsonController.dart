@@ -12,6 +12,7 @@ class JsonController {
   JsonController._internal();
 
   // TODO: por agora assumindo que o json retorna sempre
+  // TODO: verificar que tambem funciona bem quando url e local (para teste)
   Future parseJsonFromURL(String url) async {
     http.Client client;
     http.Response response;
@@ -26,7 +27,10 @@ class JsonController {
     _json = jsonDecode(response.body);
   }
 
-  Map<String, dynamic> getJson() {
+  Future<Map<String, dynamic>> getJson(String url) async {
+    if(_json == null)
+      await parseJsonFromURL(url);
+
     return _json;
   }
 }

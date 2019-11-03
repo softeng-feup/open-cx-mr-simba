@@ -26,12 +26,14 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
 
 
   Future _updateDaySessions() async {
-    await Controller.instance().getJson();
+    await Controller.instance().extractJson();
+
+    SplayTreeSet<Session> newSessions = await Controller.instance().getDaySessions(
+        widget.sessionsInfo.getDate().toDateString());
 
     if(this.mounted) {
       setState(() {
-        _sessions = Controller.instance().getDaySessions(
-            widget.sessionsInfo.getDate().toDateString());
+        _sessions = newSessions;
       });
     }
   }
