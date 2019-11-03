@@ -1,9 +1,9 @@
 import 'package:ama/main.dart' as app;
 import 'package:flutter_driver/driver_extension.dart';
 
-void main() async {
+void main() {
 
   enableFlutterDriverExtension();
 
-  await app.main(['../test_driver/testFile.json']);
+  app.main(['../test_driver/testFile.json']);
 }

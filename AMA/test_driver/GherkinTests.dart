@@ -3,6 +3,7 @@ import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 import 'package:glob/glob.dart';
 
+import 'steps/PagerStep.dart';
 import 'steps/ScheduleAdd.dart';
 
 Future<void> main() {
@@ -14,7 +15,7 @@ Future<void> main() {
       JsonReporter(path: './report.json')
     ] // you can include the "StdoutReporter()" without the message level parameter for verbose log information
     ..hooks = []
-    ..stepDefinitions = [AddSessionStep()]
+    ..stepDefinitions = [PagerStepWhen(), PagerStepAnd(), AddSessionStep()]
     ..customStepParameterDefinitions = []
     ..restartAppBetweenScenarios = true
     ..targetAppPath = "test_driver/Gherkin.dart"

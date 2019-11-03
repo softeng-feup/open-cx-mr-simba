@@ -51,6 +51,7 @@ class _MainScreenPagerState extends State<MainScreenPager> {
       children: <Widget>[
         Expanded(
           child: PageView(
+            key: Key("pageview"),
             children: pages,
             onPageChanged: _onPageViewChange,
           ),
