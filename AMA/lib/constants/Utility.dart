@@ -14,6 +14,8 @@ const int numMinutesForNotif = 15;
 
 const String jsonURL = 'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
 
+const urlPattern = r"(https?|http)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
+
 const String BTAvailableText = "Bluetooth is available on this device!";
 const String BTNotAvailableText = "Unfortunately, it seems like this device does not suport Bluetooth connection, so this functionality cannot be used. We are sorry.";
 const String BTDisabledText = "The Bluetooth functionality of this device is turned off. In order to use the Session Search feature, please turn the Bluetooth on.";

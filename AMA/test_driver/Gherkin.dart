@@ -5,5 +5,5 @@ void main() {
 
   enableFlutterDriverExtension();
 
-  app.main(['../test_driver/testFile.json']);
+  app.main(["--urlPath", "assets/testFile.json"]);
 }

@@ -46,6 +46,7 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
         backgroundColor: AppColors.mainColor,
         title: Text("Sessions - " + widget.sessionsInfo.getDate().toString()),
         leading: IconButton(
+          key: Key("Back button"),
           icon: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,

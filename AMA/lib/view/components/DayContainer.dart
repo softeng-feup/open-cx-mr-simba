@@ -11,6 +11,7 @@ class MainScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+       key: Key("Calendar page"),
         onTap: () {
           String routeOnTap = "/day" + dayNo.toString() + "Screen";
           Navigator.pushNamed(context, routeOnTap);
@@ -87,7 +88,7 @@ class SmallCalendarPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Text( text,
                   style: TextStyle(fontSize: 20, color: Colors.black),
-                  key: Key("numberOfActivitiesDay" + dayNo.toString()),
+                  key: Key("numberOfActivitiesDay"),
                 ),
               ),
             ],

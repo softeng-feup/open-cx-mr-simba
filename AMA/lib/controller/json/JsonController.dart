@@ -1,4 +1,8 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import '../../constants/Utility.dart' as Utility;
 import 'dart:convert';
 
 class JsonController {
@@ -12,19 +16,26 @@ class JsonController {
   JsonController._internal();
 
   // TODO: por agora assumindo que o json retorna sempre
-  // TODO: verificar que tambem funciona bem quando url e local (para teste)
   Future parseJsonFromURL(String url) async {
-    http.Client client;
-    http.Response response;
 
-    try {
-      client = http.Client();
-      response = await client.get(url);
-    } catch(e) {
-      print(e);
+    var match = new RegExp(Utility.urlPattern, caseSensitive: false).firstMatch(url);
+
+    if(match != null) { // if url is valid
+      http.Client client;
+      http.Response response;
+
+      try {
+        client = http.Client();
+        response = await client.get(url);
+      } catch (e) {
+        print(e);
+      }
+
+      _json = jsonDecode(response.body);
     }
-
-    _json = jsonDecode(response.body);
+    else { // if json file is local
+      _json = jsonDecode(await rootBundle.loadString(url));
+    }
   }
 
   Future<Map<String, dynamic>> getJson(String url) async {

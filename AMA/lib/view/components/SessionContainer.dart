@@ -54,6 +54,7 @@ class SessionContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
       child: Text(
         activity.title,
+        key: Key("Session title"),
         style: TextStyle(
           color: AppColors.mainColor,
           fontWeight: FontWeight.bold,
