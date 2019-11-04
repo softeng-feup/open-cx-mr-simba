@@ -27,14 +27,14 @@ class PeopleScreen extends StatelessWidget {
         color: AppColors.backgroundColor,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.only(
-              left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
           itemCount: people.length,
           itemBuilder: (context, idx) {
-            return GenericContainer(
+            return Padding(
+              padding: EdgeInsets.all(10),
+            child: GenericContainer(
               title: people.elementAt(idx).name,
               text: people.elementAt(idx).affiliation
-            );
+            ));
           })));
   }
 }

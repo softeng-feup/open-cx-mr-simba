@@ -4,7 +4,7 @@ import 'package:ama/data/Database.dart';
 import 'package:flutter/material.dart';
 
 void main() async { 
-  await JsonController().parseLocalJson('resources/confero.json');
+  await JsonController().parseJsonFromURL('https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json');
   runApp(MyApp());
 }
 

@@ -6,10 +6,12 @@ import 'package:ama/screens/AboutScreen.dart';
 import 'package:ama/screens/DayScheduleScreen.dart';
 import 'package:ama/screens/DaysScreen.dart';
 import 'package:ama/screens/DaySessionsScreen.dart';
+import 'package:ama/screens/ItemsScreen.dart';
 import 'package:ama/screens/PeopleScreen.dart';
 import 'package:ama/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
+import 'data/Item.dart';
 import 'data/Person.dart';
 
 class RouteGenerator {
@@ -56,9 +58,16 @@ class RouteGenerator {
         }
         return _errorRoute();
 
+
       case '/personScreen':
         if(args is List<Person>) {
           return MaterialPageRoute(builder: (_) => PeopleScreen(people: args));
+        }
+        return _errorRoute();
+
+      case '/itemsScreen':
+        if(args is List<Item>) {
+          return MaterialPageRoute(builder: (_) => ItemsScreen(items: args));
         }
         return _errorRoute();
 
