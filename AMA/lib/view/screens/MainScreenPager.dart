@@ -9,7 +9,7 @@ class MainScreenPager extends StatefulWidget {
 
 class _MainScreenPagerState extends State<MainScreenPager> {
   PageController _pageController;
-  int selectedPage;
+  double selectedPage;
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _MainScreenPagerState extends State<MainScreenPager> {
 
   _onPageViewChange(int page) {
     setState(() {
-      selectedPage = page;
+      selectedPage = page.toDouble();
     });
   }
 
@@ -51,6 +51,7 @@ class _MainScreenPagerState extends State<MainScreenPager> {
       children: <Widget>[
         Expanded(
           child: PageView(
+            key: Key("pageview"),
             children: pages,
             onPageChanged: _onPageViewChange,
           ),

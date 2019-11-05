@@ -26,11 +26,16 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
 
 
   Future _updateDaySessions() async {
-    Controller.instance().getJson();
+    await Controller.instance().extractJson();
 
-    setState(() {
-      _sessions = Controller.instance().getDaySessions(widget.sessionsInfo.getDate().toDateString());
-    });
+    SplayTreeSet<Session> newSessions = await Controller.instance().getDaySessions(
+        widget.sessionsInfo.getDate().toDateString());
+
+    if(this.mounted) {
+      setState(() {
+        _sessions = newSessions;
+      });
+    }
   }
 
 
@@ -42,6 +47,7 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
         backgroundColor: AppColors.mainColor,
         title: Text("Sessions - " + widget.sessionsInfo.getDate().toString()),
         leading: IconButton(
+          key: Key("Back button"),
           icon: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
@@ -52,11 +58,13 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
           IconButton(
             icon: Icon(Icons.refresh, size: 30),
             color: Colors.white,
-            onPressed: () {
-              _updateDaySessions();
-              _scaffoldKey.currentState.showSnackBar(
-                  SnackBar(content: Text("Sessions updated with sucess")));
-            },
+            onPressed: () async {
+                await _updateDaySessions();
+                if(this.mounted) {
+                  _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(content: Text("Sessions updated with sucess")));
+                }
+              },
           )
         ],
       ),

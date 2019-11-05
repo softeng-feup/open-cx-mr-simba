@@ -1,0 +1,53 @@
+{
+  "DataRevision": -564342035,
+  "Event": "programming-2019",
+  "Name": "‹Programming› 2019",
+  "Description": "Thank you for attending ‹Programming› 2020! We hope to see you next year in March at ‹Programming› 2020 in Porto, Portugal!",
+  "Sponsors": "ACM, SIGPLAN, SIGSOFT, DIBRIS - Dipartimento di Informatica, Bioingegneria, Robotica e Ingegneria dei SIstemi, Università degli studi di Genova, AOSA, Italian Chapter of the European Association for Theoretical Computer Science (EATCS), Gruppo Nazionale per il Calcolo Scientifico, Istituto Nazionale di Alta Matematica Francesco Severi",
+  "URL": "https://2019.programming-conference.org",
+  "Items": [
+    {
+      "Title": "SmaCC",
+      "Type": "Talk",
+      "Key": "cocodo-2019-smacc",
+      "URL": "https://2019.programming-conference.org/details/cocodo-2019/1/SmaCC",
+      "PersonsString": "Philipp Haller",
+      "Authors": [
+        "philipphaller"
+      ],
+      "Affiliations": [
+        "CEA LIST, France"
+      ],
+      "AffiliationsString": "CEA LIST, France",
+      "Abstract": "SmaCC (Smalltalk Compiler-Compiler) is a freely available parser generator for Smalltalk. It generates LR parsers and is a replacement for the T-Gen parser generator. SmaCC overcomes many of T-Gen’s limitations that make it difficult to produce parsers. SmaCC can generate parsers for ambiguous grammars and grammars with overlapping tokens."
+    }
+  ],
+  "Sessions": [
+    {
+      "Title": "Random Session",
+      "ChairsString": "Philipp Haller",
+      "Chairs": [
+        "philipphaller"
+      ],
+      "Items": [
+        "cocodo-2019-smacc"
+      ],
+      "Abstract": "The ACM Student Research Competition (SRC), sponsored by Microsoft Research, offers a unique forum for ACM student members at the undergraduate and graduate levels to present their original research at <Programming> before a panel of judges and conference attendees, and creates opportunities for learning and networking among researchers and practitioners. The SRC gives visibility to not only up-and-coming young researchers, but also to the field of computer science research and its community. \n",
+      "Type": "Invited Students",
+      "Key": "dc03a3e9-5dbd-4af4-973c-0941b84ef00b",
+      "Day": "2019-04-03",
+      "Time": "09:30 - 11:00",
+      "Location": "Hotel Bristol Palace | Bellini"
+    }
+  ],
+  "People": [
+    {
+      "Name": "Philipp Haller",
+      "Affiliation": "University of Utah",
+      "Key": "philipphaller",
+      "Bio": "Matthew Flatt is a professor in the School of Computing at the University of Utah, where he works on extensible programming languages, runtime systems, and applications of functional programming. He is one of the developers of the Racket programming language. He received his PhD from Rice University in 1999.",
+      "URL": "http://www.cs.utah.edu/~mflatt/",
+      "URLphoto": "https://2019.programming-conference.org/getProfileImage/matthewflatt/01508046-0bdb-4eb0-a674-27198f8debd6/small.jpg"
+    }
+  ]
+}

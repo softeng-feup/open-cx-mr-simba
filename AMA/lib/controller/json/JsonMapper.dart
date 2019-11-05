@@ -81,6 +81,19 @@ class JsonMapper {
     return sessions;
   }
 
+  static SplayTreeSet<Session> sessionSetInLocation(Map<String, dynamic> jsonMap, String date, String location) {
+    List<dynamic> dynamicList = jsonMap['Sessions'];
+    SplayTreeSet<Session> sessions = SplayTreeSet<Session>();
+
+    dynamicList.forEach((f) {
+      Session s = JsonMapper.session(f);
+      if (s.day == date && s.location == location)
+        sessions.add(s);
+    });
+
+    return sessions;
+  }
+
   static Item item(Map<String, dynamic> json) {
     return Item(
       title: json['Title'] as String,

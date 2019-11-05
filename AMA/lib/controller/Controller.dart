@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Session.dart';
@@ -22,6 +23,10 @@ class Controller {
     return _instance;
   }
 
+
+  // ----------------------------
+  // regular controller methods
+  // ----------------------------
 
   DayScheduleInfo getDaySchedule(int day) {
     return _model.getSchedules().elementAt(day - 1);
@@ -51,14 +56,66 @@ class Controller {
 
 
 
+  // ----------------------------
+  // json methods
+  // ----------------------------
 
-  SplayTreeSet<Session> getDaySessions(String dateString) {
-    return JsonMapper.sessionSet(JsonController().getJson(), dateString);
+  void updateURLPath(String url) {
+    _model.setJsonURL(url);
   }
 
 
-  Future getJson() async {
-    await JsonController().parseJsonFromURL(Utility.jsonURL);
+  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
+    return JsonMapper.sessionSet(await JsonController().getJson(_model.getJsonURL()), dateString);
+  }
+
+
+  Future extractJson() async {
+    await JsonController().parseJsonFromURL(_model.getJsonURL());
+  }
+
+
+  // ----------------------------
+  // bluetooth methods
+  // ----------------------------
+
+  Future<String> isBluetoothAvailable() async {
+    final aux = await BluetoothController.instance().isBluetoothAvailable();
+    if(aux)
+      return Utility.BTAvailableText;
+    else
+      return Utility.BTNotAvailableText;
+  }
+
+  Future<String> isBluetoothEnabled() async {
+    final aux = await BluetoothController.instance().isBluetoothEnabled();
+    if(aux)
+      return Utility.BTEnabledText;
+    else
+      return Utility.BTDisabledText;
+  }
+
+  List<String> searchForBeaconLocations()  {
+    BluetoothController.instance().searchForBeacons();
+    // TODO: ir buscar valores das localizacoes aos beacons
+    return [];
+  }
+
+  // TODO: verificar que esta bem
+  Future<SplayTreeSet<Session>> getSessionsNearby(List<String> locations) async {
+    DateTime currentTime = new DateTime.now();
+    String currentDateString = currentTime.toString().substring(0, 10);
+    SplayTreeSet<Session> nearbySessions = SplayTreeSet();
+    for(String location in locations) {
+      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, location);
+      sessionsInLocation.forEach((s) {
+          DateTime startTime = s.startTime;
+          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
+            nearbySessions.add(s);
+          }
+      });
+    }
+    return nearbySessions;
   }
 
 }

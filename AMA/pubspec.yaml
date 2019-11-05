@@ -18,8 +18,10 @@ environment:
 
 dependencies:
   flutter_slidable: "^0.5.4"
-  # flutter_blue: "0.6.2"
+  flutter_blue: "0.6.2"
+  flutter_gherkin: ^1.1.4
   dots_indicator: ^1.0.0
+  args: ^1.5.2
 
   flutter:
     sdk: flutter
@@ -51,6 +53,7 @@ flutter:
   assets:
     - assets/images/cal.jpeg
     - assets/confero.json
+    - assets/testFile.json
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

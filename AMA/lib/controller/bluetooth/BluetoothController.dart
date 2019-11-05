@@ -1,33 +1,34 @@
+import 'package:flutter_blue/flutter_blue.dart';
 import '../../constants/Utility.dart' as Utility;
 
 class BluetoothController {
 
+  static BluetoothController _instance;
 
-  // FlutterBlue _flutterBlue;
+  static BluetoothController instance() {
+    if(_instance == null)
+        _instance = new BluetoothController();
 
-  BluetoothController() {
-    /*this._flutterBlue = FlutterBlue.instance;*/
+    return _instance;
   }
 
 
-  bool isBluetoothAvailable() {
-    // this._flutterBlue.isAvailable;
-    return true;
+  // TODO: FlutterBlue.instance nao retorna quando nao ha BT... ver melhor
+
+  Future<bool> isBluetoothAvailable() async {
+    return await FlutterBlue.instance.isAvailable;
   }
 
-  bool isBluetoothEnabled() {
-    // this._flutterBlue.isOn;
-    return true;
+  Future<bool> isBluetoothEnabled() async {
+    return await FlutterBlue.instance.isOn;
   }
+
 
   void searchForBeacons() {
+
     // this._flutterBlue.startScan(timeout: Duration(seconds: Utility.numSecondsForTimeoutBLE));
 
-    // var subscription = this._flutterBlue.scanResults.listen(
 
-
-
-    // this._flutterBlue.stopScan();
   }
 
 }
