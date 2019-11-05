@@ -34,7 +34,7 @@ class GenericContainer extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   if (this.touchable)
-                    Icon(Icons.unfold_more,
+                    Icon(Icons.search,
                         color: AppColors.mainColor, size: 32)
                 ]),
             Padding(

@@ -19,7 +19,7 @@ class SlidableSessionContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       key: _slidableKey,
-      actionPane: SlidableScrollActionPane(key: Key("teste")),
+      actionPane: SlidableScrollActionPane(),
       actionExtentRatio: 0.25,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 15.0),
