@@ -25,13 +25,15 @@ class GenericContainer extends StatelessWidget {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
-                    title,
-                    style: TextStyle(
-                        color: AppColors.mainColor,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 21),
-                    textAlign: TextAlign.left,
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                          color: AppColors.mainColor,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 21),
+                      textAlign: TextAlign.left,
+                    ),
                   ),
                   if (this.touchable)
                     Icon(Icons.search,
