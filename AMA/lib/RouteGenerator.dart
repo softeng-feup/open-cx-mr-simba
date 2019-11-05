@@ -4,10 +4,14 @@ import 'package:ama/view/screens/BluetoothSearchScreen.dart';
 import 'package:ama/view/screens/DayScheduleScreen.dart';
 import 'package:ama/view/screens/DaySessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
+import 'package:ama/view/screens/ItemsScreen.dart';
+import 'package:ama/view/screens/PeopleScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
 import 'controller/Controller.dart';
+import 'model/Item.dart';
+import 'model/Person.dart';
 import 'model/Session.dart';
 
 class RouteGenerator {
@@ -57,6 +61,20 @@ class RouteGenerator {
 
       case '/bluetoothScreen':
         return MaterialPageRoute(builder: (_) => BluetoothSearchScreen());
+
+
+      case '/personScreen':
+        if(args is List<Person>) {
+          return MaterialPageRoute(builder: (_) => PeopleScreen(people: args));
+        }
+        return _errorRoute();
+
+
+      case '/itemsScreen':
+        if(args is List<Item>) {
+          return MaterialPageRoute(builder: (_) => ItemsScreen(items: args));
+        }
+        return _errorRoute();
 
 
       default:

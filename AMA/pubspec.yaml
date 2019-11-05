@@ -14,7 +14,7 @@ description: Our openCX application, for ESOF_19-20.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter_slidable: "^0.5.4"

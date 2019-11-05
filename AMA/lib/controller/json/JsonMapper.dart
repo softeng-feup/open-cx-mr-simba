@@ -42,7 +42,7 @@ class JsonMapper {
 
   static List<Person> peopleWithKeys(Map<String, dynamic> json, List<String> keys) {
     Map<String, Person> allPeople = JsonMapper.personMap(json);
-    List<Person> people;
+    List<Person> people = List<Person>();
 
     keys.forEach((k) {
       people.add(allPeople[k]);
@@ -122,7 +122,7 @@ class JsonMapper {
 
   static List<Item> itemWithKeys(Map<String, dynamic> json, List<String> keys) {
     Map<String, Item> allItems = JsonMapper.itemMap(json);
-    List<Item> items;
+    List<Item> items = List<Item>();
 
     keys.forEach((k) {
       items.add(allItems[k]);
