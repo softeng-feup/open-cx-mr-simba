@@ -52,4 +52,12 @@ main() {
     assert(set != null);
     expect(2, set.length);
   });
+
+  test('Get people with keys', () {
+    List<String> keys = <String>["susaneisenbach"];
+    List<Person> peopleList = JsonMapper.peopleWithKeys(jsonDecode(people), keys);
+
+    expect(1, peopleList.length);
+    expect("susaneisenbach", peopleList[0].key);
+  });
 }

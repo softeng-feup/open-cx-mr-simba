@@ -11,6 +11,7 @@ class AboutScreen extends StatelessWidget {
         title: Text(
           "About",
           style: TextStyle(color: Colors.white),
+          key: Key("Screen title"),
         ),
         backgroundColor: AppColors.mainColor,
         leading: IconButton(

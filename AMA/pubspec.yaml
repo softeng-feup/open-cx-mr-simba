@@ -14,14 +14,16 @@ description: Our openCX application, for ESOF_19-20.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter_slidable: "^0.5.4"
   flutter_blue: "0.6.2"
+  flutter_gherkin: ^1.1.4
   dots_indicator: ^1.0.0
   quiver: '>=2.0.0 <3.0.0'
   
+  args: ^1.5.2
 
   flutter:
     sdk: flutter
@@ -53,6 +55,7 @@ flutter:
   assets:
     - assets/images/cal.jpeg
     - assets/confero.json
+    - assets/testFile.json
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

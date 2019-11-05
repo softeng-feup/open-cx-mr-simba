@@ -164,8 +164,8 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
 
             List<String> locations =
                 Controller.instance().searchForBeaconLocations();
-            SplayTreeSet<Session> nearbySessions =
-                Controller.instance().getSessionsNearby(locations);
+            // SplayTreeSet<Session> nearbySessions =
+            //     Controller.instance().getSessionsNearby(locations);
             // TODO: fazer display de nearbySessions numa nova pagina
           },
           child:

@@ -36,6 +36,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
           backgroundColor: AppColors.mainColor,
           title: Text("Day " + widget.schedule.getDay().toString() + " Schedule"),
           leading: IconButton(
+            key: Key("Back button"),
             icon: Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
@@ -98,14 +99,18 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
 
   Widget drawAddButton() {
     return FloatingActionButton.extended(
-        onPressed: () {
+        key: Key("Adding button"),
+        onPressed: () async {
 
-          SplayTreeSet<Session> set = Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
+          SplayTreeSet<Session> set = await Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
 
-          Navigator.pushNamed(context, '/daySessionsScreen',
-              arguments:
-              DayScheduleInfo.daySessions(widget.schedule.getDay(), widget.schedule.getDate(), set));
-        },
+          if(this.mounted) {
+            Navigator.pushNamed(context, '/daySessionsScreen',
+                arguments:
+                DayScheduleInfo.daySessions(
+                    widget.schedule.getDay(), widget.schedule.getDate(), set));
+            }
+          },
         backgroundColor: AppColors.mainColor,
         foregroundColor: Colors.white,
         elevation: 20.0,

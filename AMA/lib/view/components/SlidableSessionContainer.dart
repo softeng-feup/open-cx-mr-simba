@@ -31,6 +31,7 @@ class SlidableSessionContainer extends StatelessWidget {
         Container(
           color: AppColors.backgroundColor,
           child: RawMaterialButton(
+            key: Key("Slidable button"),
             padding: const EdgeInsets.all(10.0),
             onPressed: () {
               onPressFunction();

@@ -37,6 +37,7 @@ class DaysScreen extends StatelessWidget {
 
   Widget drawAboutTile(BuildContext context) {
     return ListTile(
+        key: Key("About tile"),
         title: Text('About', style: TextStyle(color: Colors.black)),
         onTap: () {
           Navigator.pushNamed(context, '/about');
@@ -46,7 +47,9 @@ class DaysScreen extends StatelessWidget {
 
 
   Widget drawSessionSearch(BuildContext context) {
-    return ListTile(title: Text('Session Search', style: TextStyle(color: Colors.black)),
+    return ListTile(
+        key: Key("Session search tile"),
+        title: Text('Session Search', style: TextStyle(color: Colors.black)),
         onTap: () {
           Navigator.pushNamed(context, '/bluetoothScreen');
         },
