@@ -5,6 +5,7 @@ import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
+import 'package:sqflite/sqflite.dart';
 import 'json/JsonController.dart';
 import 'json/JsonMapper.dart';
 import '../constants/Utility.dart' as Utility;
@@ -12,10 +13,13 @@ import '../constants/Utility.dart' as Utility;
 class Controller {
 
   static Controller _instance;
-  Model _model; // TODO: apagar dps este Model
+  Model _model; // TODO: apagar dps este Model (meter o url do JSON em Controller)
+  Database _database;
+  bool inited; // indicates if the database as been instanciated and filled with information from the JSON file
 
   Controller() {
     _model = new Model();
+    inited = false;
   }
 
   static Controller instance() {
@@ -31,7 +35,13 @@ class Controller {
   // ----------------------------
 
   // TODO: fazer metodo que va buscar o json e adicione a informacao a base de dados
+  // TODO: ver melhor como fazer para quando for para dar update dos dados, em vez de os ir buscar pela primeira vez
   Future getJSONAndFillDatabase() async {
+    if(_database == null)
+        _database = await openDatabase(Utility.databasePath);
+
+    Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
+
 
   }
 
