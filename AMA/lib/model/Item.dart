@@ -19,4 +19,6 @@ class Item {
   List<String> authors;
   String affiliationString;
   String description;
+
+  // TODO: fazer toMap e fromMap()
 }
