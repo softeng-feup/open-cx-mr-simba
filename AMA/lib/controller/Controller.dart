@@ -12,7 +12,7 @@ import '../constants/Utility.dart' as Utility;
 class Controller {
 
   static Controller _instance;
-  Model _model;
+  Model _model; // TODO: apagar dps este Model
 
   Controller() {
     _model = new Model();
@@ -29,6 +29,15 @@ class Controller {
   // ----------------------------
   // regular controller methods
   // ----------------------------
+
+  // TODO: fazer metodo que va buscar o json e adicione a informacao a base de dados
+  Future getJSONAndFillDatabase() async {
+
+  }
+
+  // TODO: ter metodos que chamam os do DatabaseMapper para retornar coisas para as Views
+
+
 
   DayScheduleInfo getDaySchedule(int day) {
     return _model.getSchedules().elementAt(day - 1);

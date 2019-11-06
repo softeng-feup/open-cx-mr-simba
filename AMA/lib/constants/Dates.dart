@@ -11,13 +11,21 @@ library Dates;
  Date date4 = new Date('Thu','04','04','2019');
 
 class Date{
-  final String _weekDay;
-  final String _day;
-  final String _month;
-  final String _year;
+  String _weekDay;
+  String _day;
+  String _month;
+  String _year;
   final List<String> _monthsStr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-   Date(this._weekDay, this._day, this._month,this._year);
+  Date(this._weekDay, this._day, this._month,this._year);
+
+  Date.fromDate(String weekday, String date) {
+    this._weekDay = weekday;
+    List<String> values = date.split("-");
+    this._year = values[0];
+    this._month = values[1];
+    this._day = values[2];
+  }
 
   String getWeekDay(){
     return _weekDay;
