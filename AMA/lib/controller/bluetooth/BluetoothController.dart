@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter_blue/flutter_blue.dart';
 import '../../constants/Utility.dart' as Utility;
+import 'flutter_blue_beacon/beacon.dart';
+import 'flutter_blue_beacon/flutter_blue_beacon.dart';
 
 class BluetoothController {
   static BluetoothController _instance;
@@ -21,26 +25,38 @@ class BluetoothController {
   }
 
   void searchForBeacons() {
+    FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
+    FlutterBlue _flutterBlue = FlutterBlue.instance;
+
+    /// Scanning
+    StreamSubscription _scanSubscription;
+    Map<int, EddystoneUID> beacons = new Map();
+    bool isScanning = false;
+
     // Start scanning
-    FlutterBlue.instance.startScan(timeout: Duration(seconds: 4));
 
-    // Listen to scan results
-    var scannedDevices;
-    var subscription = FlutterBlue.instance.scanResults.listen((scannedDevices) {
-
-      for(int i = 0; i < scannedDevices.length;i++){
-        // do something with scan result
-        var currentDevice = scannedDevices.elementAt(i).device; // found usefulness
-        var currentAdvertisementData = scannedDevices.elementAt(i).advertisementData; 
-
-        // print('${device.id} found! rssi: ${scannedDevices.elementAt(i).rssi} uuid: ${scannedDevices.elementAt(i).advertisementData.serviceUuids.elementAt(0)}');
-      }
+    _scanSubscription = flutterBlueBeacon
+        .scan(timeout: const Duration(seconds: 5))
+        .listen((beacon) {
+      print('localName: ${beacon.scanResult.advertisementData.localName}');
+      print(
+          'manufacturerData: ${beacon.scanResult.advertisementData.manufacturerData}');
+      print('serviceData: ${beacon.scanResult.advertisementData.serviceData}');
       
+
+      if(beacon is EddystoneUID){
+
+        EddystoneUID b = beacon;
+        beacons[beacon.hash] = b;
+
+        print("EddystoneUID");
+        print("beaconId: ${b.beaconId}");
+        print("namespaceId: ${b.namespaceId}");
+        print("tx: ${b.tx}");
+        print("rssi: ${b.rssi}");
+        print("distance: ${b.distance}");
+      }
+
     });
-
-// Stop scanning
-    FlutterBlue.instance.stopScan();
-
-    // this._flutterBlue.startScan(timeout: Duration(seconds: Utility.numSecondsForTimeoutBLE));
   }
 }
