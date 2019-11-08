@@ -22,7 +22,8 @@ dependencies:
   flutter_gherkin: ^1.1.4
   dots_indicator: ^1.0.0
   quiver: '>=2.0.0 <3.0.0'
-  
+  sqflite: ^1.1.7+1
+
   args: ^1.5.2
 
   flutter:
@@ -56,7 +57,7 @@ flutter:
     - assets/images/cal.jpeg
     - assets/confero.json
     - assets/testFile.json
-  #  - images/a_dot_ham.jpeg
+    - assest/AMADatabase.db
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

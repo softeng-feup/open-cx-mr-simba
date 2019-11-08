@@ -102,7 +102,6 @@ class JsonMapper {
       type: json['Type'],
       authors: JsonMapper.stringList(json, "Authors"),
       peopleString: json['PersonsString'] as String,
-      affiliations: JsonMapper.stringList(json, "Affiliations"),
       url: json['URL'] as String,
       affiliationString: json['AffiliationsString']
     );

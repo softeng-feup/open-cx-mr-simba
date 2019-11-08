@@ -38,6 +38,8 @@ class Session extends Comparable<dynamic> {
   
     return this.timeString.compareTo(other.timeString);
   }
+
+  // TODO: fazer toMap e fromMap()
 }
 
 

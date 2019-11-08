@@ -6,8 +6,10 @@ class Item {
         this.peopleString,
         this.authors,
         this.affiliationString,
-        this.affiliations,
         this.description});
+
+  // NOTA: foi retirado as affiliations pois elas nao acrescentavam informacao nenhuma
+  // (ja se tem a affiliationString)
 
   String key;
   String title;
@@ -16,6 +18,7 @@ class Item {
   String peopleString;
   List<String> authors;
   String affiliationString;
-  List<String> affiliations;
   String description;
+
+  // TODO: fazer toMap e fromMap()
 }
