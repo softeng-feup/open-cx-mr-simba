@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'package:ama/model/Session.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseController {
+class DatabaseMapper {
   // TODO: fazer metodos que extraiam informacao da base de dados e converta para classes, para mostrar na View
 
   // exemplo:

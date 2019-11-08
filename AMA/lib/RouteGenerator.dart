@@ -4,6 +4,7 @@ import 'package:ama/view/screens/BluetoothSearchScreen.dart';
 import 'package:ama/view/screens/DayScheduleScreen.dart';
 import 'package:ama/view/screens/DaySessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
+import 'package:ama/view/screens/InitialLoadingScreen.dart';
 import 'package:ama/view/screens/ItemsScreen.dart';
 import 'package:ama/view/screens/PeopleScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
@@ -22,12 +23,13 @@ class RouteGenerator {
 
     switch(settings.name) {
       case '/':
+        return MaterialPageRoute(builder: (_) => InitialLoadingScreen());
+  
+      case '/homeScreen':
         return MaterialPageRoute(builder: (_) => DaysScreen());
-
-
+      
       case '/about':
         return MaterialPageRoute(builder: (_) => AboutScreen());
-
 
       case '/day1Screen':
         return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(1)));

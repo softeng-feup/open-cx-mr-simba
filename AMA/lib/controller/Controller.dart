@@ -13,13 +13,10 @@ import '../constants/Utility.dart' as Utility;
 class Controller {
 
   static Controller _instance;
-  Model _model; // TODO: apagar dps este Model (meter o url do JSON em Controller)
-  Database _database;
-  bool inited; // indicates if the database as been instanciated and filled with information from the JSON file
-
+  Model _model;
+  
   Controller() {
     _model = new Model();
-    inited = false;
   }
 
   static Controller instance() {
@@ -34,16 +31,7 @@ class Controller {
   // regular controller methods
   // ----------------------------
 
-  // TODO: fazer metodo que va buscar o json e adicione a informacao a base de dados
-  // TODO: ver melhor como fazer para quando for para dar update dos dados, em vez de os ir buscar pela primeira vez
-  Future getJSONAndFillDatabase() async {
-    if(_database == null)
-        _database = await openDatabase(Utility.databasePath);
-
-    Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
-
-
-  }
+  
 
   // TODO: ter metodos que chamam os do DatabaseMapper para retornar coisas para as Views
 

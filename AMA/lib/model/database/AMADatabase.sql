@@ -135,3 +135,5 @@ INSERT INTO Schedule (scheduleDay, weekday, date) VALUES(
    "Thu",
    "2019-04-04"
 );
+
+COMMIT TRANSACTION;
