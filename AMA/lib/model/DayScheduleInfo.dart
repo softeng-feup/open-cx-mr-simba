@@ -30,8 +30,4 @@ class DayScheduleInfo {
   Date getDate() {
     return _date;
   }
-  
-
-  // TODO: fazer toMap e fromMap()
-
 }

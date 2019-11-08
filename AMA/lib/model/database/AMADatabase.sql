@@ -13,6 +13,7 @@ CREATE TABLE Person (
     imageURL     TEXT
 );
 
+
 -- Table: Item
 DROP TABLE IF EXISTS Item;
 
@@ -135,3 +136,4 @@ INSERT INTO Schedule (scheduleDay, weekday, date) VALUES(
    "Thu",
    "2019-04-04"
 );
+
