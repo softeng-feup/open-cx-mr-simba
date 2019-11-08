@@ -13,6 +13,7 @@ CREATE TABLE Person (
     imageURL     TEXT
 );
 
+
 -- Table: Item
 DROP TABLE IF EXISTS Item;
 
@@ -136,4 +137,7 @@ INSERT INTO Schedule (scheduleDay, weekday, date) VALUES(
    "2019-04-04"
 );
 
+<<<<<<< HEAD
 COMMIT TRANSACTION;
+=======
+>>>>>>> bef8db79bad388a7ed32de5a748cb625d04280b5

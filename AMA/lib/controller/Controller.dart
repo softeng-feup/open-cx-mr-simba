@@ -5,7 +5,6 @@ import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
-import 'package:sqflite/sqflite.dart';
 import 'json/JsonController.dart';
 import 'json/JsonMapper.dart';
 import '../constants/Utility.dart' as Utility;

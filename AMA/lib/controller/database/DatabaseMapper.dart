@@ -5,7 +5,6 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseMapper {
   // TODO: fazer metodos que extraiam informacao da base de dados e converta para classes, para mostrar na View
 
-  // exemplo:
   static Future<SplayTreeSet<Session>> sessionSet(Database db, String date) async {
 
   }
