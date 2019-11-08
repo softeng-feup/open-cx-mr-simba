@@ -26,12 +26,12 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
     );
   }
 
+  // TODO: meter funcao de inicializar a base de dados
   Future loadData() async {
     Timer(Duration(seconds: 5), onDoneLoading);
   }
 
   onDoneLoading() async {
-    Navigator.pushNamed(context, '/daysScreen');
+    Navigator.pushNamed(context, '/homeScreen');
   }
 }
-

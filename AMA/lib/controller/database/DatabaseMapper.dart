@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:io';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Person.dart';
+import 'package:ama/model/Schedule.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:ama/model/Session.dart';
@@ -9,13 +10,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseMapper {
   // TODO: fazer metodos que extraiam informacao da base de dados e converta para classes, para mostrar na View
-  static DatabaseController _instance;
   var db;
-
-  static DatabaseController instance() {
-    if (_instance == null) _instance = new DatabaseController();
-      return _instance;
-  }
 
   createDatabase() async {
     var databasesPath = await getDatabasesPath();
@@ -41,8 +36,8 @@ class DatabaseMapper {
     }
 
     //open the database
-    db = await openDatabase(path);
-    return db;
+    // db = await openDatabase(path);
+    // return db;
   }
 
   static Future<SplayTreeSet<Session>> sessionSet(Database db, String date) async {
