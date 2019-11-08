@@ -20,8 +20,8 @@ You can find here detailed information about the (sub)product, hereby mentioned 
 * Architecture and Design
   * [Architectural and design decisions]()
   * [Technological architecture]()
-  * [Logical architecture]()
-  * [Physical architecture]()
+  * [Logical architecture](#Logical-architecture)
+  * [Physical architecture](#Physical-architecture)
   * [Prototype](#Prototype)
     * [Images of prototype for iteration #1](#Images-of-prototype-for-iteration-#1)
 
@@ -359,6 +359,13 @@ For the logical structure of the code, and in order to separate the different co
 ![Component Diagram](docs/ComponentDiagramImage.png)
 
 ### Physical architecture
+The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the json that contains the conferences info from the server. After it parses the json, it will store it's information in an SQLite database. The server also holds information about user sessions that it may supply to the user upon request. Tha app also communicates with beacons as discussed in previously (location-driver notifications). Currently we have microbits serving as Eddystone Beacons.
+
+![Deployment Diagram](docs/Deployment_diagram.jpg)
+
+For this project the main discussion was about what environment/programming language to use to build the mobile app. The two choices were Flutter and React Native. Although React Native has been around for longer than Flutter and, as such, the support for the language is big, we chose Flutter because it was very easy to learn as it is very well documented, very powerfull(has built in widgets tailored to every need) and because it is advantegeous to learn a language that might be popular in the future.  
+For the database technology we chose SQLite because of it's small computational needs and for it's simplicity (which is more than enough for the needed task).  
+Finally, for our bluetooth technology we chose to use the Eddystone protocol because it eliminates the need to pair with the beacon and , as such, enables a dynamic scan as the user moves arround the event-space.
 
 ### Prototype  
 In iteration #1, we spent a considerable amount of time learning about Flutter. Despite this,
