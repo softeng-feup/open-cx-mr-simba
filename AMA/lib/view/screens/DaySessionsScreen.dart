@@ -86,8 +86,8 @@ class DaySessionsScreenState extends State<DaySessionsScreen> {
                 session: _sessions.elementAt(idx),
                 icon: Icons.check,
                 color: Colors.green,
-                onPressFunction: () {
-                  String text = Controller.instance().addSessionToSchedule(widget.sessionsInfo.getDay(), _sessions.elementAt(idx));
+                onPressFunction: () async {
+                  String text = await Controller.instance().addSessionToSchedule(widget.sessionsInfo.getDay(), _sessions.elementAt(idx));
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text(text)));
                 },
