@@ -17,7 +17,7 @@ class DatabaseController {
 
   DatabaseController._internal();
 
-  // creates the database and copies it from the assets if it doesn't exist yet
+
   Future<bool> createDatabase() async {
     var path = join(await getDatabasesPath(), Utility.databaseName);
 
@@ -48,11 +48,10 @@ class DatabaseController {
   }
 
 
-
-  Future fillPersonTable(Map<String, Person> people) async {
-    people.forEach((k, p) {
-      _database.insert('Person', p.toMap());
-    });
+  Database getDatabase() {
+    return _database;
   }
+
+
 }
 

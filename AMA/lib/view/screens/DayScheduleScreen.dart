@@ -21,8 +21,8 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
   String _removeSession(Session session) {
     String text;
 
-    setState(() {
-      text = Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
+    setState(() async {
+      text = await Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
     });
 
     return text;
@@ -107,7 +107,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
           if(this.mounted) {
             Navigator.pushNamed(context, '/daySessionsScreen',
                 arguments:
-                DayScheduleInfo.daySessions(
+                DayScheduleInfo.withSessions(
                     widget.schedule.getDay(), widget.schedule.getDate(), set));
             }
           },

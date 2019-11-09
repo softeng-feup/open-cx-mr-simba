@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:ama/controller/Controller.dart';
+import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
+import '../../constants/AppColors.dart' as AppColors;
 
 class InitialLoadingScreen extends StatefulWidget {
   @override
@@ -12,26 +15,28 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    Controller.instance().initDatabase().then((result) {
+      Navigator.of(context).pushNamed('/homeScreen');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.redAccent),
+      color: AppColors.backgroundColor,
+      child: Column(
+        children: <Widget> [
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: GenericContainer(
+              title: "Welcome to AMA",
+              text: "Please wait...",
+            ),
+          ),
+          CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainColor),
         ),
-      ),
+      ]),
     );
-  }
-
-  // TODO: meter funcao de inicializar a base de dados
-  Future loadData() async {
-    Timer(Duration(seconds: 5), onDoneLoading);
-  }
-
-  onDoneLoading() async {
-    Navigator.pushNamed(context, '/homeScreen');
   }
 }

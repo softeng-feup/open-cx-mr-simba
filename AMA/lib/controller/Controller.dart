@@ -1,5 +1,7 @@
 import 'dart:collection';
 import 'package:ama/controller/bluetooth/BluetoothController.dart';
+import 'package:ama/controller/database/DatabaseController.dart';
+import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
@@ -13,7 +15,7 @@ class Controller {
 
   static Controller _instance;
   Model _model;
-  
+
   Controller() {
     _model = new Model();
   }
@@ -26,14 +28,9 @@ class Controller {
   }
 
 
-  // ----------------------------
-  // regular controller methods
-  // ----------------------------
-
-  
-
-  // TODO: ter metodos que chamam os do DatabaseMapper para retornar coisas para as Views
-
+  // -----------------------------------------
+  // regular controller (and database) methods
+  // -----------------------------------------
 
 
   DayScheduleInfo getDaySchedule(int day) {
@@ -41,17 +38,20 @@ class Controller {
   }
 
 
-  String addSessionToSchedule(int day, Session session) {
+  Future<String> addSessionToSchedule(int day, Session session) async {
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
-    if(added)
+    if(added) {
+      await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
       return "Session added to schedule";
+    }
     else
       return "Session already added to schedule";
   }
 
 
-  String removeSessionFromSchedule(int day, Session session) {
+  Future<String> removeSessionFromSchedule(int day, Session session) async {
     _model.getSchedules().elementAt(day - 1).getSessions().remove(session);
+    await DatabaseMapper.removeSessionFromSchedule(DatabaseController().getDatabase(), day, session.key);
     return "Session deleted from schedule";
   }
 
@@ -61,7 +61,38 @@ class Controller {
     return numActivities.toString() + " " + (numActivities == 1 ? "activity" : "activities");
   }
 
+  // ----------------------------
+  // database methods
+  // ----------------------------
 
+  Future initDatabase() async {
+//    bool exists = await DatabaseController().createDatabase();
+//    if(!exists) {
+//      // TODO: usar funcoes para passar a informacao do JSON para a base de dados
+//    }
+//    else {
+//      _model.setScheduleSessions(await getDaySessions(Dates.date1.toDateString()),
+//                                 await getDaySessions(Dates.date2.toDateString()),
+//                                 await getDaySessions(Dates.date3.toDateString()),
+//                                 await getDaySessions(Dates.date4.toDateString()));
+//    }
+
+    // TODO: construir map em BluetoothController com ids e localizacoes, por ordem alfabetica
+  }
+
+
+  // TODO: ter metodos que chamam os do DatabaseMapper para retornar coisas para as Views
+  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
+    return await DatabaseMapper.getDaySessions(DatabaseController().getDatabase(), dateString);
+  }
+
+  Future<List<Person>> getPeopleWithKeys(List<String> peopleKeys) async {
+    return await DatabaseMapper.getPeopleWithKeys(DatabaseController().getDatabase(), peopleKeys);
+  }
+
+  Future<List<Item>> getItemsWithKeys(List<String> itemKeys) async {
+    return DatabaseMapper.getItemWithKeys(DatabaseController().getDatabase(), itemKeys);
+  }
 
 
   // ----------------------------
@@ -72,21 +103,21 @@ class Controller {
     _model.setJsonURL(url);
   }
 
-  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
-    return JsonMapper.sessionSet(await JsonController().getJson(_model.getJsonURL()), dateString);
-  }
-
   Future extractJson() async {
     await JsonController().parseJsonFromURL(_model.getJsonURL());
   }
 
-  Future<List<Person>> getPeopleWithKeys(List<String> chairs) async {
-    return JsonMapper.peopleWithKeys(await JsonController().getJson(_model.getJsonURL()), chairs);
-  }
+//  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
+//    return JsonMapper.sessionSet(await JsonController().getJson(_model.getJsonURL()), dateString);
+//  }
 
-  Future<List<Item>> getItemsWithKeys(List<String> items) async {
-    return JsonMapper.itemWithKeys(await JsonController().getJson(_model.getJsonURL()), items);
-  }
+//  Future<List<Person>> getPeopleWithKeys(List<String> chairs) async {
+//    return JsonMapper.peopleWithKeys(await JsonController().getJson(_model.getJsonURL()), chairs);
+//  }
+
+//  Future<List<Item>> getItemsWithKeys(List<String> items) async {
+//    return JsonMapper.itemWithKeys(await JsonController().getJson(_model.getJsonURL()), items);
+//  }
 
   // ----------------------------
   // bluetooth methods
