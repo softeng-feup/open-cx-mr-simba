@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:ama/model/Item.dart';
+import 'package:ama/model/Session.dart';
 import 'package:path/path.dart';
 
 import 'package:ama/model/Person.dart';
@@ -17,6 +19,9 @@ class DatabaseController {
 
   DatabaseController._internal();
 
+  Database getDatabase() {
+    return _database;
+  }
 
   Future<bool> createDatabase() async {
     var path = join(await getDatabasesPath(), Utility.databaseName);
@@ -48,10 +53,43 @@ class DatabaseController {
   }
 
 
-  Database getDatabase() {
-    return _database;
+  Future fillDatabasePerson(List<Person> people) async {
+    for (Person person in people) {
+      await _database.insert('Person', person.toMap());
+    }
   }
 
+
+  Future fillDatabaseItem(List<Item> items) async {
+    for (Item item in items) {
+      List<Map<String, dynamic>> mapList = item.toMap();
+     
+      await _database.insert('Item', mapList[0]);
+
+      for (var i = 1; i < mapList.length; i++) {
+        await _database.insert('ItemAuthor', mapList[i]);
+      }
+    }
+  }
+
+
+  Future fillDatabaseSession(List<Session> sessions) async {
+    for (Session session in sessions) {
+      await _database.insert('Session', session.toMapSession());
+      
+      List<Map<String, dynamic>> sessionChairs = session.toMapChairs();
+      
+      for (Map<String, dynamic> map in sessionChairs) {
+        await _database.insert('SessionChair', map);
+      }
+
+      List<Map<String, dynamic>> sessionItems = session.toMapItems();
+      
+      for (Map<String, dynamic> map in sessionItems) {
+        await _database.insert('SessionItem', map);
+      }
+    }
+  }
 
 }
 

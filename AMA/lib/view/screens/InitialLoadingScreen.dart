@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
       child: Column(
         children: <Widget> [
           Padding(
-            padding: const EdgeInsets.all(50.0),
+            padding: const EdgeInsets.only(left: 50.0, right: 50.0, top: 200.0, bottom: 50.0),
             child: GenericContainer(
               title: "Welcome to AMA",
               text: "Please wait...",

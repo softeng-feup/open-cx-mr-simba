@@ -18,14 +18,15 @@ class DayScheduleScreen extends StatefulWidget {
 }
 
 class DayScheduleScreenState extends State<DayScheduleScreen> {
-  String _removeSession(Session session) {
-    String text;
+  Future _removeSession(Session session) async {
+    String text = await Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
 
-    setState(() async {
-      text = await Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
-    });
-
-    return text;
+    if(this.mounted) {
+      setState(() {
+        // TODO: verificar se funciona
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
+      });
+    }
   }
 
 
@@ -85,11 +86,8 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
               session: widget.schedule.getSessions().elementAt(idx),
               icon: Icons.delete,
               color: Colors.red,
-              onPressFunction: () {
-                String text = _removeSession(
-                    widget.schedule.getSessions().elementAt(idx));
-                Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text(text)));
+              onPressFunction: () async {
+                await _removeSession( widget.schedule.getSessions().elementAt(idx));
               },
             );
           }),

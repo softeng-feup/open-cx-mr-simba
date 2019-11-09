@@ -5,7 +5,6 @@ import 'dart:convert';
 
 class JsonController {
   static final JsonController _jsonController = JsonController._internal();
-  Map<String, dynamic> _json; // TODO: apagar este atributo
 
   factory JsonController() {
     return _jsonController;
@@ -39,11 +38,4 @@ class JsonController {
     return _json;
   }
 
-  // TODO: apagar este metodo, uma vez que nao precisamos de guardar o JSON: basta le-lo e por a info na base de dados
-  Future<Map<String, dynamic>> getJson(String url) async {
-    if(_json == null)
-      await parseJsonFromURL(url);
-
-    return _json;
-  }
 }

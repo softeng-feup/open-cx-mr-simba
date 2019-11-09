@@ -2,14 +2,15 @@ import 'dart:collection';
 import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/controller/database/DatabaseController.dart';
 import 'package:ama/controller/database/DatabaseMapper.dart';
+import 'package:ama/controller/json/JsonMapper.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
 import 'json/JsonController.dart';
-import 'json/JsonMapper.dart';
 import '../constants/Utility.dart' as Utility;
+import '../constants/Dates.dart' as Dates;
 
 class Controller {
 
@@ -66,22 +67,27 @@ class Controller {
   // ----------------------------
 
   Future initDatabase() async {
-//    bool exists = await DatabaseController().createDatabase();
-//    if(!exists) {
-//      // TODO: usar funcoes para passar a informacao do JSON para a base de dados
-//    }
-//    else {
-//      _model.setScheduleSessions(await getDaySessions(Dates.date1.toDateString()),
-//                                 await getDaySessions(Dates.date2.toDateString()),
-//                                 await getDaySessions(Dates.date3.toDateString()),
-//                                 await getDaySessions(Dates.date4.toDateString()));
-//    }
+    bool exists = await DatabaseController().createDatabase();
+    if(!exists) {
+      Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
 
-    // TODO: construir map em BluetoothController com ids e localizacoes, por ordem alfabetica
+      // passes information from JSON to database
+      await DatabaseController().fillDatabasePerson(JsonMapper.getPeople(json));
+      await DatabaseController().fillDatabaseItem(JsonMapper.getItems(json));
+      await DatabaseController().fillDatabaseSession(JsonMapper.getSessions(json));
+    }
+    else {
+      _model.setScheduleSessions(await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 1),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 2),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 3),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 4));
+    }
+
+    BluetoothController.instance().fillLocationMap(await DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase()));
   }
 
 
-  // TODO: ter metodos que chamam os do DatabaseMapper para retornar coisas para as Views
+
   Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
     return await DatabaseMapper.getDaySessions(DatabaseController().getDatabase(), dateString);
   }
@@ -151,17 +157,16 @@ class Controller {
   // TODO: verificar que esta bem
   Future<SplayTreeSet<Session>> getSessionsNearby(List<String> locations) async {
     DateTime currentTime = new DateTime.now();
-    String currentDateString = currentTime.toString().substring(0, 10);
     SplayTreeSet<Session> nearbySessions = SplayTreeSet();
-    for(String location in locations) {
-      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, location);
-      sessionsInLocation.forEach((s) {
-          DateTime startTime = s.startTime;
-          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
-            nearbySessions.add(s);
-          }
-      });
-    }
+//    for(String location in locations) {
+//      SplayTreeSet<Session> sessionsInLocation = DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
+//      sessionsInLocation.forEach((s) {
+//          DateTime startTime = s.startTime;
+//          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
+//            nearbySessions.add(s);
+//          }
+//      });
+//    }
     return nearbySessions;
   }
 

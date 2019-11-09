@@ -77,6 +77,8 @@ class Session extends Comparable<dynamic> {
   // retorna maps com os chairs
   List<Map<String, dynamic>> toMapChairs() {
     List<Map<String, dynamic>> mapList = [];
+    if(this.chairs == null)
+      return mapList;
     for (int i = 0; i < this.chairs.length; i++) {
       var sessionChairMap = <String, dynamic>{
         'sessionKey': this.key,
@@ -91,6 +93,8 @@ class Session extends Comparable<dynamic> {
   // retorna maps com os items
   List<Map<String, dynamic>> toMapItems() {
     List<Map<String, dynamic>> mapList = [];
+    if(this.items == null)
+      return mapList;
     for (int i = 0; i < this.items.length; i++) {
       var sessionItemMap = <String, dynamic>{
         'sessionKey': this.key,

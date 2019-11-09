@@ -1,10 +1,8 @@
 import 'dart:collection';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Person.dart';
-import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Session.dart';
 import 'package:sqflite/sqflite.dart';
-import '../../constants/Dates.dart';
 
 class DatabaseMapper {
 
@@ -27,6 +25,22 @@ class DatabaseMapper {
     }
     return sessions;
   }
+
+
+  static Future<SplayTreeSet<Session>> getSessionsInLocation(Database db, String location) async {
+    // TODO: fazer funcao
+  }
+
+
+  static Future<List<String>> getLocationsByOrder(Database db) async {
+    var results = await db.rawQuery('SELECT DISTINCT location FROM Session ORDER BY location COLLATE NOCASE ASC');
+    List<String> locations = [];
+    for(int i = 0; i < results.length; i++) {
+      locations.add(results.elementAt(i)['location']);
+    }
+    return locations;
+  }
+
 
   static Future<List<Person>> getPeopleWithKeys(Database db, List<String> keys) async {
     List<Person> people = [];
@@ -63,13 +77,13 @@ class DatabaseMapper {
   }
 
 
-  static Future<DayScheduleInfo> getScheduleInfo(Database db, int day) async {
+  static Future<SplayTreeSet<Session>> getScheduleInfo(Database db, int day) async {
     var results = await db.rawQuery('SELECT * FROM Schedule NATURAL JOIN ScheduleSession WHERE scheduleDay = ?', [day]);
-    SplayTreeSet sessions = SplayTreeSet();
+    SplayTreeSet<Session> sessions = SplayTreeSet();
     for(int i = 0; i < results.length; i++) {
       sessions.add(await getSession(db, results.elementAt(i)['sessionKey']));
     }
-    return DayScheduleInfo.withSessions(results.elementAt(0)['scheduleDay'], Date.fromDate(results.elementAt(0)['weekday'], results.elementAt(0)['date']) ,sessions);
+    return sessions;
   }
 
 
