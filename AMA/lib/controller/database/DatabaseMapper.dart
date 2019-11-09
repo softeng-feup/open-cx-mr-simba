@@ -28,7 +28,24 @@ class DatabaseMapper {
 
 
   static Future<SplayTreeSet<Session>> getSessionsInLocation(Database db, String location) async {
-    // TODO: fazer funcao
+    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair location = ?', [location]);
+    SplayTreeSet<Session> sessions = SplayTreeSet();
+    if(results.length > 0) {
+      String currentSessionKey = results.elementAt(0)['sessionKey'];
+      List<Map<String, dynamic>> sessionValues = [results.elementAt(0)];
+      for (int i = 1; i < results.length; i++) {
+        if(currentSessionKey != results.elementAt(i)['sessionKey']) { // if new session is considered
+          sessions.add(Session.fromMap(sessionValues));
+          sessionValues = [results.elementAt(i)];
+        }
+        else {
+          sessionValues.add(results.elementAt(i));
+        }
+      }
+      sessions.add(Session.fromMap(sessionValues)); // add last session
+    }
+
+    return sessions;
   }
 
 

@@ -35,6 +35,9 @@ class Session extends Comparable<dynamic> {
   int compareTo(other) {
     if (this.key == other.key) 
       return 0;
+    
+    if (this.timeString.compareTo(other.timeString) == 0)
+      return this.title.compareTo(other.title);
   
     return this.timeString.compareTo(other.timeString);
   }
