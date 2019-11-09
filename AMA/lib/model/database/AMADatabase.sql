@@ -111,6 +111,7 @@ BEGIN
     SELECT RAISE(rollback,'Error: Session does not belong in this schedule');
 END;
 
+
 --------------
 
 INSERT INTO Schedule (scheduleDay, weekday, date) VALUES(
@@ -137,7 +138,7 @@ INSERT INTO Schedule (scheduleDay, weekday, date) VALUES(
    "2019-04-04"
 );
 
-<<<<<<< HEAD
+--------------
+
 COMMIT TRANSACTION;
-=======
->>>>>>> bef8db79bad388a7ed32de5a748cb625d04280b5
+PRAGMA foreign_keys = on;

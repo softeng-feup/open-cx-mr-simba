@@ -17,7 +17,8 @@ class DatabaseController {
 
   DatabaseController._internal();
 
-  Future _copyDatabaseFromAssets() async {
+  // creates the database and copies it from the assets if it doesn't exist yet
+  Future<bool> createDatabase() async {
     var path = join(await getDatabasesPath(), Utility.databaseName);
 
     // Check if the database exists
@@ -32,26 +33,23 @@ class DatabaseController {
       } catch (_) {}
         
       // Copy from asset
-      ByteData data = await rootBundle.load(join("assets", "example.db"));
+      ByteData data = await rootBundle.load(join("assets", Utility.databaseName));
       List<int> bytes =
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       
       // Write and flush the bytes written
       await File(path).writeAsBytes(bytes, flush: true);
-
     }
 
     // open the database
     _database = await openDatabase(path);
+
+    return exists;
   }
 
 
 
   Future fillPersonTable(Map<String, Person> people) async {
-
-    if (_database == null)
-      await _copyDatabaseFromAssets();
-
     people.forEach((k, p) {
       _database.insert('Person', p.toMap());
     });
