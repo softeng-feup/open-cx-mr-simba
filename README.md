@@ -351,10 +351,12 @@ As the development moves forward the mockups will be tailored to specific user-s
 ---
 
 ## Architecture and Design
-
+In this section, we will be talking and showing more about our architecture, from two points of view: the logical point of view, more related to the high-level logical structure of the code, its components and relations between them; and a more physical point of view, portraying the high-level physical structure such as the machines, connections and technologies used.
 
 ### Logical architecture
+For the logical structure of the code, and in order to separate the different components of the software, we opted to implement the MVC design: the Model contains all the relevant information, the View displays it, and the Controller serves as a kind of "middle man" between them, getting the information from the Model and passing it to the View, and handling the user input from the View buttons, modifying the Model accordingly.
 
+![Component Diagram](docs/ComponentDiagramImage.png)
 
 ### Physical architecture
 

@@ -7,12 +7,21 @@ import 'flutter_blue_beacon/flutter_blue_beacon.dart';
 
 class BluetoothController {
   static BluetoothController _instance;
+  Map<int, String> _locationMap = Map(); // maps an int to a string location
 
   static BluetoothController instance() {
     if (_instance == null) _instance = new BluetoothController();
 
     return _instance;
   }
+
+
+  void fillLocationMap(List<String> locations) {
+    for(int i = 0; i < locations.length; i++) {
+      _locationMap.putIfAbsent(i, () => locations.elementAt(i));
+    }
+  }
+
 
   // TODO: FlutterBlue.instance nao retorna quando nao ha BT... ver melhor
 

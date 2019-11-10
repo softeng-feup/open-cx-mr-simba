@@ -1,13 +1,14 @@
 import 'dart:collection';
 import 'package:ama/controller/bluetooth/BluetoothController.dart';
+import 'package:ama/controller/database/DatabaseController.dart';
+import 'package:ama/controller/database/DatabaseMapper.dart';
+import 'package:ama/controller/json/JsonMapper.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
 import 'json/JsonController.dart';
-import 'json/JsonMapper.dart';
-import '../constants/Utility.dart' as Utility;
 
 class Controller {
 
@@ -26,26 +27,30 @@ class Controller {
   }
 
 
-  // ----------------------------
-  // regular controller methods
-  // ----------------------------
+  // -----------------------------------------
+  // regular controller (and database) methods
+  // -----------------------------------------
+
 
   DayScheduleInfo getDaySchedule(int day) {
     return _model.getSchedules().elementAt(day - 1);
   }
 
 
-  String addSessionToSchedule(int day, Session session) {
+  Future<String> addSessionToSchedule(int day, Session session) async {
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
-    if(added)
+    if(added) {
+      await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
       return "Session added to schedule";
+    }
     else
       return "Session already added to schedule";
   }
 
 
-  String removeSessionFromSchedule(int day, Session session) {
+  Future<String> removeSessionFromSchedule(int day, Session session) async {
     _model.getSchedules().elementAt(day - 1).getSessions().remove(session);
+    await DatabaseMapper.removeSessionFromSchedule(DatabaseController().getDatabase(), day, session.key);
     return "Session deleted from schedule";
   }
 
@@ -55,7 +60,43 @@ class Controller {
     return numActivities.toString() + " " + (numActivities == 1 ? "activity" : "activities");
   }
 
+  // ----------------------------
+  // database methods
+  // ----------------------------
 
+  Future initDatabase() async {
+    bool exists = await DatabaseController().createDatabase();
+    if(!exists) {
+      Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
+
+      // passes information from JSON to database
+      await DatabaseController().fillDatabasePerson(JsonMapper.getPeople(json));
+      await DatabaseController().fillDatabaseItem(JsonMapper.getItems(json));
+      await DatabaseController().fillDatabaseSession(JsonMapper.getSessions(json));
+    }
+    else {
+      _model.setScheduleSessions(await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 1),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 2),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 3),
+                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 4));
+    }
+
+    BluetoothController.instance().fillLocationMap(await DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase()));
+  }
+
+
+
+  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
+    return await DatabaseMapper.getDaySessions(DatabaseController().getDatabase(), dateString);
+  }
+
+  Future<List<Person>> getPeopleWithKeys(List<String> peopleKeys) async {
+    return await DatabaseMapper.getPeopleWithKeys(DatabaseController().getDatabase(), peopleKeys);
+  }
+
+  Future<List<Item>> getItemsWithKeys(List<String> itemKeys) async {
+    return DatabaseMapper.getItemWithKeys(DatabaseController().getDatabase(), itemKeys);
+  }
 
 
   // ----------------------------
@@ -66,20 +107,8 @@ class Controller {
     _model.setJsonURL(url);
   }
 
-  Future<SplayTreeSet<Session>> getDaySessions(String dateString) async {
-    return JsonMapper.sessionSet(await JsonController().getJson(_model.getJsonURL()), dateString);
-  }
-
   Future extractJson() async {
     await JsonController().parseJsonFromURL(_model.getJsonURL());
-  }
-
-  Future<List<Person>> getPeopleWithKeys(List<String> chairs) async {
-    return JsonMapper.peopleWithKeys(await JsonController().getJson(_model.getJsonURL()), chairs);
-  }
-
-  Future<List<Item>> getItemsWithKeys(List<String> items) async {
-    return JsonMapper.itemWithKeys(await JsonController().getJson(_model.getJsonURL()), items);
   }
 
   // ----------------------------
@@ -112,18 +141,16 @@ class Controller {
   // TODO: verificar que esta bem
   Future<SplayTreeSet<Session>> getSessionsNearby(List<int> locations) async {
     DateTime currentTime = new DateTime.now();
-    String currentDateString = currentTime.toString().substring(0, 10);
-
     SplayTreeSet<Session> nearbySessions = SplayTreeSet();
-    for(int i in locations) {
-      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, i);
-      sessionsInLocation.forEach((s) {
-          DateTime startTime = s.startTime;
-          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
-            nearbySessions.add(s);
-          }
-      });
-    }
+//    for(String location in locations) {
+//      SplayTreeSet<Session> sessionsInLocation = DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
+//      sessionsInLocation.forEach((s) {
+//          DateTime startTime = s.startTime;
+//          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
+//            nearbySessions.add(s);
+//          }
+//      });
+//    }
     return nearbySessions;
   }
 
