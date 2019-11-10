@@ -22,3 +22,6 @@ const String BTAvailableText = "Bluetooth is available on this device!";
 const String BTNotAvailableText = "Unfortunately, it seems like this device does not suport Bluetooth connection, so this functionality cannot be used. We are sorry.";
 const String BTDisabledText = "The Bluetooth functionality of this device is turned off. In order to use the Session Search feature, please turn the Bluetooth on.";
 const String BTEnabledText = "Bluetooth is turned on! Tap on the \"scan\" in order to commence Session Search.";
+
+const String noInternetTitle = "No Internet Connection";
+const String noInternetText = "Internet connection is needed for the first time you open the app. \n Please try again when you are connected to the internet.";

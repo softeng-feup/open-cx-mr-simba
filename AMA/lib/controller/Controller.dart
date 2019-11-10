@@ -64,10 +64,15 @@ class Controller {
   // database methods
   // ----------------------------
 
-  Future initDatabase() async {
-    bool exists = await DatabaseController().createDatabase();
+  Future<bool> initDatabase() async {
+    bool exists = await DatabaseController().checkIfDatabaseExists();
+
     if(!exists) {
       Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
+      if(json == null)
+        return false;
+
+      await DatabaseController().createDatabase();
 
       // passes information from JSON to database
       await DatabaseController().fillDatabasePerson(JsonMapper.getPeople(json));
@@ -75,6 +80,8 @@ class Controller {
       await DatabaseController().fillDatabaseSession(JsonMapper.getSessions(json));
     }
     else {
+      await DatabaseController().createDatabase();
+
       _model.setScheduleSessions(await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 1),
                                  await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 2),
                                  await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 3),
@@ -82,6 +89,7 @@ class Controller {
     }
 
     BluetoothController.instance().fillLocationMap(await DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase()));
+    return true;
   }
 
 

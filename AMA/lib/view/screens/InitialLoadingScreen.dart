@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
+import '../../constants/Utility.dart' as Utility;
 
 class InitialLoadingScreen extends StatefulWidget {
   @override
@@ -14,8 +17,11 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
   @override
   void initState() {
     super.initState();
-    Controller.instance().initDatabase().then((result) {
-      Navigator.of(context).pushNamed('/homeScreen');
+    Controller.instance().initDatabase().then((success) {
+        if(success)
+          Navigator.of(context).pushNamed('/homeScreen');
+        else
+          _noInternetAlert(context);
     });
   }
 
@@ -38,4 +44,22 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
       ]),
     );
   }
+
+
+  void _noInternetAlert(BuildContext context) {
+        showDialog(context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(Utility.noInternetTitle),
+                content: Text(Utility.noInternetText),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("OK"),
+                    onPressed: () => exit(0),
+                  )
+                ],
+              );
+            }
+        );
+    }
 }
