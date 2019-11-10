@@ -105,19 +105,18 @@ class Controller {
     return aux1 && aux2;
   }
 
-  List<String> searchForBeaconLocations()  {
-    BluetoothController.instance().searchForBeacons();
-    // TODO: ir buscar valores das localizacoes aos beacons
-    return [];
+  Set<int> searchForBeaconLocations() {
+    return BluetoothController.instance().searchForBeacons();
   }
 
   // TODO: verificar que esta bem
-  Future<SplayTreeSet<Session>> getSessionsNearby(List<String> locations) async {
+  Future<SplayTreeSet<Session>> getSessionsNearby(List<int> locations) async {
     DateTime currentTime = new DateTime.now();
     String currentDateString = currentTime.toString().substring(0, 10);
+
     SplayTreeSet<Session> nearbySessions = SplayTreeSet();
-    for(String location in locations) {
-      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, location);
+    for(int i in locations) {
+      SplayTreeSet<Session> sessionsInLocation = JsonMapper.sessionSetInLocation(await JsonController().getJson(_model.getJsonURL()), currentDateString, i);
       sessionsInLocation.forEach((s) {
           DateTime startTime = s.startTime;
           if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {

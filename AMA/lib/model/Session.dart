@@ -10,6 +10,7 @@ class Session extends Comparable<dynamic> {
   final String timeString;
   final String location;
   final String description;
+  final int locationID;
 
   Session({this.key,
            this.title,
@@ -21,7 +22,10 @@ class Session extends Comparable<dynamic> {
            this.startTime,
            this.timeString,
            this.location,
-           this.description});
+           this.description,
+          this.locationID
+
+           });
 
   @override
   bool operator==(other) {

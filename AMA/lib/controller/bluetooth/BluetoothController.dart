@@ -24,28 +24,21 @@ class BluetoothController {
     return await FlutterBlue.instance.isOn;
   }
 
-  void searchForBeacons() {
+  Set<int> searchForBeacons() {
     FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
-    FlutterBlue _flutterBlue = FlutterBlue.instance;
 
     /// Scanning
     StreamSubscription _scanSubscription;
     Map<int, EddystoneUID> beacons = new Map();
-    bool isScanning = false;
+    Set<int> result;
 
     // Start scanning
-
-    _scanSubscription = flutterBlueBeacon
-        .scan(timeout: const Duration(seconds: 5))
-        .listen((beacon) {
+    _scanSubscription = flutterBlueBeacon.scan(timeout: const Duration(seconds: 5)).listen((beacon) {
       print('localName: ${beacon.scanResult.advertisementData.localName}');
-      print(
-          'manufacturerData: ${beacon.scanResult.advertisementData.manufacturerData}');
+      print('manufacturerData: ${beacon.scanResult.advertisementData.manufacturerData}');
       print('serviceData: ${beacon.scanResult.advertisementData.serviceData}');
-      
 
-      if(beacon is EddystoneUID){
-
+      if (beacon is EddystoneUID) {
         EddystoneUID b = beacon;
         beacons[beacon.hash] = b;
 
@@ -55,8 +48,10 @@ class BluetoothController {
         print("tx: ${b.tx}");
         print("rssi: ${b.rssi}");
         print("distance: ${b.distance}");
+        result.add(int.parse(b.beaconId));
       }
-
     });
+
+    return result;
   }
 }
