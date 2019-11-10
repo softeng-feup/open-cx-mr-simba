@@ -36,28 +36,30 @@ class Session extends Comparable<dynamic> {
     if (this.key == other.key) 
       return 0;
     
-    if (this.timeString.compareTo(other.timeString) == 0)
+    if (this.startTime.compareTo(other.startTime) == 0)
       return this.title.compareTo(other.title);
   
-    return this.timeString.compareTo(other.timeString);
+    return this.startTime.compareTo(other.startTime);
   }
 
-  // passar uma lista de mapas que e um join entre Session, SessionItem e SessionChair
-  Session.fromMap(List<Map<String, dynamic>> mapList) {
-    this.key = mapList.elementAt(0)['sessionKey'];
-    this.title = mapList.elementAt(0)['title'];
-    this.chairsString = mapList.elementAt(0)['chairsString'];
-    this.type = mapList.elementAt(0)['type'];
-    this.day = mapList.elementAt(0)['day'];
-    this.startTime = DateTime.fromMillisecondsSinceEpoch(mapList.elementAt(0)['startTime']);
-    this.timeString = mapList.elementAt(0)['timeString'];
-    this.location = mapList.elementAt(0)['location'];
-    this.description = mapList.elementAt(0)['description'];
+  // passar um mapa Session, uma lista de mapas SessionItem e  uma lista de mapas SessionChair
+  Session.fromMap(Map<String, dynamic> mainMap, List<Map<String, dynamic>> sessionItemMap, List<Map<String, dynamic>> sessionChairMap) {
+    this.key = mainMap['sessionKey'];
+    this.title = mainMap['title'];
+    this.chairsString = mainMap['chairsString'];
+    this.type = mainMap['type'];
+    this.day = mainMap['day'];
+    this.startTime = DateTime.fromMillisecondsSinceEpoch(mainMap['startTime']);
+    this.timeString = mainMap['timeString'];
+    this.location = mainMap['location'];
+    this.description = mainMap['description'];
     this.chairs = [];
     this.items = [];
-    for(int i = 0; i < mapList.length; i++) {
-      this.chairs.add(mapList.elementAt(i)['personKey']);
-      this.items.add(mapList.elementAt(i)['itemKey']);
+    for(int j = 0; j < sessionItemMap.length; j++) {
+      this.items.add(sessionItemMap.elementAt(j)['itemKey']);
+    }
+    for(int i = 0; i < sessionChairMap.length; i++) {
+      this.chairs.add(sessionChairMap.elementAt(i)['personKey']);
     }
   }
 

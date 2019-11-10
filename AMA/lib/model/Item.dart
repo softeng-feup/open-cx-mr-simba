@@ -20,18 +20,18 @@ class Item {
   String description;
 
 
-  // passar uma lista de mapas que e um join entre Item e ItemAuthor
-  Item.fromMap(List<Map<String, dynamic>> mapList) {
-    this.key = mapList.elementAt(0)['itemKey'];
-    this.title = mapList.elementAt(0)['title'];
-    this.type = mapList.elementAt(0)['type'];
-    this.url = mapList.elementAt(0)['url'];
-    this.peopleString = mapList.elementAt(0)['peopleString'];
-    this.affiliationString = mapList.elementAt(0)['affiliations'];
-    this.description = mapList.elementAt(0)['description'];
+  // argumentos sao um map Item e uma lista de mapas ItemAuthor
+  Item.fromMap(Map<String, dynamic> itemMap, List<Map<String, dynamic>> itemAuthorMap) {
+    this.key = itemMap['itemKey'];
+    this.title = itemMap['title'];
+    this.type = itemMap['type'];
+    this.url = itemMap['url'];
+    this.peopleString = itemMap['peopleString'];
+    this.affiliationString = itemMap['affiliations'];
+    this.description = itemMap['description'];
     this.authors = [];
-    for(int i = 0; i < mapList.length; i++) {
-      this.authors.add(mapList.elementAt(i)['personKey']);
+    for(int i = 0; i < itemAuthorMap.length; i++) {
+      this.authors.add(itemAuthorMap.elementAt(i)['personKey']);
     }
   }
 

@@ -7,44 +7,28 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseMapper {
 
   static Future<SplayTreeSet<Session>> getDaySessions(Database db, String date) async {
-    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair WHERE day = ?', [date]);
+//    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair WHERE day = ?', [date]);
+    var results = await db.rawQuery('SELECT * FROM Session WHERE day = ?', [date]);
     SplayTreeSet<Session> sessions = SplayTreeSet();
-    if(results.length > 0) {
-      String currentSessionKey = results.elementAt(0)['sessionKey'];
-      List<Map<String, dynamic>> sessionValues = [results.elementAt(0)];
-      for (int i = 1; i < results.length; i++) {
-        if(currentSessionKey != results.elementAt(i)['sessionKey']) { // if new session is considered
-          sessions.add(Session.fromMap(sessionValues));
-          sessionValues = [results.elementAt(i)];
-        }
-        else {
-          sessionValues.add(results.elementAt(i));
-        }
-      }
-      sessions.add(Session.fromMap(sessionValues)); // add last session
+    for(int i = 0; i < results.length; i++) {
+      Map<String, dynamic> sessionMap = results.elementAt(i);
+      List<Map<String, dynamic>> sessionItemMap = await db.rawQuery('SELECT * FROM SessionItem WHERE sessionKey = ?', [sessionMap['sessionKey']]);
+      List<Map<String, dynamic>> sessionChairMap = await db.rawQuery('SELECT * FROM SessionChair WHERE sessionKey = ?', [sessionMap['sessionKey']]);
+      sessions.add(Session.fromMap(sessionMap, sessionItemMap, sessionChairMap));
     }
     return sessions;
   }
 
 
   static Future<SplayTreeSet<Session>> getSessionsInLocation(Database db, String location) async {
-    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair location = ?', [location]);
+    var results = await db.rawQuery('SELECT * FROM Session WHERE location = ?', [location]);
     SplayTreeSet<Session> sessions = SplayTreeSet();
-    if(results.length > 0) {
-      String currentSessionKey = results.elementAt(0)['sessionKey'];
-      List<Map<String, dynamic>> sessionValues = [results.elementAt(0)];
-      for (int i = 1; i < results.length; i++) {
-        if(currentSessionKey != results.elementAt(i)['sessionKey']) { // if new session is considered
-          sessions.add(Session.fromMap(sessionValues));
-          sessionValues = [results.elementAt(i)];
-        }
-        else {
-          sessionValues.add(results.elementAt(i));
-        }
-      }
-      sessions.add(Session.fromMap(sessionValues)); // add last session
+    for(int i = 0; i < results.length; i++) {
+      Map<String, dynamic> sessionMap = results.elementAt(i);
+      List<Map<String, dynamic>> sessionItemMap = await db.rawQuery('SELECT * FROM SessionItem WHERE sessionKey = ?', [sessionMap['sessionKey']]);
+      List<Map<String, dynamic>> sessionChairMap = await db.rawQuery('SELECT * FROM SessionChair WHERE sessionKey = ?', [sessionMap['sessionKey']]);
+      sessions.add(Session.fromMap(sessionMap, sessionItemMap, sessionChairMap));
     }
-
     return sessions;
   }
 
@@ -62,8 +46,7 @@ class DatabaseMapper {
   static Future<List<Person>> getPeopleWithKeys(Database db, List<String> keys) async {
     List<Person> people = [];
     for(int i = 0; i < keys.length; i++) {
-      var results = await db.rawQuery(
-          'SELECT * FROM Person WHERE personKey = ?', [keys.elementAt(i)]);
+      var results = await db.rawQuery('SELECT * FROM Person WHERE personKey = ?', [keys.elementAt(i)]);
       if (results.length > 0) {
         people.add(new Person.fromMap(results.first));
       }
@@ -74,11 +57,10 @@ class DatabaseMapper {
   static Future<List<Item>> getItemWithKeys(Database db, List<String> keys) async {
     List<Item> items = [];
     for(int i = 0; i < keys.length; i++) {
-      var results = await db.rawQuery(
-          'SELECT * FROM Item NATURAL JOIN ItemAuthor WHERE itemKey = ?',
-          [keys.elementAt(i)]);
-      if (results.length > 0) {
-         items.add(new Item.fromMap(results));
+      var itemMap = await db.rawQuery('SELECT * FROM Item WHERE itemKey = ?', [keys.elementAt(i)]);
+      List<Map<String, dynamic>> itemAuthorMap = await db.rawQuery('SELECT * FROM ItemAuthor WHERE itemKey = ?', [keys.elementAt(i)]);
+      if(itemMap.length > 0) {
+        items.add(Item.fromMap(itemMap.elementAt(0), itemAuthorMap));
       }
     }
     return items;
@@ -86,9 +68,11 @@ class DatabaseMapper {
 
 
   static Future<Session> getSession(Database db, String key) async {
-    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair WHERE sessionKey = ?', [key]);
-    if (results.length > 0) {
-      return new Session.fromMap(results);
+    var sessionMap = await db.rawQuery('SELECT * FROM Session WHERE sessionKey = ?', [key]);
+    List<Map<String, dynamic>> sessionItemMap = await db.rawQuery('SELECT * FROM SessionItem WHERE sessionKey = ?', [key]);
+    List<Map<String, dynamic>> sessionChairMap = await db.rawQuery('SELECT * FROM SessionChair WHERE sessionKey = ?', [key]);
+    if(sessionMap.length > 0) {
+      return Session.fromMap(sessionMap.elementAt(0), sessionItemMap, sessionChairMap);
     }
     return null;
   }
