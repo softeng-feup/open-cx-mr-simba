@@ -37,13 +37,13 @@ class SessionScreen extends StatelessWidget {
               child: GenericContainer(
                   title: session.day, text: session.timeString),
             ),
-            if (session.description.isNotEmpty)
+            if ((session.description != null) && session.description.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                 child: GenericContainer(
                     title: "Abstract", text: session.description),
               ),
-            if (session.chairs != null)
+            if ((session.chairs != null) && session.chairs.isNotEmpty)
               Padding(
                   padding:
                       const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
@@ -60,7 +60,7 @@ class SessionScreen extends StatelessWidget {
                             arguments: await Controller.instance()
                                 .getPeopleWithKeys(session.chairs),
                           ))),
-            if (session.items != null)
+            if ((session.items != null) && session.items.isNotEmpty)
               Padding(
                   padding:
                       const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),

@@ -18,13 +18,10 @@ class DayScheduleScreen extends StatefulWidget {
 }
 
 class DayScheduleScreenState extends State<DayScheduleScreen> {
-  String _removeSession(Session session) {
-    String text;
+  Future<String> _removeSession(Session session) async {
+    String text = await Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
 
-    setState(() {
-      text = Controller.instance().removeSessionFromSchedule(widget.schedule.getDay(), session);
-    });
-
+    setState(() {});
     return text;
   }
 
@@ -85,11 +82,10 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
               session: widget.schedule.getSessions().elementAt(idx),
               icon: Icons.delete,
               color: Colors.red,
-              onPressFunction: () {
-                String text = _removeSession(
-                    widget.schedule.getSessions().elementAt(idx));
-                Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text(text)));
+              onPressFunction: () async {
+                String text = await _removeSession( widget.schedule.getSessions().elementAt(idx));
+                Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text(text)));
               },
             );
           }),
@@ -101,13 +97,11 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
     return FloatingActionButton.extended(
         key: Key("Adding button"),
         onPressed: () async {
-
           SplayTreeSet<Session> set = await Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
-
           if(this.mounted) {
             Navigator.pushNamed(context, '/daySessionsScreen',
                 arguments:
-                DayScheduleInfo.daySessions(
+                DayScheduleInfo.withSessions(
                     widget.schedule.getDay(), widget.schedule.getDate(), set));
             }
           },

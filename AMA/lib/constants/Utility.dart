@@ -1,5 +1,7 @@
 library Utility;
 
+const String databaseName = "AMADatabase.db";
+
 const String aboutText = "Hello, and welcome to AMA, an agenda mobile app for the <Programming> 2020 conference, to be held in March 2020, in Porto. Here, you can schedule your activities and appointments so you can organize yourself better, and get the best out of the conference. Enjoy!";
 
 const String noSessionsTitle = "This schedule has no sessions!";

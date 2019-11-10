@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
@@ -28,29 +27,17 @@ class JsonMapper {
     );
   }
 
-  static Map<String, Person> personMap(Map<String, dynamic> json) {
+  static List<Person> getPeople(Map<String, dynamic> json) {
     List<dynamic> dynamicList = json['People'];
-    Map<String, Person> people = Map<String, Person>();
+    List<Person> people = List<Person>();
 
     dynamicList.forEach((f) {
       Person p = JsonMapper.person(f);
-      people[p.key] = p;
+      people.add(p);
     });
 
     return people;
   }
-
-  static List<Person> peopleWithKeys(Map<String, dynamic> json, List<String> keys) {
-    Map<String, Person> allPeople = JsonMapper.personMap(json);
-    List<Person> people = List<Person>();
-
-    keys.forEach((k) {
-      people.add(allPeople[k]);
-    });
-  
-    return people;
-  }
-
 
   static Session session(Map<String, dynamic> json) {
     return Session(
@@ -68,27 +55,13 @@ class JsonMapper {
     );
   }
 
-  static SplayTreeSet<Session> sessionSet(Map<String, dynamic> jsonMap, String date) {
-    List<dynamic> dynamicList = jsonMap['Sessions'];
-    SplayTreeSet<Session> sessions = SplayTreeSet<Session>();
+  static List<Session> getSessions(Map<String, dynamic> json) {
+    List<dynamic> dynamicList = json['Sessions'];
+    List<Session> sessions = List<Session>();
 
     dynamicList.forEach((f) {
       Session s = JsonMapper.session(f);
-      if (s.day == date)
-        sessions.add(s);
-    });
-
-    return sessions;
-  }
-
-  static SplayTreeSet<Session> sessionSetInLocation(Map<String, dynamic> jsonMap, String date, String location) {
-    List<dynamic> dynamicList = jsonMap['Sessions'];
-    SplayTreeSet<Session> sessions = SplayTreeSet<Session>();
-
-    dynamicList.forEach((f) {
-      Session s = JsonMapper.session(f);
-      if (s.day == date && s.location == location)
-        sessions.add(s);
+      sessions.add(s);
     });
 
     return sessions;
@@ -102,32 +75,20 @@ class JsonMapper {
       type: json['Type'],
       authors: JsonMapper.stringList(json, "Authors"),
       peopleString: json['PersonsString'] as String,
-      affiliations: JsonMapper.stringList(json, "Affiliations"),
       url: json['URL'] as String,
       affiliationString: json['AffiliationsString']
     );
   }
 
-  static Map<String, Item> itemMap(Map<String, dynamic> json) {
+  static List<Item> getItems(Map<String, dynamic> json) {
     List<dynamic> dynamicList = json['Items'];
-    Map<String, Item> items = Map<String, Item>();
+    List<Item> items = List<Item>();
 
     dynamicList.forEach((f) {
       Item i = JsonMapper.item(f);
-      items[i.key] = i;
+      items.add(i);
     });
 
-    return items;
-  }
-
-  static List<Item> itemWithKeys(Map<String, dynamic> json, List<String> keys) {
-    Map<String, Item> allItems = JsonMapper.itemMap(json);
-    List<Item> items = List<Item>();
-
-    keys.forEach((k) {
-      items.add(allItems[k]);
-    });
-  
     return items;
   }
 }
