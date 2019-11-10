@@ -135,8 +135,10 @@ class Controller {
     return aux1 && aux2;
   }
 
-  Future<Set<int>> searchForBeaconLocations() async {
-    return BluetoothController.instance().searchForBeacons();
+  Future<Set<int>> searchForBeaconLocations()  {
+    
+    return  BluetoothController.instance().searchForBeacons();
+
   }
 
   // TODO: verificar que esta bem
@@ -144,7 +146,7 @@ class Controller {
 
     DateTime currentTime = new DateTime.now();
     List<String> nearbySessions = List();
-    Set<String> locationsStr;
+    Set<String> locationsStr = Set<String>();
 
     for(int id in locations){
 

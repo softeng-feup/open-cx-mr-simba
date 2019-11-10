@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:ama/controller/Controller.dart';
+import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
@@ -117,19 +118,23 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     );
   }
 
-  void getNearbySessions() {
-    setState(() {
+  Future getNearbySessions() async {
+
       widget.scanEnabled = false;
       print("OLA");
 
-      Future<Set<int>> locations = Controller.instance().searchForBeaconLocations();
+      Set<int> test =  await Controller.instance().searchForBeaconLocations();
+      print("Tamanho =" + test.length.toString());
+    //  test.then((beacons) {
+        
+    //     print("Tamanho =" + beacons.length.toString());
+    //     widget.nearbySessions =
+    //         Controller.instance().getSessionsNearby(beacons);
+    //   });
 
-      locations.then((value) {
-        widget.nearbySessions = Controller.instance().getSessionsNearby(value);
-      });
+     widget.nearbySessions = Controller.instance().getSessionsNearby(test);
 
-      widget.scanEnabled = true;
-    });
+    widget.scanEnabled = true;
   }
 
   Widget getButton(bool visibility) {
