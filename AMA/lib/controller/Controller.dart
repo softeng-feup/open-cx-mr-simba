@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:ama/constants/Utility.dart' as Utility;
 import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/controller/database/DatabaseController.dart';
 import 'package:ama/controller/database/DatabaseMapper.dart';
@@ -134,14 +135,47 @@ class Controller {
     return aux1 && aux2;
   }
 
-  Set<int> searchForBeaconLocations() {
+  Future<Set<int>> searchForBeaconLocations() async {
     return BluetoothController.instance().searchForBeacons();
   }
 
   // TODO: verificar que esta bem
-  Future<SplayTreeSet<Session>> getSessionsNearby(List<int> locations) async {
+  List<String> getSessionsNearby(Set<int> locations)  {
+
     DateTime currentTime = new DateTime.now();
-    SplayTreeSet<Session> nearbySessions = SplayTreeSet();
+    List<String> nearbySessions = List();
+    Set<String> locationsStr;
+
+    for(int id in locations){
+
+      locationsStr.add(BluetoothController.instance().getLocation(id));
+
+    }
+
+    for(String location in locationsStr){
+      Future<SplayTreeSet<Session>> sessionsInLocation = DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
+
+      sessionsInLocation.then( (sessionsInLoc) {
+
+        sessionsInLoc.forEach((s){
+
+          DateTime startTime = s.startTime;
+          if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
+            nearbySessions.add(s.location);
+          }
+
+        });
+
+      });
+
+      return nearbySessions;
+    }
+
+    return nearbySessions;
+  }
+
+}
+
 //    for(String location in locations) {
 //      SplayTreeSet<Session> sessionsInLocation = DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
 //      sessionsInLocation.forEach((s) {
@@ -151,7 +185,3 @@ class Controller {
 //          }
 //      });
 //    }
-    return nearbySessions;
-  }
-
-}

@@ -22,6 +22,11 @@ class BluetoothController {
     }
   }
 
+  String getLocation(int id){
+
+    return _locationMap[id];
+  }
+
 
   // TODO: FlutterBlue.instance nao retorna quando nao ha BT... ver melhor
 
@@ -33,7 +38,7 @@ class BluetoothController {
     return await FlutterBlue.instance.isOn;
   }
 
-  Set<int> searchForBeacons() {
+  Future<Set<int>> searchForBeacons() async {
     FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
 
     /// Scanning

@@ -13,8 +13,7 @@ class BluetoothSearchScreen extends StatefulWidget {
   bool enabledStatus = true;
   bool scanVisible = true;
   bool scanEnabled = true;
-  // List<String> nearbySessions;
-
+  List<String> nearbySessions;
   @override
   BluetoothSearchScreenState createState() => BluetoothSearchScreenState();
 }
@@ -37,13 +36,6 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     bool enabledStatus = await Controller.instance().isBluetoothEnabled();
     this._updateAvailability(availableStatus);
     this._updateEnableStatus(enabledStatus);
-  }
-
-
-  List<Widget> updateSessions(){
-
-    // Controller.instance();
-
   }
 
   @override
@@ -76,7 +68,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
               title: "Know what's around you", text: Utility.sessionSearchText),
           this.getChecklist(),
           this.getScanButton(),
-          this.getSessionsContainer(),
+          // this.getSessionsContainer(),
         ],
       ),
     );
@@ -127,22 +119,28 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
 
   void getNearbySessions() {
     setState(() {
-      // widget.nearbySessions = Controller.instance().searchForBeaconLocations();
+      widget.scanEnabled = false;
+      print("OLA");
+
+      Future<Set<int>> locations = Controller.instance().searchForBeaconLocations();
+
+      locations.then((value) {
+        widget.nearbySessions = Controller.instance().getSessionsNearby(value);
+      });
+
+      widget.scanEnabled = true;
     });
   }
 
   Widget getButton(bool visibility) {
     return Visibility(
       maintainSize: false,
-      visible:visibility, 
-
+      visible: visibility,
       child: Padding(
         padding: const EdgeInsets.only(top: 0.0),
         child: RawMaterialButton(
           onPressed: () {
-
-            
-
+            if (widget.scanEnabled) getNearbySessions();
           },
           child:
               Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
@@ -155,40 +153,33 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     );
   }
 
-  List<Widget> buildSessionContainers(){
+  List<Widget> buildSessionContainers() {
+    List<Widget> result = List<Widget>();
 
-    // List<Widget> result;
+    result.add(
+        GenericContainer(title: "Sessions", text: Utility.sessionSearchText));
 
-    // for(int i = 0; i < widget.nearbySessions.length;i++){
+    for (int i = 0; i < widget.nearbySessions.length; i++) {
+      result.add(Container(
+          decoration: new BoxDecoration(color: AppColors.containerColor),
+          child: ListTile(
+            title: Text(
+              widget.nearbySessions[i],
+            ),
+          )));
+    }
 
-    //   result.add( Container(
-    //   decoration: new BoxDecoration(color: AppColors.containerColor),
-    //   child: ListTile(
-    //       title: Text(
-    //         widget.nearbySessions[i],
-    //       ),
-    //   )));
-    // }
-
-    // return result;
+    return result;
   }
 
-
   Widget getSessionsContainer() {
-
     List<Widget> sessions = buildSessionContainers();
 
-
-    return  ListView(
-        scrollDirection: Axis.vertical,
-        padding: EdgeInsets.all(10.0),
-        children: <Widget>[
-          GenericContainer(
-              title: "Sessions", text: Utility.sessionSearchText),
-          
-        ],
-      );
-
+    return ListView(
+      scrollDirection: Axis.vertical,
+      padding: EdgeInsets.all(10.0),
+      children: sessions,
+    );
   }
 
   //UNUSED METHODS
@@ -206,10 +197,4 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       ),
     );
   }
-
-
-
-
-
-
 }
