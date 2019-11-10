@@ -58,8 +58,8 @@ CREATE TABLE Schedule (
 DROP TABLE IF EXISTS ScheduleSession;
 
 CREATE TABLE ScheduleSession (
-    sessionKey       TEXT PRIMARY KEY,
-    scheduleDay      INTEGER
+    sessionKey       TEXT PRIMARY KEY REFERENCES Session(sessionKey),
+    scheduleDay      INTEGER REFERENCES Schedule(scheduleDay)
 );
 
 
@@ -67,8 +67,8 @@ CREATE TABLE ScheduleSession (
 DROP TABLE IF EXISTS SessionItem;
 
 CREATE TABLE SessionItem (
-    sessionKey       TEXT,
-    itemKey          TEXT,
+    sessionKey       TEXT REFERENCES Session(sessionKey),
+    itemKey          TEXT REFERENCES Item(itemKey),
     PRIMARY KEY(sessionKey, itemKey)
 );
 
@@ -78,8 +78,8 @@ CREATE TABLE SessionItem (
 DROP TABLE IF EXISTS SessionChair;
 
 CREATE TABLE SessionChair (
-    sessionKey       TEXT,
-    personKey        TEXT,
+    sessionKey       TEXT REFERENCES Session(sessionKey),
+    personKey        TEXT REFERENCES Person(personKey),
     PRIMARY KEY(sessionKey, personKey)
 );
 
@@ -89,8 +89,8 @@ CREATE TABLE SessionChair (
 DROP TABLE IF EXISTS ItemAuthor;
 
 CREATE TABLE ItemAuthor (
-    itemKey          TEXT,
-    personKey        TEXT,
+    itemKey          TEXT REFERENCES Item(itemKey),
+    personKey        TEXT REFERENCES Person(personKey),
     PRIMARY KEY(itemKey, personKey)
 );
 
