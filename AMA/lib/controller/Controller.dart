@@ -142,10 +142,10 @@ class Controller {
   }
 
   // TODO: verificar que esta bem
-  List<String> getSessionsNearby(Set<int> locations)  {
+  List<Session> getSessionsNearby(Set<int> locations)  {
 
     DateTime currentTime = new DateTime.now();
-    List<String> nearbySessions = List();
+    List<Session> nearbySessions = List();
     Set<String> locationsStr = Set<String>();
 
     for(int id in locations){
@@ -163,7 +163,7 @@ class Controller {
 
           DateTime startTime = s.startTime;
           if(startTime.isAfter(currentTime) && ((startTime.difference(currentTime)).inMinutes <= Utility.numMinutesForNotif)) {
-            nearbySessions.add(s.location);
+            nearbySessions.add(s);
           }
 
         });

@@ -14,7 +14,7 @@ class BluetoothSearchScreen extends StatefulWidget {
   bool enabledStatus = true;
   bool scanVisible = true;
   bool scanEnabled = true;
-  List<String> nearbySessions;
+  List<Session> nearbySessions = List<Session>();
   @override
   BluetoothSearchScreenState createState() => BluetoothSearchScreenState();
 }
@@ -132,7 +132,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     //         Controller.instance().getSessionsNearby(beacons);
     //   });
 
-     widget.nearbySessions = Controller.instance().getSessionsNearby(test);
+  widget.nearbySessions = Controller.instance().getSessionsNearby(test);
 
     widget.scanEnabled = true;
   }
@@ -169,7 +169,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
           decoration: new BoxDecoration(color: AppColors.containerColor),
           child: ListTile(
             title: Text(
-              widget.nearbySessions[i],
+              widget.nearbySessions[i].description,
             ),
           )));
     }
