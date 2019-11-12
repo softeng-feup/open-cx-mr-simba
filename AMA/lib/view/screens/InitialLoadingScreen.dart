@@ -19,7 +19,7 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
     super.initState();
     Controller.instance().initDatabase().then((success) {
         if(success)
-          Navigator.of(context).pushNamed('/homeScreen');
+          Navigator.of(context).pushReplacementNamed('/homeScreen');
         else
           _noInternetAlert(context);
     });
