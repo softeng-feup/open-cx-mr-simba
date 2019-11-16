@@ -4,6 +4,7 @@ import 'package:ama/controller/Controller.dart';
 import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
+import 'package:ama/view/components/SessionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../constants/AppColors.dart' as AppColors;
@@ -29,6 +30,12 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   void _updateEnableStatus(bool status) {
     setState(() {
       widget.enabledStatus = status;
+    });
+  }
+
+  void _updateNearbySessions(List<Session> sessions) {
+    setState(() {
+      widget.nearbySessions = sessions;
     });
   }
 
@@ -69,11 +76,15 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
               title: "Know what's around you", text: Utility.sessionSearchText),
           this.getChecklist(),
           this.getScanButton(),
-          // this.getSessionsContainer(),
+          this.getSessionsContainer(),
         ],
       ),
     );
   }
+
+  //
+  // Bluetooth status checklist
+  //
 
   Widget getChecklist() {
     return FutureBuilder(
@@ -109,6 +120,10 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     );
   }
 
+  //
+  // Bluetooth scanning (nearby session)
+  //
+
   Widget getScanButton() {
     return FutureBuilder<bool>(
       future: Controller.instance().isBluetoothOK(),
@@ -119,20 +134,14 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   }
 
   Future getNearbySessions() async {
+    widget.scanEnabled = false;
 
-      widget.scanEnabled = false;
-      print("OLA");
+    Set<int> beaconLocationIDs =
+        await Controller.instance().searchForBeaconLocations();
+    List<Session> nbSessions =
+        await Controller.instance().getSessionsNearby(beaconLocationIDs);
 
-      Set<int> test =  await Controller.instance().searchForBeaconLocations();
-      print("Tamanho =" + test.length.toString());
-    //  test.then((beacons) {
-        
-    //     print("Tamanho =" + beacons.length.toString());
-    //     widget.nearbySessions =
-    //         Controller.instance().getSessionsNearby(beacons);
-    //   });
-
-  widget.nearbySessions = Controller.instance().getSessionsNearby(test);
+    this._updateNearbySessions(nbSessions);
 
     widget.scanEnabled = true;
   }
@@ -162,16 +171,13 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     List<Widget> result = List<Widget>();
 
     result.add(
-        GenericContainer(title: "Sessions", text: Utility.sessionSearchText));
+        GenericContainer(title: "Nearby Sessions:", text: "These are the sessions near you that are starting soon"));
+
+    result.add(Divider());
 
     for (int i = 0; i < widget.nearbySessions.length; i++) {
-      result.add(Container(
-          decoration: new BoxDecoration(color: AppColors.containerColor),
-          child: ListTile(
-            title: Text(
-              widget.nearbySessions[i].description,
-            ),
-          )));
+      result.add(SessionContainer(activity: widget.nearbySessions[i],));
+      result.add(Divider());
     }
 
     return result;
@@ -180,11 +186,16 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   Widget getSessionsContainer() {
     List<Widget> sessions = buildSessionContainers();
 
-    return ListView(
-      scrollDirection: Axis.vertical,
-      padding: EdgeInsets.all(10.0),
-      children: sessions,
-    );
+    // return Column(children: <Widget>[GenericContainer(text: "OLA",title: "ola",touchable: false,)],);
+    return Column(children: sessions);
+  }
+
+  Widget getSessions() {
+    return FutureBuilder(
+        future: getNearbySessions(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return getSessionsContainer();
+        });
   }
 
   //UNUSED METHODS
