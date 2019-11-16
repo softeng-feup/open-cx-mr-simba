@@ -25,6 +25,7 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,9 +39,7 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
               text: "Please wait...",
             ),
           ),
-          CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainColor),
-        ),
+          Image(image: AssetImage("assets/images/AMA.gif"))
       ]),
     );
   }
