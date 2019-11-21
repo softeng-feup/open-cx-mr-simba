@@ -14,7 +14,6 @@ class JsonController {
 
   JsonController._internal();
 
-  // TODO: por agora assumindo que o json retorna sempre (fazer alert a dizer que informacao nao esta disponivel, quando for o caso)
   Future<Map<String, dynamic>> parseJsonFromURL(String url) async {
     Map<String, dynamic> _json;
 

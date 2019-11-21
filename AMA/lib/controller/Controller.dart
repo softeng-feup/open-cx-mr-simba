@@ -3,6 +3,7 @@ import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/controller/database/DatabaseController.dart';
 import 'package:ama/controller/json/JsonMapper.dart';
+import 'package:ama/controller/notifs/NotifsController.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
@@ -41,6 +42,7 @@ class Controller {
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
     if(added) {
       await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
+      await NotifsController.instance().scheduleNotificationForSession(session);
       return "Session added to schedule";
     }
     else
@@ -51,6 +53,7 @@ class Controller {
   Future<String> removeSessionFromSchedule(int day, Session session) async {
     _model.getSchedules().elementAt(day - 1).getSessions().remove(session);
     await DatabaseMapper.removeSessionFromSchedule(DatabaseController().getDatabase(), day, session.key);
+    await NotifsController.instance().removeNotificationForSession(session);
     return "Session deleted from schedule";
   }
 
