@@ -1,7 +1,4 @@
-import 'dart:collection';
-
 import 'package:ama/controller/Controller.dart';
-import 'package:ama/controller/bluetooth/BluetoothController.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:ama/view/components/SessionContainer.dart';
@@ -48,7 +45,11 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: getAppBar(), body: getBody());
+    return Scaffold(
+      appBar: getAppBar(),
+      body: getBody(),
+      floatingActionButton: getScanButton(),
+    );
   }
 
   Widget getAppBar() {
@@ -62,6 +63,15 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
         onPressed: () => Navigator.of(context).pop(),
       ),
       backgroundColor: AppColors.mainColor,
+      actions: <Widget>[
+        getBluetoothStatusIcon(),
+        IconButton(
+          icon: Icon(Icons.info_outline, color: Colors.white),
+          onPressed: () {
+            Navigator.pushNamed(context, '/bluetoothAbout');
+          },
+        ),
+      ],
     );
   }
 
@@ -72,10 +82,9 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
         scrollDirection: Axis.vertical,
         padding: EdgeInsets.all(10.0),
         children: <Widget>[
-          GenericContainer(
-              title: "Know what's around you", text: Utility.sessionSearchText),
-          this.getChecklist(),
-          this.getScanButton(),
+          this.getIntroductionContainer(),
+          // this.getChecklist(),
+          // this.getScanButton(),
           this.getSessionsContainer(),
         ],
       ),
@@ -86,38 +95,25 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   // Bluetooth status checklist
   //
 
-  Widget getChecklist() {
+  Widget getIntroductionContainer() {
+    String introText;
+
+    if (!widget.enabledStatus)
+      introText = "But you'll need to enable bluetooth first...";
+    else
+      introText = "Tap the 'scan' button whenever you're ready to explore.";
+
+    return GenericContainer(title: "Know what's around you", text: introText);
+  }
+
+  Widget getBluetoothStatusIcon() {
     return FutureBuilder(
         future: _refresh(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return getCheckListContainer();
+          return (widget.enabledStatus
+              ? Icon(Icons.bluetooth, color: Colors.white)
+              : Icon(Icons.bluetooth_disabled, color: Colors.white));
         });
-  }
-
-  Widget getCheckListContainer() {
-    return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: <Widget>[
-          drawChecklistItem("Bluetooth Available", widget.availabilityStatus),
-          Divider(height: 3),
-          drawChecklistItem("Bluetooth Enabled", widget.enabledStatus),
-        ],
-      ),
-    );
-  }
-
-  Widget drawChecklistItem(String title, bool status) {
-    return Container(
-      decoration: new BoxDecoration(color: AppColors.containerColor),
-      child: ListTile(
-          title: Text(
-            title,
-          ),
-          trailing: status
-              ? Icon(Icons.check_circle_outline, color: Colors.green)
-              : Icon(Icons.clear, color: Colors.red)),
-    );
   }
 
   //
@@ -128,7 +124,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     return FutureBuilder<bool>(
       future: Controller.instance().isBluetoothOK(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        return this.getButton(snapshot.data);
+        return this.getFloatingButton(snapshot.data);
       },
     );
   }
@@ -146,23 +142,16 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     widget.scanEnabled = true;
   }
 
-  Widget getButton(bool visibility) {
+  Widget getFloatingButton(bool visibility) {
     return Visibility(
-      maintainSize: false,
       visible: visibility,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 0.0),
-        child: RawMaterialButton(
-          onPressed: () {
-            if (widget.scanEnabled) getNearbySessions();
-          },
-          child:
-              Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
-          shape: new CircleBorder(),
-          elevation: 5.0,
-          fillColor: AppColors.mainColor,
-          padding: const EdgeInsets.all(70.0),
-        ),
+      child: FloatingActionButton(
+        onPressed: () {
+          if (widget.scanEnabled) getNearbySessions();
+        },
+        tooltip: 'Scan',
+        backgroundColor: AppColors.mainColor,
+        child: Icon(Icons.search),
       ),
     );
   }
@@ -170,13 +159,16 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   List<Widget> buildSessionContainers() {
     List<Widget> result = List<Widget>();
 
-    result.add(
-        GenericContainer(title: "Nearby Sessions:", text: "These are the sessions near you that are starting soon"));
+    result.add(GenericContainer(
+        title: "Nearby Sessions:",
+        text: "These are the sessions near you that are starting soon"));
 
     result.add(Divider());
 
     for (int i = 0; i < widget.nearbySessions.length; i++) {
-      result.add(SessionContainer(activity: widget.nearbySessions[i],));
+      result.add(SessionContainer(
+        activity: widget.nearbySessions[i],
+      ));
       result.add(Divider());
     }
 
@@ -213,4 +205,59 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       ),
     );
   }
+
+  Widget drawChecklistItem(String title, bool status) {
+    return Container(
+      decoration: new BoxDecoration(color: AppColors.containerColor),
+      child: ListTile(
+          title: Text(
+            title,
+          ),
+          trailing: status
+              ? Icon(Icons.check_circle_outline, color: Colors.green)
+              : Icon(Icons.clear, color: Colors.red)),
+    );
+  }
+
+  Widget getChecklist() {
+    return FutureBuilder(
+        future: _refresh(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return getCheckListContainer();
+        });
+  }
+
+  Widget getCheckListContainer() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: <Widget>[
+          drawChecklistItem("Bluetooth Available", widget.availabilityStatus),
+          Divider(height: 3),
+          drawChecklistItem("Bluetooth Enabled", widget.enabledStatus),
+        ],
+      ),
+    );
+  }
+}
+
+Widget getButton(bool visibility) {
+  return Visibility(
+    maintainSize: false,
+    visible: visibility,
+    child: Padding(
+      padding: const EdgeInsets.only(top: 0.0),
+      child: RawMaterialButton(
+        onPressed: () {
+          // if (widget.scanEnabled) getNearbySessions();
+        },
+        child:
+            Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
+        shape: new CircleBorder(),
+        elevation: 5.0,
+        fillColor: AppColors.mainColor,
+        padding: const EdgeInsets.all(70.0),
+      ),
+    ),
+  );
 }

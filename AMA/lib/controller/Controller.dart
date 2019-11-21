@@ -144,7 +144,6 @@ class Controller {
     return BluetoothController.instance().searchForBeacons();
   }
 
-  // TODO: verificar que esta bem
   Future<List<Session>> getSessionsNearby(Set<int> locations) async {
     DateTime currentTime = new DateTime.now();
     List<Session> nearbySessions = List();

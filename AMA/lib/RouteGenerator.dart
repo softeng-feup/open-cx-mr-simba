@@ -1,5 +1,5 @@
 import 'package:ama/model/DayScheduleInfo.dart';
-import 'package:ama/view/screens/AboutScreen.dart';
+import 'package:ama/view/screens/AboutScreens.dart';
 import 'package:ama/view/screens/BluetoothSearchScreen.dart';
 import 'package:ama/view/screens/DayScheduleScreen.dart';
 import 'package:ama/view/screens/DaySessionsScreen.dart';
@@ -71,12 +71,14 @@ class RouteGenerator {
         }
         return _errorRoute();
 
-
       case '/itemsScreen':
         if(args is List<Item>) {
           return MaterialPageRoute(builder: (_) => ItemsScreen(items: args));
         }
         return _errorRoute();
+
+      case '/bluetoothAbout' :
+        return MaterialPageRoute(builder: (_)=> SessionScanAboutScreen() );
 
 
       default:

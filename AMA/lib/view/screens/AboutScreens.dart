@@ -40,3 +40,40 @@ class AboutScreen extends StatelessWidget {
   }
 }
 
+
+class SessionScanAboutScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "About Session Scanning",
+          style: TextStyle(color: Colors.white),
+          key: Key("Screen title"),
+        ),
+        backgroundColor: AppColors.mainColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Container(
+        color: AppColors.backgroundColor,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+              child: GenericContainer(
+                title: "How does session scanning work?",
+                text: Utility.sessionSearchAboutText,
+              ),
+            ),
+          ],
+        ),
+      )
+    );
+  }
+}
