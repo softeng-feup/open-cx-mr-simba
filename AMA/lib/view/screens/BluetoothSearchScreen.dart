@@ -5,7 +5,6 @@ import 'package:ama/view/components/SessionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../constants/AppColors.dart' as AppColors;
-import '../../constants/Utility.dart' as Utility;
 
 class BluetoothSearchScreen extends StatefulWidget {
   bool availabilityStatus = true;
@@ -83,8 +82,6 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
         padding: EdgeInsets.all(10.0),
         children: <Widget>[
           this.getIntroductionContainer(),
-          // this.getChecklist(),
-          // this.getScanButton(),
           this.getSessionsContainer(),
         ],
       ),
@@ -159,10 +156,6 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   List<Widget> buildSessionContainers() {
     List<Widget> result = List<Widget>();
 
-    result.add(GenericContainer(
-        title: "Nearby Sessions:",
-        text: "These are the sessions near you that are starting soon"));
-
     result.add(Divider());
 
     for (int i = 0; i < widget.nearbySessions.length; i++) {
@@ -172,13 +165,23 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       result.add(Divider());
     }
 
+
+
     return result;
   }
 
   Widget getSessionsContainer() {
     List<Widget> sessions = buildSessionContainers();
 
-    // return Column(children: <Widget>[GenericContainer(text: "OLA",title: "ola",touchable: false,)],);
+    if(sessions.length == 1){
+
+      return
+        Padding(
+          padding: const EdgeInsets.only(top:200.0),
+          child: Text("Looks like there are no sessions nearby.", style: TextStyle(fontSize: 20,color: Colors.black87),textAlign: TextAlign.center,),
+        );
+    }
+
     return Column(children: sessions);
   }
 
@@ -186,6 +189,17 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     return FutureBuilder(
         future: getNearbySessions(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+
+          switch(snapshot.connectionState){
+
+            case ConnectionState.waiting:
+
+              return Image(image: AssetImage("assets/images/AMA.gif"));
+              break;
+            default:
+              break;
+          }
+
           return getSessionsContainer();
         });
   }
