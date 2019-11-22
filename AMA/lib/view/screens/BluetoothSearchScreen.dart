@@ -174,7 +174,10 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     List<Widget> sessions = buildSessionContainers();
 
     if(!widget.scanEnabled){
-      return Image(image: AssetImage("assets/images/AMA.gif"));
+      return Padding(
+        padding: const EdgeInsets.only(top:125.0),
+        child: Image(image: AssetImage("assets/images/AMA.gif")),
+      );
     }
 
     if(sessions.length == 1){
@@ -189,7 +192,11 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     return Column(children: sessions);
   }
 
-  Widget getSessions() {
+
+
+  //UNUSED METHODS
+
+    Widget getSessions() {
     return FutureBuilder(
         future: getNearbySessions(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -207,8 +214,6 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
           return getSessionsContainer();
         });
   }
-
-  //UNUSED METHODS
 
   Widget getRefreshButton() {
     return Container(
