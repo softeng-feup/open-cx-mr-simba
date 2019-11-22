@@ -19,11 +19,12 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
     super.initState();
     Controller.instance().initDatabase().then((success) {
         if(success)
-          Navigator.of(context).pushNamed('/homeScreen');
+          Navigator.of(context).pushReplacementNamed('/homeScreen');
         else
           _noInternetAlert(context);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,7 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
               text: "Please wait...",
             ),
           ),
-          CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainColor),
-        ),
+          Image(image: AssetImage("assets/images/AMA.gif"))
       ]),
     );
   }
