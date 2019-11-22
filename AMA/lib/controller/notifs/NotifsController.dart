@@ -34,6 +34,9 @@ class NotifsController {
     }
 
     Future scheduleNotificationForSession(Session session) async {
+      if (session.startTime.isBefore(DateTime.now()))
+        return;
+
       var scheduledNotificationDateTime = session.startTime.subtract(new Duration(minutes: 10));
       print(new DateFormat.yMd().add_jm().format(scheduledNotificationDateTime));
 

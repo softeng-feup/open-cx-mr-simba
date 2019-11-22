@@ -17,16 +17,17 @@ class JsonController {
   Future<Map<String, dynamic>> parseJsonFromURL(String url) async {
     Map<String, dynamic> _json;
 
-    // check if there is internet connection
-    try {
-      await InternetAddress.lookup('google.com');
-    } on SocketException catch (_) {
-      return null;
-    }
 
     var match = new RegExp(Utility.urlPattern, caseSensitive: false).firstMatch(url);
 
     if(match != null) { // if url is valid
+         // check if there is internet connection
+      try {
+        await InternetAddress.lookup('google.com');
+      } on SocketException catch (_) {
+        return null;
+      }
+
       http.Client client;
       http.Response response;
 
