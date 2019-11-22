@@ -66,28 +66,35 @@ class Controller {
   Future<bool> initDatabase() async {
     bool exists = await DatabaseController().checkIfDatabaseExists();
 
-    if(!exists) {
-      Map<String, dynamic> json = await JsonController().parseJsonFromURL(_model.getJsonURL());
-      if(json == null)
-        return false;
+    if (!exists) {
+      Map<String, dynamic> json =
+          await JsonController().parseJsonFromURL(_model.getJsonURL());
+      if (json == null) return false;
 
       await DatabaseController().createDatabase();
 
       // passes information from JSON to database
       await DatabaseController().fillDatabasePerson(JsonMapper.getPeople(json));
       await DatabaseController().fillDatabaseItem(JsonMapper.getItems(json));
-      await DatabaseController().fillDatabaseSession(JsonMapper.getSessions(json));
-    }
-    else {
+      await DatabaseController()
+          .fillDatabaseSession(JsonMapper.getSessions(json));
+    } else {
       await DatabaseController().createDatabase();
 
-      _model.setScheduleSessions(await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 1),
-                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 2),
-                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 3),
-                                 await DatabaseMapper.getScheduleInfo(DatabaseController().getDatabase(), 4));
+      _model.setScheduleSessions(
+          await DatabaseMapper.getScheduleInfo(
+              DatabaseController().getDatabase(), 1),
+          await DatabaseMapper.getScheduleInfo(
+              DatabaseController().getDatabase(), 2),
+          await DatabaseMapper.getScheduleInfo(
+              DatabaseController().getDatabase(), 3),
+          await DatabaseMapper.getScheduleInfo(
+              DatabaseController().getDatabase(), 4));
     }
 
-    BluetoothController.instance().fillLocationMap(await DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase()));
+    BluetoothController.instance().fillLocationMap(
+        await DatabaseMapper.getLocationsByOrder(
+            DatabaseController().getDatabase()));
     return true;
   }
 
@@ -144,6 +151,26 @@ class Controller {
     return BluetoothController.instance().searchForBeacons();
   }
 
+  Future<List<Session>> getSessionsNearbyStub(Set<int> locations) async {
+    List<Session> nearbySessions = List();
+    Set<String> locationsStr = Set<String>();
+
+    for (int id in locations) {
+      locationsStr.add(BluetoothController.instance().getLocation(id));
+    }
+
+    for (String location in locationsStr) {
+      SplayTreeSet<Session> sessionsInLocation =
+          await DatabaseMapper.getSessionsInLocation(
+              DatabaseController().getDatabase(), location);
+
+      sessionsInLocation.forEach((s) {
+        nearbySessions.add(s);
+      });
+    }
+    return nearbySessions;
+  }
+
   Future<List<Session>> getSessionsNearby(Set<int> locations) async {
     DateTime currentTime = new DateTime.now();
     List<Session> nearbySessions = List();
@@ -167,9 +194,7 @@ class Controller {
         }
       });
     }
-    ;
 
     return nearbySessions;
   }
 }
-

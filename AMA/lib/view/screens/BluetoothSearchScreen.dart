@@ -1,6 +1,7 @@
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
+import 'package:ama/view/components/GenericTitle.dart';
 import 'package:ama/view/components/SessionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -64,14 +65,17 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       backgroundColor: AppColors.mainColor,
       actions: <Widget>[
         getBluetoothStatusIcon(),
-        IconButton(
-          icon: Icon(Icons.info_outline, color: Colors.white),
-          onPressed: () {
-            Navigator.pushNamed(context, '/bluetoothAbout');
-          },
-        ),
+        getInfoBarButton(),
       ],
     );
+  }
+
+  Widget getInfoBarButton() {
+    return IconButton(
+        icon: Icon(Icons.info_outline, color: Colors.white),
+        onPressed: () {
+          Navigator.pushNamed(context, '/bluetoothAbout');
+        });
   }
 
   Widget getBody() {
@@ -88,10 +92,6 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     );
   }
 
-  //
-  // Bluetooth status checklist
-  //
-
   Widget getIntroductionContainer() {
     String introText;
 
@@ -102,6 +102,10 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
 
     return GenericContainer(title: "Know what's around you", text: introText);
   }
+
+  //
+  // Bluetooth status
+  //
 
   Widget getBluetoothStatusIcon() {
     return FutureBuilder(
@@ -117,44 +121,44 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   // Bluetooth scanning (nearby session)
   //
 
-  Widget getScanButton() {
-    return FutureBuilder<bool>(
-      future: Controller.instance().isBluetoothOK(),
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        return this.getFloatingButton(snapshot.data);
-      },
-    );
-  }
+  Widget getSessionsContainer() {
+    List<Widget> sessions = buildSessionContainers();
 
-  Future getNearbySessions() async {
-    widget.scanEnabled = false;
+    if (!widget.scanEnabled) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 125.0),
+        child: Image(image: AssetImage("assets/images/AMA.gif")),
+      );
+    }
 
-    Set<int> beaconLocationIDs =
-        await Controller.instance().searchForBeaconLocations();
-    List<Session> nbSessions =
-        await Controller.instance().getSessionsNearby(beaconLocationIDs);
+    if (sessions.length == 2) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 200.0),
+        child: Text(
+          "Looks like there are no sessions nearby.",
+          style: TextStyle(fontSize: 20, color: Colors.black87),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
 
-    this._updateNearbySessions(nbSessions);
-
-    widget.scanEnabled = true;
-  }
-
-  Widget getFloatingButton(bool visibility) {
-    return Visibility(
-      visible: visibility,
-      child: FloatingActionButton(
-        onPressed: () {
-          if (widget.scanEnabled) getNearbySessions();
-        },
-        tooltip: 'Scan',
-        backgroundColor: AppColors.mainColor,
-        child: Icon(Icons.search),
-      ),
-    );
+    return Column(children: sessions);
   }
 
   List<Widget> buildSessionContainers() {
     List<Widget> result = List<Widget>();
+
+    Widget title = GenericTitle(
+      title: "Sessions Near you",
+      padding: EdgeInsets.all(6.0),
+      margin: EdgeInsets.all(10.0),
+      style: TextStyle(
+          color: AppColors.mainColor,
+          fontWeight: FontWeight.w900,
+          fontSize: 20),
+    );
+
+    result.add(title);
 
     result.add(Divider());
 
@@ -165,122 +169,50 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       result.add(Divider());
     }
 
-
-
     return result;
   }
 
-  Widget getSessionsContainer() {
-    List<Widget> sessions = buildSessionContainers();
+  Future getNearbySessions() async {
+    widget.scanEnabled = false;
 
-    if(!widget.scanEnabled){
-      return Padding(
-        padding: const EdgeInsets.only(top:125.0),
-        child: Image(image: AssetImage("assets/images/AMA.gif")),
-      );
-    }
+    Set<int> beaconLocationIDs =
+        await Controller.instance().searchForBeaconLocations();
+    List<Session> nbSessions = await Controller.instance()
+        .getSessionsNearbyStub(
+            beaconLocationIDs); // TODO: CHANGE THIS FOR A REAL TEST
 
-    if(sessions.length == 1){
+    this._updateNearbySessions(nbSessions);
 
-      return
-        Padding(
-          padding: const EdgeInsets.only(top:200.0),
-          child: Text("Looks like there are no sessions nearby.", style: TextStyle(fontSize: 20,color: Colors.black87),textAlign: TextAlign.center,),
-        );
-    }
-
-    return Column(children: sessions);
+    widget.scanEnabled = true;
   }
 
+  //
+  // Scan button
+  //
 
-
-  //UNUSED METHODS
-
-    Widget getSessions() {
-    return FutureBuilder(
-        future: getNearbySessions(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-
-          switch(snapshot.connectionState){
-
-            case ConnectionState.waiting:
-
-              return Image(image: AssetImage("assets/images/AMA.gif"));
-              break;
-            default:
-              break;
-          }
-
-          return getSessionsContainer();
-        });
-  }
-
-  Widget getRefreshButton() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: RawMaterialButton(
-        onPressed: _refresh,
-        child: Icon(Icons.refresh, color: Colors.white),
-        shape: new CircleBorder(),
-        elevation: 5.0,
-        fillColor: AppColors.mainColor,
-        padding: const EdgeInsets.all(15.0),
-      ),
+  Widget getScanButton() {
+    return FutureBuilder<bool>(
+      future: Controller.instance().isBluetoothOK(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        return this.getFloatingButton(snapshot.data);
+      },
     );
   }
 
-  Widget drawChecklistItem(String title, bool status) {
-    return Container(
-      decoration: new BoxDecoration(color: AppColors.containerColor),
-      child: ListTile(
-          title: Text(
-            title,
-          ),
-          trailing: status
-              ? Icon(Icons.check_circle_outline, color: Colors.green)
-              : Icon(Icons.clear, color: Colors.red)),
-    );
-  }
-
-  Widget getChecklist() {
-    return FutureBuilder(
-        future: _refresh(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return getCheckListContainer();
-        });
-  }
-
-  Widget getCheckListContainer() {
-    return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: <Widget>[
-          drawChecklistItem("Bluetooth Available", widget.availabilityStatus),
-          Divider(height: 3),
-          drawChecklistItem("Bluetooth Enabled", widget.enabledStatus),
-        ],
-      ),
-    );
-  }
-}
-
-Widget getButton(bool visibility) {
-  return Visibility(
-    maintainSize: false,
-    visible: visibility,
-    child: Padding(
-      padding: const EdgeInsets.only(top: 0.0),
-      child: RawMaterialButton(
+  Widget getFloatingButton(bool visibility) {
+    return Visibility(
+      visible: visibility,
+      child: FloatingActionButton(
         onPressed: () {
-          // if (widget.scanEnabled) getNearbySessions();
+          if (widget.scanEnabled) getNearbySessions();
         },
-        child:
-            Text("SCAN", style: TextStyle(color: Colors.white, fontSize: 30)),
-        shape: new CircleBorder(),
-        elevation: 5.0,
-        fillColor: AppColors.mainColor,
-        padding: const EdgeInsets.all(70.0),
+        tooltip: 'Scan',
+        backgroundColor:
+            widget.scanEnabled ? AppColors.mainColor : Colors.black38,
+        child: widget.scanEnabled
+            ? Icon(Icons.search)
+            : Icon(Icons.not_interested),
       ),
-    ),
-  );
+    );
+  }
 }
