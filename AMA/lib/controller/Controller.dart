@@ -9,6 +9,7 @@ import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
+import 'package:flutter/material.dart';
 import 'json/JsonController.dart';
 
 class Controller {
@@ -165,6 +166,15 @@ class Controller {
 //      });
 //    }
     return nearbySessions;
+  }
+
+
+  // ----------------------------
+  // notification methods
+  // ----------------------------
+
+  void initNotifsController(BuildContext context) {
+    NotifsController.instance().init(context);
   }
 
 }

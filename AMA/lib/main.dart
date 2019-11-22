@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Controller.instance().initNotifsController(context);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

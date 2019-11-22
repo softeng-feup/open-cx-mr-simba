@@ -1,3 +1,5 @@
+import 'package:ama/controller/database/DatabaseController.dart';
+import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -6,6 +8,7 @@ import 'package:intl/intl.dart';
 class NotifsController {
     static NotifsController _instance;
     FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
+    BuildContext _context;
 
     static NotifsController instance() {
       if (_instance == null) _instance = new NotifsController();
@@ -15,22 +18,27 @@ class NotifsController {
 
     NotifsController() {
       _flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    }
+
+
+    init(BuildContext context) {
+      this._context = context;
       var initializationSettingsAndroid = new AndroidInitializationSettings('amalogo');
       var initializationSettingsIOS = IOSInitializationSettings(onDidReceiveLocalNotification: _onDidReceiveLocalNotification);
       var initializationSettings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
       _flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: _onSelectNotification);
     }
 
-
     Future _onSelectNotification(String payload) async {
       if (payload != null) {
-        debugPrint('notification payload: ' + payload);
-//        Navigator.pushNamed(context, '/sessionScreen', arguments: activity);
+        Navigator.pushNamed(this._context, '/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
       }
     }
 
     Future _onDidReceiveLocalNotification(int id, String title, String body, String payload) async {
-
+      if (payload != null) {
+        Navigator.pushNamed(this._context, '/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
+      }
     }
 
     Future scheduleNotificationForSession(Session session) async {
@@ -50,8 +58,7 @@ class NotifsController {
           'Session "' + session.title + '", to be held at ' + session.location + ", will start in 10 minutes.",
           scheduledNotificationDateTime,
           platformChannelSpecifics,
-          androidAllowWhileIdle: true);
-      // TODO: depois ver se e preciso meter payload
+          androidAllowWhileIdle: true, payload: session.key);
     }
 
 
