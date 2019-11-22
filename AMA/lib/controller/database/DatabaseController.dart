@@ -23,7 +23,18 @@ class DatabaseController {
     return _database;
   }
 
-  Future<bool> createDatabase() async {
+
+  Future<bool> checkIfDatabaseExists() async {
+    var path = join(await getDatabasesPath(), Utility.databaseName);
+
+    // Check if the database exists
+    var exists = await databaseExists(path);
+    return exists;
+  }
+
+
+  Future createDatabase() async {
+
     var path = join(await getDatabasesPath(), Utility.databaseName);
 
     // Check if the database exists
@@ -48,8 +59,6 @@ class DatabaseController {
 
     // open the database
     _database = await openDatabase(path);
-
-    return exists;
   }
 
 

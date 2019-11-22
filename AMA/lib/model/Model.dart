@@ -19,9 +19,9 @@ class Model {
 
   void setScheduleSessions(SplayTreeSet<Session> schedule1, SplayTreeSet<Session> schedule2, SplayTreeSet<Session> schedule3, SplayTreeSet<Session> schedule4) {
     _schedules.elementAt(0).setSessions(schedule1);
-    _schedules.elementAt(0).setSessions(schedule2);
-    _schedules.elementAt(0).setSessions(schedule3);
-    _schedules.elementAt(0).setSessions(schedule4);
+    _schedules.elementAt(1).setSessions(schedule2);
+    _schedules.elementAt(2).setSessions(schedule3);
+    _schedules.elementAt(3).setSessions(schedule4);
   }
 
   List<DayScheduleInfo> getSchedules() {

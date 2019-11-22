@@ -20,8 +20,8 @@ You can find here detailed information about the (sub)product, hereby mentioned 
 * Architecture and Design
   * [Architectural and design decisions]()
   * [Technological architecture]()
-  * [Logical architecture]()
-  * [Physical architecture]()
+  * [Logical architecture](#Logical-architecture)
+  * [Physical architecture](#Physical-architecture)
   * [Prototype](#Prototype)
     * [Images of prototype for iteration #1](#Images-of-prototype-for-iteration-#1)
 
@@ -354,11 +354,18 @@ As the development moves forward the mockups will be tailored to specific user-s
 In this section, we will be talking and showing more about our architecture, from two points of view: the logical point of view, more related to the high-level logical structure of the code, its components and relations between them; and a more physical point of view, portraying the high-level physical structure such as the machines, connections and technologies used.
 
 ### Logical architecture
-For the logical structure of the code, and in order to separate the different components of the software, we opted to implement the MVC design: the Model contains all the relevant information, the View displays it, and the Controller serves as a kind of "middle man" between them, getting the information from the Model and passing it to the View, and handling the user input from the View buttons, modifying the Model accordingly.
+For the logical structure of the code, and in order to separate the different components of the software, we opted to implement the MVC design: the Model contains all the relevant information, the View displays it, and the Controller serves as a kind of "middle man" between them, getting the information from the Model and passing it to the View, and handling the user input from the View buttons, modifying the Model accordingly. We opted to use a design where the Controller is subdivided into smaller Controller modules, each having their own roles and methods (JSON Controller, Database Controller, etc), and where a general Controller module is used to connect all the smaller controllers, functioning as a common interface.
 
 ![Component Diagram](docs/ComponentDiagramImage.png)
 
 ### Physical architecture
+The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the json that contains the conferences info from the server. After it parses the json, it will store it's information in an SQLite database. The server also holds information about user sessions that it may supply to the user upon request. Tha app also communicates with beacons as discussed in previously (location-driver notifications). Currently we have microbits serving as Eddystone Beacons.
+
+![Deployment Diagram](docs/Deployment_diagram.jpg)
+
+For this project the main discussion was about what environment/programming language to use to build the mobile app. The two choices were Flutter and React Native. Although React Native has been around for longer than Flutter and, as such, the support for the language is big, we chose Flutter because it was very easy to learn as it is very well documented, very powerfull(has built in widgets tailored to every need) and because it is advantegeous to learn a language that might be popular in the future.  
+For the database technology we chose SQLite because of it's small computational needs and for it's simplicity (which is more than enough for the needed task).  
+Finally, for our bluetooth technology we chose to use the Eddystone protocol because it eliminates the need to pair with the beacon and , as such, enables a dynamic scan as the user moves arround the event-space.
 
 ### Prototype  
 In iteration #1, we spent a considerable amount of time learning about Flutter. Despite this,

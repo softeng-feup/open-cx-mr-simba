@@ -173,6 +173,10 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   Widget getSessionsContainer() {
     List<Widget> sessions = buildSessionContainers();
 
+    if(!widget.scanEnabled){
+      return Image(image: AssetImage("assets/images/AMA.gif"));
+    }
+
     if(sessions.length == 1){
 
       return

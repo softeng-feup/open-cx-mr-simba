@@ -7,7 +7,6 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseMapper {
 
   static Future<SplayTreeSet<Session>> getDaySessions(Database db, String date) async {
-//    var results = await db.rawQuery('SELECT * FROM Session NATURAL JOIN SessionItem NATURAL JOIN SessionChair WHERE day = ?', [date]);
     var results = await db.rawQuery('SELECT * FROM Session WHERE day = ?', [date]);
     SplayTreeSet<Session> sessions = SplayTreeSet();
     for(int i = 0; i < results.length; i++) {
@@ -79,7 +78,7 @@ class DatabaseMapper {
 
 
   static Future<SplayTreeSet<Session>> getScheduleInfo(Database db, int day) async {
-    var results = await db.rawQuery('SELECT * FROM Schedule NATURAL JOIN ScheduleSession WHERE scheduleDay = ?', [day]);
+    var results = await db.rawQuery('SELECT * FROM ScheduleSession WHERE scheduleDay = ?', [day]);
     SplayTreeSet<Session> sessions = SplayTreeSet();
     for(int i = 0; i < results.length; i++) {
       sessions.add(await getSession(db, results.elementAt(i)['sessionKey']));
@@ -97,42 +96,4 @@ class DatabaseMapper {
     await db.rawInsert('INSERT INTO ScheduleSession(sessionKey, scheduleDay) VALUES (?, ?)', [sessionKey, day]);
   }
 
-
-  // em principio nao vamos precisar destes
-
-//  Future<Session> getScheduleSession(Database db, String key) async {
-//    var results = await db.rawQuery('SELECT * FROM ScheduleSession WHERE sessionKey = ?', [key]);
-//    if (results.length > 0) {
-//      return new Session.fromMap(results.first);
-//    }
-//
-//    return null;
-//  }
-//
-//
-//  Future<Item> getSessionItem(Database db, String key) async {
-//    var results = await db.rawQuery('SELECT * FROM SessionItem WHERE sessionKey = ?', [key]);
-//    if (results.length > 0) {
-//      return new Item.fromMap(results.first);
-//    }
-//    return null;
-//  }
-//
-//
-//  Future<Person> getSessionChair(Database db, String key) async {
-//    var results = await db.rawQuery('SELECT * FROM SessionChair WHERE sessionKey = ?', [key]);
-//    if (results.length > 0) {
-//      return new Person.fromMap(results.first);
-//    }
-//    return null;
-//  }
-//
-//
-//  Future<Person> getItemAuthor(Database db, String key) async {
-//    var results = await db.rawQuery('SELECT * FROM ItemAuthor WHERE itemKey = ?', [key]);
-//    if (results.length > 0) {
-//      return new Person.fromMap(results.first);
-//    }
-//    return null;
-//  }
 }

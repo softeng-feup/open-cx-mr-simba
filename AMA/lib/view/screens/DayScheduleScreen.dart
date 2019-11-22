@@ -97,9 +97,7 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
     return FloatingActionButton.extended(
         key: Key("Adding button"),
         onPressed: () async {
-
           SplayTreeSet<Session> set = await Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
-
           if(this.mounted) {
             Navigator.pushNamed(context, '/daySessionsScreen',
                 arguments:
