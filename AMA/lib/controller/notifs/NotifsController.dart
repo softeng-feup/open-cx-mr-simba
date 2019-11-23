@@ -3,12 +3,11 @@ import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:intl/intl.dart';
 
 class NotifsController {
     static NotifsController _instance;
     FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
-    BuildContext _context;
+    GlobalKey<NavigatorState> _navKey;
 
     static NotifsController instance() {
       if (_instance == null) _instance = new NotifsController();
@@ -21,8 +20,8 @@ class NotifsController {
     }
 
 
-    init(BuildContext context) {
-      this._context = context;
+    init(GlobalKey<NavigatorState> key) {
+      this._navKey = key;
       var initializationSettingsAndroid = new AndroidInitializationSettings('amalogo');
       var initializationSettingsIOS = IOSInitializationSettings(onDidReceiveLocalNotification: _onDidReceiveLocalNotification);
       var initializationSettings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
@@ -31,13 +30,13 @@ class NotifsController {
 
     Future _onSelectNotification(String payload) async {
       if (payload != null) {
-        Navigator.pushNamed(this._context, '/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
+        this._navKey.currentState.pushNamed('/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
       }
     }
 
     Future _onDidReceiveLocalNotification(int id, String title, String body, String payload) async {
       if (payload != null) {
-        Navigator.pushNamed(this._context, '/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
+        this._navKey.currentState.pushNamed('/sessionScreen', arguments: await DatabaseMapper.getSession(DatabaseController().getDatabase(), payload));
       }
     }
 
@@ -46,7 +45,6 @@ class NotifsController {
         return;
 
       var scheduledNotificationDateTime = session.startTime.subtract(new Duration(minutes: 10));
-      print(new DateFormat.yMd().add_jm().format(scheduledNotificationDateTime));
 
       var androidPlatformChannelSpecifics =
       new AndroidNotificationDetails('channel id', 'channel name', 'channel description');
@@ -64,6 +62,10 @@ class NotifsController {
 
     Future removeNotificationForSession(Session session) async {
       await _flutterLocalNotificationsPlugin.cancel(session.key.hashCode);
+    }
+
+    Future<NotificationAppLaunchDetails> getDetails() async {
+      return await this._flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
     }
 
 }
