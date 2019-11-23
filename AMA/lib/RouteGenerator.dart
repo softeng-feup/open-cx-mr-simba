@@ -81,7 +81,7 @@ class RouteGenerator {
 
       case '/itemScreen':
         if(args is Item) {
-          return MaterialPageRoute(builder: (_) => ItemScreen());
+          return MaterialPageRoute(builder: (_) => ItemScreen(item: args));
         }
         return _errorRoute();
 
