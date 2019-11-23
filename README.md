@@ -346,7 +346,7 @@ As the development moves forward the mockups will be tailored to specific user-s
 
 ### Domain model
 
-![Domain Model](docs/domain_model.jpg)
+![Domain Model](docs/domain_model.png)
 
 ---
 
