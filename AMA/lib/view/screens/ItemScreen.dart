@@ -1,5 +1,5 @@
 import 'package:ama/view/components/GenericContainer.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../constants/AppColors.dart' as AppColors;
 import 'package:ama/model/Item.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +45,20 @@ class ItemScreen extends StatelessWidget {
                     text: item.affiliationString
                 ),
                 Divider(color: AppColors.backgroundColor),
-                GenericContainer(title: "URL",
-                    text: item.url
+                GestureDetector(
+                  onTap: () async {
+                    if (await canLaunch(item.url)) {
+                      await launch(item.url);
+                    } else {
+                      throw 'Could not launch $item.url';
+                    }
+                  },
+                  child: GenericContainer(
+                    title: "URL",
+                    text: item.url,
+                    touchable: true,
                 ),
-
+                ),
               ],
             )
         )
