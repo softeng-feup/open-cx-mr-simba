@@ -57,7 +57,7 @@ class SearchSessionsState extends State<SearchSessions> {
       Padding(
         padding: new EdgeInsets.only(left: 20.0, right: 20.0),
         child: TextField(
-            decoration: new InputDecoration(labelText: "Search"),
+            decoration: new InputDecoration(labelText: "Search", icon: Icon(Icons.search), border: InputBorder.none),
             controller: controller),
       ),
       Expanded(
