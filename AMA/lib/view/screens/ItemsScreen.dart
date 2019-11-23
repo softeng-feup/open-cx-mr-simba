@@ -1,3 +1,4 @@
+import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,25 @@ class ItemsScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: items.length,
                 itemBuilder: (context, idx) {
-                  return Padding(
+                  return GestureDetector(
+                      onTap: () async {
+                        Navigator.pushNamed(
+                            context,
+                            '/itemScreen',
+                            arguments: items.elementAt(idx)
+                        );
+                      },
+                  child: Padding(
                       padding: EdgeInsets.all(10),
                       child: GenericContainer(
                           title: items.elementAt(idx).title,
-                          text: items.elementAt(idx).peopleString));
-                })));
+                          text: items.elementAt(idx).peopleString,
+                          touchable: true)
+                  )
+                  );
+                }
+                )
+        )
+    );
   }
 }

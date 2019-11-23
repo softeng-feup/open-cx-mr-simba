@@ -6,6 +6,7 @@ import 'package:ama/view/screens/DaySessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
 import 'package:ama/view/screens/InitialLoadingScreen.dart';
 import 'package:ama/view/screens/ItemsScreen.dart';
+import 'package:ama/view/screens/ItemScreen.dart';
 import 'package:ama/view/screens/PeopleScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,11 @@ class RouteGenerator {
         }
         return _errorRoute();
 
+      case '/itemScreen':
+        if(args is Item) {
+          return MaterialPageRoute(builder: (_) => ItemScreen());
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();
