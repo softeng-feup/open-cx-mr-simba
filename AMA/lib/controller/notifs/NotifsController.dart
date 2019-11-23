@@ -3,6 +3,7 @@ import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import '../../constants/Utility.dart' as Utility;
 
 class NotifsController {
     static NotifsController _instance;
@@ -44,7 +45,7 @@ class NotifsController {
       if (session.startTime.isBefore(DateTime.now()))
         return;
 
-      var scheduledNotificationDateTime = session.startTime.subtract(new Duration(minutes: 10));
+      var scheduledNotificationDateTime = session.startTime.subtract(new Duration(minutes: Utility.numMinutesForNotif));
 
       var androidPlatformChannelSpecifics =
       new AndroidNotificationDetails('channel id', 'channel name', 'channel description');

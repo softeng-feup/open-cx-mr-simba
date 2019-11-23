@@ -12,9 +12,9 @@ const String sessionSearchAboutText = "Welcome to our Session Search feature, we
 
 const int numSecondsForTimeoutBLE = 15;
 
-const int numMinutesForNotif = 15;
+const int numMinutesForNotif = 10;
 
-const String jsonURL = "assets/confero.json";//'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
+const String jsonURL = 'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
 
 const urlPattern = r"(https?|http)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
 
