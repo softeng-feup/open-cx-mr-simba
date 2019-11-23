@@ -8,9 +8,11 @@ import 'package:ama/controller/notifs/NotifsController.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Model.dart';
-import 'package:ama/model/Person.dart';
+import 'package:ama/model/Person.dart' as Person;
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:sqflite/sqflite.dart';
 import 'json/JsonController.dart';
 
 class Controller {
@@ -105,7 +107,7 @@ class Controller {
         DatabaseController().getDatabase(), dateString);
   }
 
-  Future<List<Person>> getPeopleWithKeys(List<String> peopleKeys) async {
+  Future<List<Person.Person>> getPeopleWithKeys(List<String> peopleKeys) async {
     return await DatabaseMapper.getPeopleWithKeys(
         DatabaseController().getDatabase(), peopleKeys);
   }
@@ -113,6 +115,10 @@ class Controller {
   Future<List<Item>> getItemsWithKeys(List<String> itemKeys) async {
     return DatabaseMapper.getItemWithKeys(
         DatabaseController().getDatabase(), itemKeys);
+  }
+
+  Future<Session> getSessionWithKey(String sessionKey) async {
+    return DatabaseMapper.getSession(DatabaseController().getDatabase(), sessionKey);
   }
 
   // ----------------------------
@@ -182,8 +188,12 @@ class Controller {
   // notification methods
   // ----------------------------
 
-  void initNotifsController(BuildContext context) {
-    NotifsController.instance().init(context);
+  void initNotifsController(GlobalKey<NavigatorState> navKey) {
+    NotifsController.instance().init(navKey);
+  }
+
+  Future<NotificationAppLaunchDetails> getAppLaunchDetails() async {
+    return NotifsController.instance().getDetails();
   }
 
 }
