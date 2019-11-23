@@ -22,7 +22,6 @@ class BluetoothController {
   }
 
   String getLocation(int id){
-
     return _locationMap[id];
   }
 
@@ -48,12 +47,6 @@ class BluetoothController {
 
       if (beacon is EddystoneUID) {
         EddystoneUID b = beacon;
-        // beacons[beacon.hash] = b;
-
-        print("EddystoneUID");
-        print("beaconId: ${b.beaconId}");
-        print("namespaceId: ${b.namespaceId}");
-        print("distance: ${b.distance}");
         beacons.add(int.parse(b.beaconId));
       }
     });

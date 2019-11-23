@@ -136,39 +136,17 @@ class Controller {
 
   Future<bool> isBluetoothEnabled() async {
     final aux = await BluetoothController.instance().isBluetoothEnabled();
-
     return aux;
   }
 
   Future<bool> isBluetoothOK() async {
     final aux1 = await BluetoothController.instance().isBluetoothEnabled();
     final aux2 = await BluetoothController.instance().isBluetoothAvailable();
-
     return aux1 && aux2;
   }
 
-  Future<Set<int>> searchForBeaconLocations() {
+  Future<Set<int>> searchForBeaconLocations() async {
     return BluetoothController.instance().searchForBeacons();
-  }
-
-  Future<List<Session>> getSessionsNearbyStub(Set<int> locations) async {
-    List<Session> nearbySessions = List();
-    Set<String> locationsStr = Set<String>();
-
-    for (int id in locations) {
-      locationsStr.add(BluetoothController.instance().getLocation(id));
-    }
-
-    for (String location in locationsStr) {
-      SplayTreeSet<Session> sessionsInLocation =
-          await DatabaseMapper.getSessionsInLocation(
-              DatabaseController().getDatabase(), location);
-
-      sessionsInLocation.forEach((s) {
-        nearbySessions.add(s);
-      });
-    }
-    return nearbySessions;
   }
 
   Future<List<Session>> getSessionsNearby(Set<int> locations) async {

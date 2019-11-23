@@ -13,6 +13,7 @@ class BluetoothSearchScreen extends StatefulWidget {
   bool scanVisible = true;
   bool scanEnabled = true;
   List<Session> nearbySessions = List<Session>();
+
   @override
   BluetoothSearchScreenState createState() => BluetoothSearchScreenState();
 }
@@ -178,8 +179,8 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     Set<int> beaconLocationIDs =
         await Controller.instance().searchForBeaconLocations();
     List<Session> nbSessions = await Controller.instance()
-        .getSessionsNearbyStub(
-            beaconLocationIDs); // TODO: CHANGE THIS FOR A REAL TEST
+        .getSessionsNearby(
+            beaconLocationIDs);
 
     this._updateNearbySessions(nbSessions);
 
