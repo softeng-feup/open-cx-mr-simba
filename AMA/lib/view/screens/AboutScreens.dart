@@ -25,7 +25,8 @@ class AboutScreen extends StatelessWidget {
         ),
         body: Container(
           color: AppColors.backgroundColor,
-          child: Column(
+          child: ListView(
+            padding: EdgeInsets.only(bottom: 10.0),
             children: <Widget>[
               getAboutMessageContainer(),
               getTeamTitle(),
@@ -46,14 +47,16 @@ class AboutScreen extends StatelessWidget {
   }
 
   Widget getTeamTitle() {
-    return GenericTitle(
-        title: "The Team:",
-        padding: EdgeInsets.all(6.0),
-        margin: EdgeInsets.only(top: 10.0),
-        style: TextStyle(
-            color: AppColors.mainColor,
-            fontWeight: FontWeight.w900,
-            fontSize: 25));
+    return Center(
+      child: GenericTitle(
+          title: "The Team:",
+          padding: EdgeInsets.all(6.0),
+          margin: EdgeInsets.only(top: 10.0),
+          style: TextStyle(
+              color: AppColors.mainColor,
+              fontWeight: FontWeight.w900,
+              fontSize: 25)),
+    );
   }
 
   Widget getTeamContainer(BuildContext context) {
