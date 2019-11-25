@@ -86,6 +86,10 @@ class DatabaseMapper {
     return sessions;
   }
 
+  static Future<int> getScheduleDayFromDate(Database db, String date) async {
+    var results = await db.rawQuery('SELECT scheduleDay FROM Schedule WHERE date = ?', [date]);
+    return results[0]['scheduleDay'];
+  }
 
   static Future removeSessionFromSchedule(Database db, int day, String sessionKey) async {
     await db.rawDelete('DELETE FROM ScheduleSession WHERE sessionKey = ? AND scheduleDay = ?', [sessionKey, day]);

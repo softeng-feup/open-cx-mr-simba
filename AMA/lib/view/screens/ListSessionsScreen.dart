@@ -1,20 +1,23 @@
+import 'dart:collection';
+
 import 'package:ama/controller/Controller.dart';
-import 'package:ama/model/DayScheduleInfo.dart';
+import 'package:ama/model/ListSessionsInfo.dart';
+import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/SlidableSessionContainer.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 
-class DaySessionsScreen extends StatelessWidget {
-  DaySessionsScreen({this.sessionsInfo});
+class ListSessionsScreen extends StatelessWidget {
+  ListSessionsScreen({this.sessionsInfo});
 
-  final DayScheduleInfo sessionsInfo;
+  final ListSessionsInfo sessionsInfo;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
-        title: Text("Sessions - " + sessionsInfo.getDate().toString()),
+        title: Text(sessionsInfo.getTitle()),
         leading: IconButton(
           key: Key("Back button"),
           icon: Icon(
@@ -24,13 +27,13 @@ class DaySessionsScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: SearchSessions(sessionsInfo),
+      body: SearchSessions(sessionsInfo.getSessions()),
     );
   }
 }
 
 class SearchSessions extends StatefulWidget {
-  final DayScheduleInfo sessionsInfo;
+  final SplayTreeSet<Session> sessionsInfo;
 
   const SearchSessions(this.sessionsInfo);
 
@@ -39,7 +42,7 @@ class SearchSessions extends StatefulWidget {
 }
 
 class SearchSessionsState extends State<SearchSessions> {
-  final DayScheduleInfo sessionsInfo;
+  final SplayTreeSet<Session> sessionsInfo;
   TextEditingController controller = new TextEditingController();
   String filter;
 
@@ -67,19 +70,18 @@ class SearchSessionsState extends State<SearchSessions> {
                   scrollDirection: Axis.vertical,
                   padding: const EdgeInsets.only(
                       left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
-                  itemCount: sessionsInfo.getSessions().length,
+                  itemCount: sessionsInfo.length,
                   itemBuilder: (context, idx) {
                     if (filter == null ||
                         filter == "" ||
-                        sessionsInfo.getSessions().elementAt(idx).title.toLowerCase().contains(filter.toLowerCase()))
+                        sessionsInfo.elementAt(idx).title.toLowerCase().contains(filter.toLowerCase()))
                       return SlidableSessionContainer(
-                        session: sessionsInfo.getSessions().elementAt(idx),
+                        session: sessionsInfo.elementAt(idx),
                         icon: Icons.check,
                         color: Colors.green,
                         onPressFunction: () async {
                           String text = await Controller.instance()
-                              .addSessionToSchedule(sessionsInfo.getDay(),
-                                  sessionsInfo.getSessions().elementAt(idx));
+                              .addSessionToSchedule(sessionsInfo.elementAt(idx));
                           Scaffold.of(context)
                               .showSnackBar(SnackBar(content: Text(text)));
                         });

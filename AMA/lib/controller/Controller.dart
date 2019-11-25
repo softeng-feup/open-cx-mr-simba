@@ -37,7 +37,9 @@ class Controller {
     return _model.getSchedules().elementAt(day - 1);
   }
 
-  Future<String> addSessionToSchedule(int day, Session session) async {
+  Future<String> addSessionToSchedule(Session session) async {
+    int day = await DatabaseMapper.getScheduleDayFromDate(DatabaseController().getDatabase(), session.day);
+    
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
     if(added) {
       await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
@@ -121,6 +123,14 @@ class Controller {
     return DatabaseMapper.getSession(DatabaseController().getDatabase(), sessionKey);
   }
 
+  Future<List<String>> getLocationsByOrder() async {
+    return DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase());
+  }
+
+  Future<SplayTreeSet<Session>> getSessionsByLocation(String location) async {
+    return await DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
+  }
+  
   // ----------------------------
   // json methods
   // ----------------------------

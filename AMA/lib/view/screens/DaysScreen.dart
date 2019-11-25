@@ -51,6 +51,7 @@ class DaysScreenState extends State<DaysScreen> {
                   )),
               this.drawAboutTile(context),
               this.drawSessionSearch(context),
+              this.drawLocations(context),
             ],
           ),
         ),
@@ -77,5 +78,17 @@ class DaysScreenState extends State<DaysScreen> {
           Navigator.pushNamed(context, '/bluetoothScreen');
         },
         leading: Icon(Icons.bluetooth));
+  }
+
+
+  Widget drawLocations(BuildContext context) {
+    return ListTile(
+        key: Key("Locations tile"),
+        title: Text('Locations', style: TextStyle(color: Colors.black)),
+        onTap: () async {
+          List<String> locations = await Controller.instance().getLocationsByOrder();
+          Navigator.pushNamed(context, '/locationsScreen', arguments: locations);
+        },
+        leading: Icon(Icons.location_on));
   }
 }

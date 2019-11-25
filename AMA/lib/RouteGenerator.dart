@@ -1,11 +1,13 @@
 import 'package:ama/model/DayScheduleInfo.dart';
+import 'package:ama/model/ListSessionsInfo.dart';
 import 'package:ama/view/screens/AboutScreens.dart';
 import 'package:ama/view/screens/BluetoothSearchScreen.dart';
 import 'package:ama/view/screens/DayScheduleScreen.dart';
-import 'package:ama/view/screens/DaySessionsScreen.dart';
+import 'package:ama/view/screens/ListSessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
 import 'package:ama/view/screens/InitialLoadingScreen.dart';
 import 'package:ama/view/screens/ItemsScreen.dart';
+import 'package:ama/view/screens/LocationsScreen.dart';
 import 'package:ama/view/screens/PeopleScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
@@ -47,9 +49,9 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DayScheduleScreen(schedule: Controller.instance().getDaySchedule(4)));
 
 
-      case '/daySessionsScreen':
-        if(args is DayScheduleInfo) {
-          return MaterialPageRoute(builder: (_) => DaySessionsScreen(sessionsInfo: args));
+      case '/listSessionsScreen':
+        if(args is ListSessionsInfo) {
+          return MaterialPageRoute(builder: (_) => ListSessionsScreen(sessionsInfo: args));
         }
         return _errorRoute();
 
@@ -80,6 +82,11 @@ class RouteGenerator {
       case '/bluetoothAbout' :
         return MaterialPageRoute(builder: (_)=> SessionScanAboutScreen() );
 
+      case '/locationsScreen' :
+        if(args is List<String>) {
+          return MaterialPageRoute(builder: (_) => LocationsScreen(locations: args));
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();

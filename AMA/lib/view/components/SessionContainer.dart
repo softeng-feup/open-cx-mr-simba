@@ -130,7 +130,7 @@ class SessionContainer extends StatelessWidget {
           activity.timeString,
           style: TextStyle(
               color: AppColors.mainColor,
-              fontSize: 18,
+              fontSize: 17,
               fontWeight: FontWeight.bold),
           textAlign: TextAlign.right,
         ),

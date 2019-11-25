@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/DayScheduleInfo.dart';
+import 'package:ama/model/ListSessionsInfo.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:ama/view/components/SlidableSessionContainer.dart';
@@ -99,10 +100,8 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
         onPressed: () async {
           SplayTreeSet<Session> set = await Controller.instance().getDaySessions(widget.schedule.getDate().toDateString());
           if(this.mounted) {
-            Navigator.pushNamed(context, '/daySessionsScreen',
-                arguments:
-                DayScheduleInfo.withSessions(
-                    widget.schedule.getDay(), widget.schedule.getDate(), set));
+            Navigator.pushNamed(context, '/listSessionsScreen',
+                arguments: ListSessionsInfo("Sessions - " + widget.schedule.getDate().toDateString(), set));
             }
           },
         backgroundColor: AppColors.mainColor,
