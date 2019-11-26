@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter_blue/flutter_blue.dart';
+import 'flutter_blue_beacon/beacon.dart';
+import 'flutter_blue_beacon/flutter_blue_beacon.dart';
 
 class BluetoothController {
   static BluetoothController _instance;
@@ -17,8 +21,10 @@ class BluetoothController {
     }
   }
 
+  String getLocation(int id){
+    return _locationMap[id];
+  }
 
-  // TODO: FlutterBlue.instance nao retorna quando nao ha BT... ver melhor
 
   Future<bool> isBluetoothAvailable() async {
     return await FlutterBlue.instance.isAvailable;
@@ -28,27 +34,23 @@ class BluetoothController {
     return await FlutterBlue.instance.isOn;
   }
 
-  void searchForBeacons() {
+  Future<Set<int>> searchForBeacons() {
+    FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
+
+    /// Scanning
+    StreamSubscription _scanSubscription;
+    Set<int> beacons = Set<int>();
+
+
     // Start scanning
-    FlutterBlue.instance.startScan(timeout: Duration(seconds: 4));
+    _scanSubscription = flutterBlueBeacon.scan(timeout: const Duration(seconds: 5)).listen((beacon) {
 
-    // Listen to scan results
-    var scannedDevices;
-    var subscription = FlutterBlue.instance.scanResults.listen((scannedDevices) {
-
-      for(int i = 0; i < scannedDevices.length;i++){
-        // do something with scan result
-        var currentDevice = scannedDevices.elementAt(i).device; // found usefulness
-        var currentAdvertisementData = scannedDevices.elementAt(i).advertisementData; 
-
-        // print('${device.id} found! rssi: ${scannedDevices.elementAt(i).rssi} uuid: ${scannedDevices.elementAt(i).advertisementData.serviceUuids.elementAt(0)}');
+      if (beacon is EddystoneUID) {
+        EddystoneUID b = beacon;
+        beacons.add(int.parse(b.beaconId));
       }
-      
     });
 
-// Stop scanning
-    FlutterBlue.instance.stopScan();
-
-    // this._flutterBlue.startScan(timeout: Duration(seconds: Utility.numSecondsForTimeoutBLE));
+     return _scanSubscription.asFuture(beacons);
   }
 }

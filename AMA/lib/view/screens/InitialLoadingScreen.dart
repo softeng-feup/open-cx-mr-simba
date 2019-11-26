@@ -8,7 +8,7 @@ import '../../constants/Utility.dart' as Utility;
 
 class InitialLoadingScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
+  State<InitialLoadingScreen> createState() {
     return InitialLoadingScreenState();
   }
 }
@@ -18,8 +18,9 @@ class InitialLoadingScreenState extends State<InitialLoadingScreen> {
   void initState() {
     super.initState();
     Controller.instance().initDatabase().then((success) {
-        if(success)
+        if(success) {
           Navigator.of(context).pushReplacementNamed('/homeScreen');
+        }
         else
           _noInternetAlert(context);
     });

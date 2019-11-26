@@ -17,15 +17,22 @@ void main(List<String> args) {
   });
 
   parser.parse(args);
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
 
+  final navigatorKey = new GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
+
+    Controller.instance().initNotifsController(navigatorKey);
+
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

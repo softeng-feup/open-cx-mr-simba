@@ -21,7 +21,9 @@ class Session extends Comparable<dynamic> {
            this.startTime,
            this.timeString,
            this.location,
-           this.description});
+           this.description
+
+           });
 
   @override
   bool operator==(other) {

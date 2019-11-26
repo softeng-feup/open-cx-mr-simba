@@ -1,10 +1,33 @@
+import 'package:ama/controller/Controller.dart';
 import 'package:ama/view/screens/MainScreenPager.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 
-class DaysScreen extends StatelessWidget {
+class DaysScreen extends StatefulWidget {
+  @override
+  State<DaysScreen> createState() {
+    return DaysScreenState();
+  }
+}
+
+
+class DaysScreenState extends State<DaysScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    Controller.instance().getAppLaunchDetails().then((details) {
+      if(details.didNotificationLaunchApp && (details.payload != null)) {
+        Controller.instance().getSessionWithKey(details.payload).then((session) {
+          Navigator.pushNamed(context, '/sessionScreen', arguments: session);
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
