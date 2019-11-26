@@ -101,7 +101,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     else
       introText = "Tap the 'scan' button whenever you're ready to explore.";
 
-    return GenericContainer(title: "Know what's around you", text: introText);
+    return GenericContainer(title: "Know what's around ", text: introText);
   }
 
   //
@@ -136,7 +136,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       return Padding(
         padding: const EdgeInsets.only(top: 200.0),
         child: Text(
-          "Looks like there are no sessions nearby.",
+          "Looks like there are no sessions nearby :(",
           style: TextStyle(fontSize: 20, color: Colors.black87),
           textAlign: TextAlign.center,
         ),

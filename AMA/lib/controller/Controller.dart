@@ -12,7 +12,6 @@ import 'package:ama/model/Person.dart' as Person;
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sqflite/sqflite.dart';
 import 'json/JsonController.dart';
 
 class Controller {
@@ -185,7 +184,7 @@ class Controller {
         DateTime startTime = s.startTime;
         if (startTime.isAfter(currentTime) &&
             ((startTime.difference(currentTime)).inMinutes <=
-                Utility.numMinutesForNotif)) {
+                Utility.numMinutesForSessionBLE)) {
           nearbySessions.add(s);
         }
       });
