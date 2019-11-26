@@ -31,19 +31,19 @@ class DayScheduleScreenState extends State<DayScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.mainColor,
-          title: Text("Day " + widget.schedule.getDay().toString() + " Schedule"),
-          leading: IconButton(
-            key: Key("Back button"),
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+      backgroundColor: AppColors.mainColor,
+      title: Text("Day " + widget.schedule.getDay().toString() + " Schedule"),
+      leading: IconButton(
+        key: Key("Back button"),
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.white,
         ),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+    ),
         body: Container(
           color: AppColors.backgroundColor,
           child: Column(
