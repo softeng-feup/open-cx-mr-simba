@@ -12,7 +12,6 @@ import 'package:ama/model/Person.dart' as Person;
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sqflite/sqflite.dart';
 import 'json/JsonController.dart';
 
 class Controller {
@@ -37,7 +36,9 @@ class Controller {
     return _model.getSchedules().elementAt(day - 1);
   }
 
-  Future<String> addSessionToSchedule(int day, Session session) async {
+  Future<String> addSessionToSchedule(Session session) async {
+    int day = await DatabaseMapper.getScheduleDayFromDate(DatabaseController().getDatabase(), session.day);
+    
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
     if(added) {
       await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
@@ -121,6 +122,14 @@ class Controller {
     return DatabaseMapper.getSession(DatabaseController().getDatabase(), sessionKey);
   }
 
+  Future<List<String>> getLocationsByOrder() async {
+    return DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase());
+  }
+
+  Future<SplayTreeSet<Session>> getSessionsByLocation(String location) async {
+    return await DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
+  }
+  
   // ----------------------------
   // json methods
   // ----------------------------
@@ -175,7 +184,7 @@ class Controller {
         DateTime startTime = s.startTime;
         if (startTime.isAfter(currentTime) &&
             ((startTime.difference(currentTime)).inMinutes <=
-                Utility.numMinutesForNotif)) {
+                Utility.numMinutesForSessionBLE)) {
           nearbySessions.add(s);
         }
       });

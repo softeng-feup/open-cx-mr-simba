@@ -2,7 +2,7 @@ import 'package:ama/controller/Controller.dart';
 import 'package:ama/model/Session.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:ama/view/components/GenericTitle.dart';
-import 'package:ama/view/components/SessionContainer.dart';
+import 'package:ama/view/components/SlidableSessionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../constants/AppColors.dart' as AppColors;
@@ -101,7 +101,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     else
       introText = "Tap the 'scan' button whenever you're ready to explore.";
 
-    return GenericContainer(title: "Know what's around you", text: introText);
+    return GenericContainer(title: "Know what's around ", text: introText);
   }
 
   //
@@ -136,7 +136,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
       return Padding(
         padding: const EdgeInsets.only(top: 200.0),
         child: Text(
-          "Looks like there are no sessions nearby.",
+          "Looks like there are no sessions nearby :(",
           style: TextStyle(fontSize: 20, color: Colors.black87),
           textAlign: TextAlign.center,
         ),
@@ -164,9 +164,18 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     result.add(Divider());
 
     for (int i = 0; i < widget.nearbySessions.length; i++) {
-      result.add(SessionContainer(
-        activity: widget.nearbySessions[i],
-      ));
+      result.add(
+          SlidableSessionContainer(
+              session: widget.nearbySessions[i],
+              icon: Icons.check,
+              color: Colors.green,
+              onPressFunction: () async {
+                String text = await Controller.instance()
+                    .addSessionToSchedule(widget.nearbySessions[i]);
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text(text)));
+              })
+      );
       result.add(Divider());
     }
 

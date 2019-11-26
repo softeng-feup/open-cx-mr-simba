@@ -11,6 +11,7 @@ const String noSessionsText = "Tap the ADD button in order to discover all the s
 const String sessionSearchAboutText = "Welcome to our Session Search feature, were you can discover all the exciting sessions around you, with just the tap of a button! Using Bluetooth Low Energy (BLE) beacons, we are able to tell you if there are any activities near you, that will start in under 15 mins. Tap the \"scan\" button whenever you're ready!";
 
 const int numSecondsForTimeoutBLE = 15;
+const int numMinutesForSessionBLE = 30;
 
 const int numMinutesForNotif = 10;
 
@@ -26,6 +27,8 @@ const String BTEnabledText = "Bluetooth is turned on! Tap on the \"scan\" in ord
 const String noInternetTitle = "No Internet Connection";
 const String noInternetText = "Internet connection is needed for the first time you open the app. \n Please try again when you are connected to the internet.";
 
+const String noLocationsTitle = "No locations available";
+const String noLocationsText = "Looks like there are no locations available... how strange!";
 
 const String ademarPhoto = "https://scontent.fopo3-2.fna.fbcdn.net/v/t31.0-8/p960x960/11426751_10153406272449161_4609663974000048493_o.jpg?_nc_cat=107&_nc_ohc=KIJK7Wv7ARQAQn3gdPB6mHSsSXJoKpXgx06ZG6bDX_v7GWsBRL0xo2IDA&_nc_ht=scontent.fopo3-2.fna&oh=5cf02272c85240d3b5ca8495a0efe229&oe=5E856E71";
 const String davidPhoto = "https://scontent.fopo3-2.fna.fbcdn.net/v/t1.0-9/p960x960/68643879_2440141056041424_3853270333838589952_o.jpg?_nc_cat=104&_nc_ohc=PlW0vYHOXG4AQmMgeKhpKq2Gbf1FCuf7vTFQ21urvF4NZ595FXWjTWCmg&_nc_ht=scontent.fopo3-2.fna&oh=90f4d8aebc41d1b6ad16c3c078bec219&oe=5E82AAFA";
