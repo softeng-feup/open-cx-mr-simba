@@ -6,14 +6,13 @@ const String aboutText = "Hello, and welcome to AMA, an agenda mobile app for th
 
 const String noSessionsTitle = "This schedule has no sessions!";
 
-const String noSessionsText = "Tap the ADD button in order to discover all the sessions available to you on this day!";
-
-const String sessionSearchAboutText = "Welcome to our Session Search feature, were you can discover all the exciting sessions around you, with just the tap of a button! Using Bluetooth Low Energy (BLE) beacons, we are able to tell you if there are any activities near you, that will start in under 15 mins. Tap the \"scan\" button whenever you're ready!";
+const String noSessionsText = "Tap the ADD button in order to discover all the sessions available to you on this day! Swipe left on a session and click the green button to add it to the schedule, or click on the session to learn more about it.";
 
 const int numSecondsForTimeoutBLE = 15;
 const int numMinutesForSessionBLE = 30;
-
 const int numMinutesForNotif = 10;
+
+String sessionSearchAboutText = "Welcome to our Session Search feature, were you can discover all the exciting sessions around you, with just the tap of a button! Using Bluetooth Low Energy (BLE) beacons, we are able to tell you if there are any activities near you, that will start in under " + numMinutesForSessionBLE.toString() + " mins. Tap the \"scan\" button whenever you're ready!";
 
 const String jsonURL = 'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
 

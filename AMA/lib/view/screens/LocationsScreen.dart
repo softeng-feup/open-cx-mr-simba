@@ -18,7 +18,7 @@ class LocationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
-        title: Text("All conference locations"),
+        title: Text("All conference locations", style: TextStyle(color: Colors.white), key: Key("Screen title")),
         leading: IconButton(
           key: Key("Back button"),
           icon: Icon(
