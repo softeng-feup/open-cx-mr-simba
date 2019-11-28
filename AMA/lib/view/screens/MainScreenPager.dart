@@ -1,3 +1,4 @@
+import 'package:ama/constants/Dates.dart';
 import 'package:ama/view/components/DayContainer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,21 @@ class _MainScreenPagerState extends State<MainScreenPager> {
   @override
   void initState() {
     super.initState();
-    selectedPage = 0;
+
+    DateTime currentTime = new DateTime.now();
+
+    if(date1.dateEqualTo(currentTime))
+      selectedPage = 0;
+    else if(date2.dateEqualTo(currentTime))
+      selectedPage = 1;
+    else if(date3.dateEqualTo(currentTime))
+      selectedPage = 2;
+    else if(date4.dateEqualTo(currentTime))
+      selectedPage = 3;
+    else 
+      selectedPage = 0;
+
+
     _pageController = PageController();
   }
 
@@ -52,6 +67,7 @@ class _MainScreenPagerState extends State<MainScreenPager> {
         Expanded(
           child: PageView(
             key: Key("pageview"),
+            controller: PageController(initialPage: selectedPage.toInt()),
             children: pages,
             onPageChanged: _onPageViewChange,
           ),
