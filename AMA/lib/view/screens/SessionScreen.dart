@@ -14,7 +14,7 @@ class SessionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
-        title: Text(session.type),
+        title: Text(session.title),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
@@ -30,18 +30,23 @@ class SessionScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
               child: GenericContainer(
-                  title: session.title, text: session.location),
+                  title: session.title, text: session.type),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
               child: GenericContainer(
-                  title: session.day, text: session.timeString),
+                  title: session.timeString, text: session.day),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+              child: GenericContainer(
+                  title: "Location", text: session.location),
             ),
             if ((session.description != null) && session.description.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                 child: GenericContainer(
-                    title: "Abstract", text: session.description),
+                    title: "Description", text: session.description),
               ),
             if ((session.chairs != null) && session.chairs.isNotEmpty)
               Padding(
@@ -63,7 +68,7 @@ class SessionScreen extends StatelessWidget {
             if ((session.items != null) && session.items.isNotEmpty)
               Padding(
                   padding:
-                      const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                      const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0, bottom: 8.0),
                   child: FlatButton(
                       padding: EdgeInsets.all(0.0),
                       child: GenericContainer(

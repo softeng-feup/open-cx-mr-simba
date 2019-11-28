@@ -10,3 +10,8 @@ Feature: Drawer
     Given I open the drawer
     When I tap the "Session search tile" widget
     Then I expect the "Screen title" to be "Session Search"
+
+  Scenario: Selecting the third drawer option
+    Given I open the drawer
+    When I tap the "Locations tile" widget
+    Then I expect the "Screen title" to be "All conference locations"

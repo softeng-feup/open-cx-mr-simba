@@ -193,6 +193,7 @@ class Controller {
     return nearbySessions;
   }
 
+
   // ----------------------------
   // notification methods
   // ----------------------------
