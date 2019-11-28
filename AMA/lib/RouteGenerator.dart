@@ -1,4 +1,3 @@
-import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/ListSessionsInfo.dart';
 import 'package:ama/view/screens/AboutScreens.dart';
 import 'package:ama/view/screens/BluetoothSearchScreen.dart';
@@ -7,6 +6,7 @@ import 'package:ama/view/screens/ListSessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
 import 'package:ama/view/screens/InitialLoadingScreen.dart';
 import 'package:ama/view/screens/ItemsScreen.dart';
+import 'package:ama/view/screens/ActivityCreator.dart';
 
 import 'package:ama/view/screens/LocationsScreen.dart';
 
@@ -97,7 +97,11 @@ class RouteGenerator {
         if(args is List<String>) {
           return MaterialPageRoute(builder: (_) => LocationsScreen(locations: args));
         }
+
         return _errorRoute();
+
+      case '/activityCreator' :
+        return MaterialPageRoute(builder: (_) => ActivityCreatorScreen() );
 
       default:
         return _errorRoute();
