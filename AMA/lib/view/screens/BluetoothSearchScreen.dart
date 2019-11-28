@@ -20,21 +20,27 @@ class BluetoothSearchScreen extends StatefulWidget {
 
 class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   void _updateAvailability(bool status) {
-    setState(() {
-      widget.availabilityStatus = status;
-    });
+    if (this.mounted) {
+      setState(() {
+        widget.availabilityStatus = status;
+      });
+    }
   }
 
   void _updateEnableStatus(bool status) {
-    setState(() {
-      widget.enabledStatus = status;
-    });
+    if (this.mounted) {
+      setState(() {
+        widget.enabledStatus = status;
+      });
+    }
   }
 
   void _updateNearbySessions(List<Session> sessions) {
-    setState(() {
-      widget.nearbySessions = sessions;
-    });
+    if (this.mounted) {
+      setState(() {
+        widget.nearbySessions = sessions;
+      });
+    }
   }
 
   Future _refresh() async {
@@ -164,18 +170,15 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
     result.add(Divider());
 
     for (int i = 0; i < widget.nearbySessions.length; i++) {
-      result.add(
-          SlidableSessionContainer(
-              session: widget.nearbySessions[i],
-              icon: Icons.check,
-              color: Colors.green,
-              onPressFunction: () async {
-                String text = await Controller.instance()
-                    .addSessionToSchedule(widget.nearbySessions[i]);
-                Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text(text)));
-              })
-      );
+      result.add(new SlidableSessionContainer(
+          session: widget.nearbySessions[i],
+          icon: Icons.check,
+          color: Colors.green,
+          onPressFunction: () async {
+            String text = await Controller.instance()
+                .addSessionToSchedule(widget.nearbySessions[i]);
+            Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
+          }));
       result.add(Divider());
     }
 
@@ -187,9 +190,8 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
 
     Set<int> beaconLocationIDs =
         await Controller.instance().searchForBeaconLocations();
-    List<Session> nbSessions = await Controller.instance()
-        .getSessionsNearby(
-            beaconLocationIDs);
+    List<Session> nbSessions =
+        await Controller.instance().getSessionsNearby(beaconLocationIDs);
 
     this._updateNearbySessions(nbSessions);
 
@@ -210,8 +212,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   }
 
   Widget getFloatingButton(bool visibility) {
-    if(visibility == null)
-      visibility = false;
+    if (visibility == null) visibility = false;
 
     return Visibility(
       visible: visibility,
