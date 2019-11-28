@@ -12,6 +12,7 @@ const String sessionSearchAboutText = "Welcome to our Session Search feature, we
 
 const int scanTimeBLE = 5;
 const int numMinutesForSessionBLE = 30;
+const int namespaceBLE = 5555;
 
 const int numMinutesForNotif = 10;
 

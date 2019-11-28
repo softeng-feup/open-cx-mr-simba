@@ -49,7 +49,9 @@ class BluetoothController {
 
       if (beacon is EddystoneUID) {
         EddystoneUID b = beacon;
-        beacons.add(int.parse(b.beaconId));
+
+        if(int.parse(beacon.namespaceId, radix: 16) == namespaceBLE)
+          beacons.add(int.parse(b.beaconId));
       }
     });
 
