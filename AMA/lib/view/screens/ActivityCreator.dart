@@ -1,3 +1,5 @@
+import 'package:ama/view/components/CreatorForm.dart';
+import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../constants/AppColors.dart' as AppColors;
@@ -12,7 +14,7 @@ class ActivityCreatorScreenState extends State<ActivityCreatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(),
-      body: Text("Ola"),
+      body: getBody(),
     );
   }
 
@@ -28,6 +30,23 @@ class ActivityCreatorScreenState extends State<ActivityCreatorScreen> {
         onPressed: () => Navigator.of(context).pop(),
       ),
       backgroundColor: AppColors.mainColor,
+    );
+  }
+
+  Widget getBody() {
+    return Container(
+      color: AppColors.backgroundColor,
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.all(10.0),
+        children: <Widget>[
+          GenericContainer(
+              title: "Let's get busy...",
+              text:
+                  "Here you can create an activity of your own and add it to you schedule"),
+          CreatorForm(),
+        ],
+      ),
     );
   }
 }
