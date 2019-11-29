@@ -56,4 +56,11 @@ class Date{
   String toDateString() {
     return this._year + "-" + this._month + "-" + this._day;
   }
+
+  bool dateEqualTo(DateTime date){
+
+
+    return int.parse(this._year) == date.year && int.parse(this._month) == date.month && int.parse(this._day) == date.day;
+  }
+
 }

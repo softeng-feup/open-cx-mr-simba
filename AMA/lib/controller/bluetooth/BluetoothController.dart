@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:ama/constants/Utility.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'flutter_blue_beacon/beacon.dart';
 import 'flutter_blue_beacon/flutter_blue_beacon.dart';
+
 
 class BluetoothController {
   static BluetoothController _instance;
@@ -43,11 +45,13 @@ class BluetoothController {
 
 
     // Start scanning
-    _scanSubscription = flutterBlueBeacon.scan(timeout: const Duration(seconds: 5)).listen((beacon) {
+    _scanSubscription = flutterBlueBeacon.scan(timeout: const Duration(seconds: scanTimeBLE )).listen((beacon) {
 
       if (beacon is EddystoneUID) {
         EddystoneUID b = beacon;
-        beacons.add(int.parse(b.beaconId));
+
+        if(int.parse(beacon.namespaceId, radix: 16) == namespaceBLE)
+          beacons.add(int.parse(b.beaconId));
       }
     });
 

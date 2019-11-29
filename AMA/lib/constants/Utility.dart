@@ -8,8 +8,10 @@ const String noSessionsTitle = "This schedule has no sessions!";
 
 const String noSessionsText = "Tap the ADD button in order to discover all the sessions available to you on this day! Swipe left on a session and click the green button to add it to the schedule, or click on the session to learn more about it.";
 
-const int numSecondsForTimeoutBLE = 15;
+const int scanTimeBLE = 5;
 const int numMinutesForSessionBLE = 30;
+const int namespaceBLE = 5555;
+
 const int numMinutesForNotif = 10;
 
 String sessionSearchAboutText = "Welcome to our Session Search feature, were you can discover all the exciting sessions around you, with just the tap of a button! Using Bluetooth Low Energy (BLE) beacons, we are able to tell you if there are any activities near you, that will start in under " + numMinutesForSessionBLE.toString() + " mins. Tap the \"scan\" button whenever you're ready!";

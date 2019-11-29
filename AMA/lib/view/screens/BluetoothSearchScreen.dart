@@ -205,8 +205,7 @@ class BluetoothSearchScreenState extends State<BluetoothSearchScreen> {
   }
 
   Widget getFloatingButton(bool visibility) {
-    if(visibility == null)
-      visibility = false;
+    if (visibility == null) visibility = false;
 
     return Visibility(
       visible: visibility,
