@@ -1,4 +1,3 @@
-import 'package:ama/model/DayScheduleInfo.dart';
 import 'package:ama/model/ListSessionsInfo.dart';
 import 'package:ama/view/screens/AboutScreens.dart';
 import 'package:ama/view/screens/BluetoothSearchScreen.dart';
@@ -13,6 +12,7 @@ import 'package:ama/view/screens/LocationsScreen.dart';
 import 'package:ama/view/screens/ItemScreen.dart';
 
 import 'package:ama/view/screens/PeopleScreen.dart';
+import 'package:ama/view/screens/PersonScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
@@ -96,6 +96,11 @@ class RouteGenerator {
       case '/locationsScreen' :
         if(args is List<String>) {
           return MaterialPageRoute(builder: (_) => LocationsScreen(locations: args));
+        }
+        return _errorRoute();
+      case '/profileScreen' :
+        if(args is Person) {
+          return MaterialPageRoute(builder: (_) => PersonScreen(person: args));
         }
         return _errorRoute();
 
