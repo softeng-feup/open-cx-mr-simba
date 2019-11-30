@@ -12,8 +12,8 @@ class CreatorFormState extends State<CreatorForm> {
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
 
-  TextEditingController titleController;
-  TextEditingController descrController;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descrController = TextEditingController();
   Dates.Date date = null;
 
   FormInfo retreiveFormInfo() {
@@ -59,17 +59,28 @@ class CreatorFormState extends State<CreatorForm> {
                 ])));
   }
 
+  bool isFormValid() {
+    double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
+    if (toDouble(this.endTime) < toDouble(this.startTime)) return false;
+
+    if (titleController.text == "") return false;
+
+    return true;
+  }
+
   Widget getFloatingSubmitButton() {
+    Color bgColor =
+        this.isFormValid() ? Colors.green : Colors.black38;
+
     return Align(
       alignment: Alignment.centerRight,
       child: FloatingActionButton(
           onPressed: () {
-
-                // ADICIONAR PARTE DE ADICIONAR NOVA SESSAO AO HORARIO
-
+            // ADICIONAR PARTE DE ADICIONAR NOVA SESSAO AO HORARIO. Não adicionar se isFormValid == false.
           },
           tooltip: 'Scan',
-          backgroundColor: Colors.green,
+          backgroundColor: bgColor,
           child: Icon(
             Icons.check,
             color: Colors.white,
@@ -192,6 +203,7 @@ class CreatorFormState extends State<CreatorForm> {
     );
 
     return TextFormField(
+      controller: this.descrController,
       keyboardType: TextInputType.multiline,
       maxLines: 6,
       cursorColor: AppColors.mainColorFoccused,
@@ -224,6 +236,7 @@ class CreatorFormState extends State<CreatorForm> {
     );
 
     return TextFormField(
+      controller: this.titleController,
       cursorColor: AppColors.mainColorFoccused,
       style: textStyle,
       decoration: const InputDecoration(
