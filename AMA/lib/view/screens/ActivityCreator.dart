@@ -10,6 +10,7 @@ class ActivityCreatorScreen extends StatefulWidget {
 }
 
 class ActivityCreatorScreenState extends State<ActivityCreatorScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +35,7 @@ class ActivityCreatorScreenState extends State<ActivityCreatorScreen> {
   }
 
   Widget getBody() {
+
     return Container(
       color: AppColors.backgroundColor,
       child: ListView(
