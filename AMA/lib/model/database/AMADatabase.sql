@@ -41,7 +41,7 @@ CREATE TABLE Session (
     timeString       TEXT,
     location         TEXT,
     description      TEXT,
-    isCustom         INTEGER,
+    isCustom         INTEGER
 );
 
 

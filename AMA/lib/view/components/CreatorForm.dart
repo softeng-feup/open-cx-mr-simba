@@ -1,3 +1,5 @@
+import 'package:ama/controller/Controller.dart';
+import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
 import '../../constants/Dates.dart' as Dates;
@@ -70,14 +72,29 @@ class CreatorFormState extends State<CreatorForm> {
   }
 
   Widget getFloatingSubmitButton() {
-    Color bgColor =
-        this.isFormValid() ? Colors.green : Colors.black38;
+    Color bgColor = this.isFormValid() ? Colors.green : Colors.black38;
 
     return Align(
       alignment: Alignment.centerRight,
       child: FloatingActionButton(
           onPressed: () {
             // ADICIONAR PARTE DE ADICIONAR NOVA SESSAO AO HORARIO. Não adicionar se isFormValid == false.
+            Session newSession = Session(
+              key:"__AMA_Custom_Session_X",     // Necessário definir um id para as sessoes criadas.
+              title: this.titleController.text,
+              description: this.descrController.text,
+              chairsString: "",
+              chairs: List<String>(),
+              items: List<String>(),
+              isCustom: 1,
+              day: this.date.toDateString(),    // Confirmar formato
+              type: "",
+              startTime: DateTime(2019),        // Alterar
+              timeString:this.startTime.format(context) + " - " + this.endTime.format(context), // Confirmar formato
+              location: ""
+              
+              );
+            Controller.instance().addSessionToSchedule(newSession);
           },
           tooltip: 'Scan',
           backgroundColor: bgColor,

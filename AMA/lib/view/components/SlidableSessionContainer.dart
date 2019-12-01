@@ -23,9 +23,8 @@ class SlidableSessionContainer extends StatelessWidget {
       actionExtentRatio: 0.25,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 15.0),
-        child: SessionContainer(
-          activity: session,
-        ),
+        child: SessionContainer(activity: session,),
+
       ),
       secondaryActions: <Widget>[
         Container(
