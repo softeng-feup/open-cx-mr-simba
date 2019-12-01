@@ -37,7 +37,7 @@ class PeopleScreen extends StatelessWidget {
                           padding: EdgeInsets.all(10),
                           child: GenericContainer(
                               title: people.elementAt(idx).name,
-                              text: people.elementAt(idx).affiliation)));
+                              text: people.elementAt(idx).affiliation, touchable: true,)));
                 })));
   }
 }

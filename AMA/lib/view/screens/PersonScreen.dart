@@ -50,6 +50,7 @@ class PersonScreen extends StatelessWidget {
           Divider(),
           GestureDetector(
             onTap: () async {
+              if(person.url != null)
               if (await canLaunch(person.url)) {
                 await launch(person.url);
               } else {

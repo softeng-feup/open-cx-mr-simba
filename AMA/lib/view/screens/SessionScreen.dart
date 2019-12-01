@@ -76,7 +76,8 @@ class SessionScreen extends StatelessWidget {
                             '/itemsScreen',
                             arguments: await Controller.instance()
                                 .getItemsWithKeys(session.items),
-                          )))
+                          ))),
+            Divider()
           ],
         ),
       ),
