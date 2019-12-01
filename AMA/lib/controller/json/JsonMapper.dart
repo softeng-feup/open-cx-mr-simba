@@ -1,3 +1,4 @@
+import 'package:ama/constants/Dates.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
@@ -51,7 +52,9 @@ class JsonMapper {
       location: json['Location'] as String,
       startTime: DateTime.parse(json['Day'] + ' ' + json['Time'].substring(0, 5) + ':00'),
       timeString: json['Time'] as String,
-      day: json['Day'] as String
+      day: json['Day'] as String,
+      isCustom: 0,
+
     );
   }
 
