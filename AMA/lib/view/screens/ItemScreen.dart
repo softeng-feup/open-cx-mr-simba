@@ -50,7 +50,7 @@ class ItemScreen extends StatelessWidget {
                         arguments: peopleList);
                   },
                   child: GenericContainer(
-                      title: "Authors", text: item.peopleString),
+                      title: "Authors", text: item.peopleString, touchable: true),
                 ),
                 Divider(),
                 GenericContainer(
