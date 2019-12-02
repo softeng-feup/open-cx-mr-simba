@@ -11,30 +11,33 @@ class PeopleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: Text("Pessoal"),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
+        appBar: AppBar(
+          backgroundColor: AppColors.mainColor,
+          title: Text("Pessoal"),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          onPressed: () => Navigator.of(context).pop(),
         ),
-      ),
-
-      body: Container(
-        color: AppColors.backgroundColor,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: people.length,
-          itemBuilder: (context, idx) {
-            return Padding(
-              padding: EdgeInsets.all(10),
-            child: GenericContainer(
-              title: people.elementAt(idx).name,
-              text: people.elementAt(idx).affiliation
-            ));
-          })));
+        body: Container(
+            color: AppColors.backgroundColor,
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: people.length,
+                itemBuilder: (context, idx) {
+                  return GestureDetector(
+                      onTap: () async {
+                       Navigator.pushNamed(context, '/profileScreen',
+                            arguments: people.elementAt(idx));
+                      },
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: GenericContainer(
+                              title: people.elementAt(idx).name,
+                              text: people.elementAt(idx).affiliation, touchable: true,)));
+                })));
   }
 }
