@@ -22,47 +22,48 @@ class SessionContainer extends StatelessWidget {
   }
 
   Widget drawNormalSessionContainer(double deviceWidth) {
-    return Container(
-      width: deviceWidth * 0.95,
-      height: 150,
-      decoration: BoxDecoration(
-          color: AppColors.containerColor,
-          borderRadius: BorderRadius.all(Radius.circular(18.0))),
-      child: Column(
-        children: <Widget>[
-          this.drawTitle(),
-          Expanded(
-            flex: 1,
-            child: Row(
+    return ConstrainedBox(
+        constraints: BoxConstraints(minHeight: 150),
+        child: Container(
+            width: deviceWidth * 0.95,
+            decoration: BoxDecoration(
+                color: AppColors.containerColor,
+                borderRadius: BorderRadius.all(Radius.circular(18.0))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                this.drawType(),
-                this.drawDay(),
+                this.drawTitle(),
+                Row(
+                  children: <Widget>[
+                    this.drawType(),
+                    this.drawDay(),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    this.drawLocation(),
+                    this.drawTime(),
+                  ],
+                )
               ],
-            ),
-          ),
-          Row(
-            children: <Widget>[
-              this.drawLocation(),
-              this.drawTime(),
-            ],
-          )
-        ],
-      ),
-    );
+            )));
   }
 
   Widget drawCustomSessionContainer(double deviceWidth) {
-    return Container(
-      width: deviceWidth * 0.95,
-      height: 150,
-      decoration: BoxDecoration(
-          color: AppColors.customSessionContainerColor,
-          borderRadius: BorderRadius.all(Radius.circular(18.0))),
-      child: Column(
-        children: <Widget>[
-          this.drawTitle(),
-          this.drawCustomSessionContents(),
-        ],
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: 150),
+      child: Container(
+        width: deviceWidth * 0.95,
+        height: 150,
+        decoration: BoxDecoration(
+            color: AppColors.customSessionContainerColor,
+            borderRadius: BorderRadius.all(Radius.circular(18.0))),
+        child: Column(
+          children: <Widget>[
+            this.drawTitle(),
+            this.drawCustomSessionContents(),
+          ],
+        ),
       ),
     );
   }
