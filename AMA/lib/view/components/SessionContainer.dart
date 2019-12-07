@@ -76,7 +76,7 @@ class SessionContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              flex: 1,
+              flex: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -85,12 +85,19 @@ class SessionContainer extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                this.drawDay(),
-                this.drawTime(),
-              ],
+            Expanded(
+              flex: 4,
+              child: Container(
+                height: 120,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    this.drawDay(),
+                    this.drawTime(),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -212,7 +219,7 @@ class SessionContainer extends StatelessWidget {
       children: <Widget>[
         Text("Location: ",
             style: TextStyle(color: AppColors.mainColor, fontSize: 17)),
-        Expanded(flex: 1,child: locationText)
+        Expanded(flex: 1, child: locationText)
       ],
     );
   }
@@ -221,7 +228,7 @@ class SessionContainer extends StatelessWidget {
     return Expanded(
       flex: 4,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
         child: Text(
           activity.timeString,
           style: TextStyle(
