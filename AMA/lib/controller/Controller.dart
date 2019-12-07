@@ -126,6 +126,14 @@ class Controller {
     return DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase());
   }
 
+  Future<int> getLastUsedCustomSessionIDNum() async {
+    return DatabaseMapper.getLastUsedCustomSessionIDNum(DatabaseController().getDatabase());
+  }
+
+  Future addSession(Session session) async {
+    return DatabaseMapper.addSession(DatabaseController().getDatabase(), session);
+  }
+
   Future<SplayTreeSet<Session>> getSessionsByLocation(String location) async {
     return await DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
   }

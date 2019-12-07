@@ -74,7 +74,6 @@ CREATE TABLE SessionItem (
 );
 
 
-
 -- Table: SessionChair
 DROP TABLE IF EXISTS SessionChair;
 

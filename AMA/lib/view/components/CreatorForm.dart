@@ -1,4 +1,6 @@
+import 'package:ama/constants/Utility.dart';
 import 'package:ama/controller/Controller.dart';
+import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
@@ -77,24 +79,32 @@ class CreatorFormState extends State<CreatorForm> {
     return Align(
       alignment: Alignment.centerRight,
       child: FloatingActionButton(
-          onPressed: () {
-            // ADICIONAR PARTE DE ADICIONAR NOVA SESSAO AO HORARIO. Não adicionar se isFormValid == false.
+          onPressed: () async {
+
+            if (!this.isFormValid()) return;
+
+            String timeStr =   this.startTime.format(context) + " - " + this.endTime.format(context);
+            int lastID = await Controller.instance().getLastUsedCustomSessionIDNum();
+
+            String newSessionID = customSessionBaseID + lastID.toString();
+
             Session newSession = Session(
-              key:"__AMA_Custom_Session_X",     // Necessário definir um id para as sessoes criadas.
-              title: this.titleController.text,
-              description: this.descrController.text,
-              chairsString: "",
-              chairs: List<String>(),
-              items: List<String>(),
-              isCustom: 1,
-              day: this.date.toDateString(),    // Confirmar formato
-              type: "",
-              startTime: DateTime(2019),        // Alterar
-              timeString:this.startTime.format(context) + " - " + this.endTime.format(context), // Confirmar formato
-              location: ""
-              
-              );
+                key: newSessionID,
+                title: this.titleController.text,
+                description: this.descrController.text,
+                day: this.date.toDateString(),
+                timeString: timeStr,
+                startTime: DateTime(2019), 
+                isCustom: 1,
+                chairsString: "",
+                chairs: List<String>(),
+                items: List<String>(),
+                type: "",
+                location: "");
+
+            Controller.instance().addSession(newSession);
             Controller.instance().addSessionToSchedule(newSession);
+
           },
           tooltip: 'Scan',
           backgroundColor: bgColor,
