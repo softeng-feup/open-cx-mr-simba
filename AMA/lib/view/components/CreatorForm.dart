@@ -1,6 +1,5 @@
 import 'package:ama/constants/Utility.dart';
 import 'package:ama/controller/Controller.dart';
-import 'package:ama/controller/database/DatabaseMapper.dart';
 import 'package:ama/model/Session.dart';
 import 'package:flutter/material.dart';
 import '../../constants/AppColors.dart' as AppColors;
