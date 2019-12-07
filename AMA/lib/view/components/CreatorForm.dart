@@ -17,6 +17,7 @@ class CreatorFormState extends State<CreatorForm> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descrController = TextEditingController();
+  TextEditingController locatController = TextEditingController();
   Dates.Date date = null;
 
   FormInfo retreiveFormInfo() {
@@ -53,6 +54,7 @@ class CreatorFormState extends State<CreatorForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   getTitleInputForm(),
+                  getLocationInputForm(),
                   getDescriptionInputForm(),
                   getTimeSelectorTitle(),
                   getTimeSelectorInput(),
@@ -94,12 +96,12 @@ class CreatorFormState extends State<CreatorForm> {
                 day: this.date.toDateString(),
                 timeString: timeStr,
                 startTime: startTime, 
+                location: this.locatController.text,
                 isCustom: 1,
                 chairsString: "",
                 chairs: List<String>(),
                 items: List<String>(),
-                type: "",
-                location: "");
+                type: "");
 
             Controller.instance().addSession(newSession);
             Controller.instance().addSessionToSchedule(newSession);
@@ -159,6 +161,38 @@ class CreatorFormState extends State<CreatorForm> {
         ),
         contentPadding: EdgeInsets.all(0),
       ),
+    );
+  }
+
+  Widget getLocationInputForm() {
+    const TextStyle textStyle = TextStyle(
+      color: AppColors.mainColor,
+    );
+
+    return TextFormField(
+      controller: this.locatController,
+      cursorColor: AppColors.mainColorFoccused,
+      style: textStyle,
+      decoration: const InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColorFoccused),
+        ),
+        hintStyle: TextStyle(color: Colors.black38),
+        labelStyle: textStyle,
+        errorStyle: textStyle,
+        prefixStyle: textStyle,
+        helperStyle: textStyle,
+        icon: Icon(
+          Icons.location_on,
+          color: AppColors.mainColor,
+        ),
+        hintText: 'Where?',
+        labelText: 'Activity location',
+      ),
+      
     );
   }
 
@@ -231,7 +265,7 @@ class CreatorFormState extends State<CreatorForm> {
     return TextFormField(
       controller: this.descrController,
       keyboardType: TextInputType.multiline,
-      maxLines: 6,
+      maxLines: 4,
       cursorColor: AppColors.mainColorFoccused,
       style: textStyle,
       decoration: const InputDecoration(
