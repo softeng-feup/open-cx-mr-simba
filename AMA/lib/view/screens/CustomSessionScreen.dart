@@ -45,6 +45,13 @@ class CustomSessionScreen extends StatelessWidget {
                   title: session.timeString, text: session.day),
             ),
 
+            (session.location != "") ? 
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+              child: GenericContainer(
+                  title: "Location", text: session.location),
+            ) : Container(),
+
             if ((session.description != null) && session.description.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
