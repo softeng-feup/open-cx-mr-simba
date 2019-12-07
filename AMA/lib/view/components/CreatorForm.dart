@@ -85,8 +85,8 @@ class CreatorFormState extends State<CreatorForm> {
 
             String timeStr =   this.startTime.format(context) + " - " + this.endTime.format(context);
             int lastID = await Controller.instance().getLastUsedCustomSessionIDNum();
-
             String newSessionID = customSessionBaseID + lastID.toString();
+            DateTime startTime = DateTime.parse(this.date.toDateString() + ' ' + timeStr.substring(0, 5) + ':00');
 
             Session newSession = Session(
                 key: newSessionID,
@@ -94,7 +94,7 @@ class CreatorFormState extends State<CreatorForm> {
                 description: this.descrController.text,
                 day: this.date.toDateString(),
                 timeString: timeStr,
-                startTime: DateTime(2019), 
+                startTime: startTime, 
                 isCustom: 1,
                 chairsString: "",
                 chairs: List<String>(),
