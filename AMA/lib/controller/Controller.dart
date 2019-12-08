@@ -122,6 +122,10 @@ class Controller {
     return DatabaseMapper.getSession(DatabaseController().getDatabase(), sessionKey);
   }
 
+    Future<List<Person.Person>> getDaySpeakers(String sessionKey) async {
+    return DatabaseMapper.getDaySpeakers(DatabaseController().getDatabase(), sessionKey);
+  }
+
   Future<List<String>> getLocationsByOrder() async {
     return DatabaseMapper.getLocationsByOrder(DatabaseController().getDatabase());
   }

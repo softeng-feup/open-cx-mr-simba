@@ -49,16 +49,16 @@ class _MainScreenPagerState extends State<MainScreenPager> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       Padding(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.only(top:40, right: 40, left: 40, bottom: 10),
           child: MainScreenPage(dayNo: 1, date: Dates.date1)),
       Padding(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.only(top:40, right: 40, left: 40, bottom: 10),
           child: MainScreenPage(dayNo: 2, date: Dates.date2)),
       Padding(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.only(top:40, right: 40, left: 40, bottom: 10),
           child: MainScreenPage(dayNo: 3, date: Dates.date3)),
       Padding(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.only(top:40, right: 40, left: 40, bottom: 10),
           child: MainScreenPage(dayNo: 4, date: Dates.date4)),
     ];
 

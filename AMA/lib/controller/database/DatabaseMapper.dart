@@ -18,6 +18,22 @@ class DatabaseMapper {
     return sessions;
   }
 
+  static Future<List<Person>> getDaySpeakers(Database db, String date) async {
+
+    var results = await db.rawQuery('SELECT DISTINCT personKey FROM Session JOIN SessionChair WHERE day = ?',[date]);
+
+    List<String> keys = List<String>();
+
+    for(int i = 0; i < results.length;i++){
+
+      keys.add(results.elementAt(i)['personKey']);
+    }
+
+    List<Person> people = await getPeopleWithKeys(db,keys);
+
+    return people;
+  }
+
 
   static Future<SplayTreeSet<Session>> getSessionsInLocation(Database db, String location) async {
     var results = await db.rawQuery('SELECT * FROM Session WHERE location = ?', [location]);
