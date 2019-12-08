@@ -58,7 +58,7 @@ Thank you!
 
 ## Product Vision
 
-"A mobile app connected with the event-space to let the atendees organize themselves better and allow them to better manage their time, so they can get the best out of the conference."
+"A mobile app connected with the event-space to not only let the atendees organize themselves better and allow them to better manage their time, but to also show them everything that the conference has to offer, so they can get the best out of it."
 
 ## Elevator Pitch
 
@@ -85,13 +85,15 @@ However, what sets us apart from other agenda apps is our use of bluetooth beaco
 "Have you ever found yourself in a conference spending more time keeping track of events and getting accquainted to the venue rather than networking and getting knowledge?
 Our solution for that is an agenda app for your smartphone that lets you, as a participant, organize you schedule. The app let's you plan out your daily activities and warns you before it's time to do them.
 
-However, what sets us apart from other agenda apps is that our app is connected with the event space and, as such, you get custom location-related notifications. If you get close to one of them, and an activity will start shortly in that area, you will receive a push notification warning you about it, so that you are connected with everything that is happening around you."
+However, what sets us apart from other agenda apps is that our use and connection with the event space, through the use of bluetooth beacons scattered throughout the conference space. You can see all the sessions that are going to start shortly and that are near you, so that you are connected with everything that is happening around you."
 
 ## Requirements
 
-As an agenda application, the main requirements of our product are connected to the display of information about the conference, to the customization of the schedules by the user and the warning/notification that an event in the schedule is about to begin. This information must be displayed in a manner that is aesthetically appealing and intuitive to the main user(conference-attendee). Moreover, our requirements are also influenced by the technologies that we are going to use, more specifically the use of bluetooth beacons to inform the user about nearby sessions and events, and the parsing, querying and display of the informations stored in a JSON file. As a mobile application the product needs to have a performance tailored to the capabilities of smarthphones.
+As an agenda application, the main requirements of our product are connected to the display of information about the conference, to the customization of the schedules by the user and the warning/notification that an event in the schedule is about to begin. This information must be displayed in a manner that is aesthetically appealing and intuitive to the main user (conference-attendee). Moreover, our requirements are also influenced by the technologies that we are going to use, more specifically the use of bluetooth beacons to inform the user about nearby sessions and events, the parsing of the informations stored in a JSON file, and the querying and display of that information from a database (currently using SQLite). As a mobile application the product needs to have a performance tailored to the capabilities of smartphones.
 
 ### Use case diagram 
+
+There are a lot of features and functionalities that we thought about, that would be useful and could be implemented in the future. In order to preserve the readability of this diagram, only the features that we have implemented (and a few extra features that we didn't) are present. For all the user stories that we considered and could be done in the future, please check the user stories board. 
 
 ![Use case diagram](docs/use_case_diagram_1.png)
 
@@ -103,7 +105,7 @@ Description of the use cases shown:
 
 * **Description**: The users of our application need to see and know what are the various sessions in each day's schedule.
 
-* **Preconditions and Postconditions**: The schedules need to have at least one activity in them; besides that, there are no major preconditions necessary for the use case's execution.
+* **Preconditions and Postconditions**: There are no major preconditions necessary for the use case's execution; the schedule should have at least one activity in it in order to observe anything (obvious).
 
 * **Normal Flow**:
         
@@ -126,9 +128,9 @@ Description of the use cases shown:
     1. System is displaying the different activities of the conference for that day.
     2. User picks the activity that he/she wants and swipes to the left, revealing an "add" button.
     3. User clicks the button.
-    4. System redirects to the schedule page, showing that the activity was indeed added.
+    4. System shows a message telling the user that the activity was indeed added.
 
-* **Alternative Flows and Exceptions**: If the user tries to add an activity that is already in the schedule, it obviously will have no effect.
+* **Alternative Flows and Exceptions**: If the user tries to add an activity that is already in the schedule, it obviously will have no effect (a message will be displayed telling that).
 
 ####  **Create a custom activity for the schedule**
 
@@ -136,11 +138,11 @@ Description of the use cases shown:
 
 * **Description**: This can be considered as a sub-use case of adding an activity. The goal is to let the users of the application have in their schedule not only the sessions that they want to attend, but also every other activity related to the conference, such as, for example, a meeting, a reunion, having lunch, etc.
 
-* **Preconditions and Postconditions**: There are no major preconditions that have to be met before the start of this use case. After its execution, the activity crated will be added to the day's schedule.
+* **Preconditions and Postconditions**: There are no major preconditions that have to be met before the start of this use case. After its execution, the activity created will be added to the day's schedule.
 
 * **Normal Flow**:
         
-    1. User selects the option to create a custom activity, in the schedule of a given day.
+    1. User selects the option to create a custom activity, in the side drawer of the main page.
     2. User inputs the needed fields to characterize the custom session (title, location, start time, etc).
     3. System creates the custom event and adds it to the schedule
 
@@ -164,22 +166,22 @@ Description of the use cases shown:
 
 * **Alternative Flows and Exceptions**: As said before, is the schedule has no activities, the user can't remove anything.
 
-####  **Get a push notification when an activity in the schedule is about to start**
+####  **Get a notification when an activity in the schedule is about to start**
 
 * **Actor**: Atendee and conference participant 
 
-* **Description**: In order to remind the user that an activity in the schedule is about to start, roughly 10 minutes before said activity the app will generate a push notification with that information.
+* **Description**: In order to remind the user that an activity in the schedule is about to start, roughly 10 minutes before said activity the app will generate a notification with that information.
 
-* **Preconditions and Postconditions**: The app must know the current time and at what time the activity starts, so as to calculate how much time left there is before the session starts, and to know when to warn the user.
+* **Preconditions and Postconditions**: The app must know at what time the activity starts, so as to create an alarm that generates the notification that warns the user.
 
 * **Normal Flow**:
         
-    1. System compares current time to the start time of the sessions in the schedule.
-    2. System detects that in less than 10 minutes a session will begin.
-    3. Application generates a push notification to warn the user.
-    4. User sees the push notification and is informed.
+    1. User adds a new session to the schedule.
+    2. System tells the operating system to set up an alarm that will fire a notification, 10 mins before its start.
+    3. When that time arrives, OP will create the notification (even if app is not launched).
+    4. User sees the notification and is informed.
 
-* **Alternative Flows and Exceptions**: As said before, if the application cannot keep track of time, no notification is going to be generated.
+* **Alternative Flows and Exceptions**: As said before, if the application doesn't know the start time of the session (no reason for that to happen) no notification is going to be generated.
 
 ####  **Get custom translated information to help me navigate in a foreign place**
 
@@ -197,41 +199,43 @@ Description of the use cases shown:
 
 * **Alternative Flows and Exceptions**: No major alternative flows and exceptions are expected.
 
-####  **Get a push notification about an activity ocurring in a nearby place**
+####  **Search activities about to start, ocurring in a nearby place**
 
 * **Actor**: Atendee and bluetooth beacon network
 
-* **Description**: In order to integrate the user in the conference environment and inform him/her about some activities that might be of his/her interest, the application (if close enough) will connect with a bluetooth beacon, placed in the different rooms and locations of the conference, generating a push notification if a session in that location is about to begin or is underway.
+* **Description**: In order to integrate the user in the conference environment and inform him/her about some activities that might be of his/her interest, the app offers a "Session Search" mode that, through the use of the bluetooth beacon network, shows sessions that will happen in a nearby location and time.
 
 * **Preconditions and Postconditions**: The phone should be able have the capability to connect with the bluetooth beacons, and the app needs be "aware" of time in order to calculate if a session on that location is about to begin or is underway. Moreover, the beacon must be capable of transmiting the needed information to the application.
 
 * **Normal Flow**:
         
-    1. User is in a certain location, staying still or moving around.
-    2. Phone is close enough to a bluetooth beacon, connecting itself to it.
-    3. Beacon sends to the application information about the next session that is going to take place in that location.
-    4. Application calculates that that session is about to begin or is underway.
-    5. Application generates push notification to warn the user.
-    6. User sees the notification and is informed.
+    1. User selects the "Session Search" option in the main page.
+    2. User clicks the "Search" button (only available if the phone is connected to bluetooth).
+    3. System searches and tries to connect with nearby beacons.
+    4. Beacons transmit the unique ID of their location to the app.
+    5. System gets all the sessions that will happen in less than 15 mins, in those locations, and displays that information.
+    6. User sees the information and is informed.
 
-* **Alternative Flows and Exceptions**: If any of the preconditions are not met (for example, phone has bluetooth disabled or beacon cannot send information), this process will not be able to execute and the app will not generate any push notifications. This will also happen, of course, if the phone is out of range of the bluetooth beacons.
+* **Alternative Flows and Exceptions**: If any of the preconditions are not met (for example, phone has bluetooth disabled or beacon cannot send information), this process will not be able to execute. This will also happen, of course, if the phone is out of range of the bluetooth beacons.
 
 
 ####  **Access the information about the conference sessions, people and items**
 
 * **Actor**: Atendee, conference participant and server/internet. 
 
-* **Description**: The users of our application need to see and know what are the various sessions offered by the conference, so they can understand what activities they are interested in, in order to build a schedule.
+* **Description**: The users of our application need to see and know what are the various sessions offered by the conference, the items that will be presented in them, and the people that will participate in them, so they can understand what activities they are interested in, in order to build a schedule.
 
-* **Preconditions and Postconditions**: The system needs to be able to estabilish a connection to the server, in order to get a JSON file contaning all the information. After this use case the user can now choose what sessions he or she wants to add to the schedule.
+* **Preconditions and Postconditions**: In the first time launching the app, the system needs to be able to estabilish a connection to the server, in order to get a JSON file contaning all the information. After this, all information is stored on a database and the app just accesses that to retrieve information to the user.
 
 * **Normal Flow**:
         
     1. User taps button to see the available activities for that day.
-    2. App queries the JSON file to get the information about the sessions for that day.
+    2. App queries the database to get the information about the sessions for that day.
     3. App displays that information to the user.
+    4. User taps on the chairs/items/authors container, in order to know more about them.
+    5. App queries the database to get the necessary information, and displays it.
 
-* **Alternative Flows and Exceptions**: If the application does not have access to the JSON file or the user demands to refresh the page, the system contacts the server in order to get the JSON file.
+* **Alternative Flows and Exceptions**: If, in the first time launching the app, the phone cannot reach the server to get the JSON file, the app will inform the user and will tell him/her to try again later, when internet connection is available.
 
 ####  **Update the app's information about an event im organizing**
 
@@ -335,7 +339,7 @@ Description of the use cases shown:
 
 ### UI-Mockups
 
-Based on the user-stories described above the following mockups were made. To make them we chose the pencil-and-paper approach as it seemed to have more advantages. First, it lacks the need of having to learn a new mockup-drawing environment (like Adobe XD), second, it allows for a more hands-on workflow of editing the mockups in a group and, lastly, we taught that the cleaner look provided by other mockup-drawing options didn't really be of an advantage as the general look and feel of the app is generaly determined by the environment where it is developed.  
+Based on the user-stories described above the following mockups were made. To make them we chose the pencil-and-paper approach as it seemed to have more advantages. First, it lacks the need of having to learn a new mockup-drawing environment (like Adobe XD), second, it allows for a more hands-on workflow of editing the mockups in a group and, lastly, we thought that the cleaner look provided by other mockup-drawing options wouldn't really be an advantage as the general look and feel of the app is generaly determined by the environment where it is developed.
 As the development moves forward the mockups will be tailored to specific user-stories and will be shown next to them, as such, this sections will be deleted.
 
 ![Mockup 1](docs/screen_1.jpg)
@@ -359,29 +363,40 @@ For the logical structure of the code, and in order to separate the different co
 ![Component Diagram](docs/ComponentDiagramImage.png)
 
 ### Physical architecture
-The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the json that contains the conferences info from the server. After it parses the json, it will store it's information in an SQLite database. The server also holds information about user sessions that it may supply to the user upon request. Tha app also communicates with beacons as discussed in previously (location-driver notifications). Currently we have microbits serving as Eddystone Beacons.
+The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the JSON that contains the conference's info from the server, when its launched for the first time. After it parses the JSON, it will store its information in an SQLite database. The app also communicates with beacons as discussed previously ("Session Search" feature). Currently we have microbits serving as Eddystone Beacons.
 
 ![Deployment Diagram](docs/Deployment_diagram.jpg)
 
-For this project the main discussion was about what environment/programming language to use to build the mobile app. The two choices were Flutter and React Native. Although React Native has been around for longer than Flutter and, as such, the support for the language is big, we chose Flutter because it was very easy to learn as it is very well documented, very powerfull(has built in widgets tailored to every need) and because it is advantegeous to learn a language that might be popular in the future.  
+For this project the main discussion was about what environment/programming language to use to build the mobile app. The two choices were Flutter and React Native. Although React Native has been around for longer than Flutter and, as such, the support for the language is big, we chose Flutter because it was very easy to learn as it is very well documented, very powerfull (has built in widgets tailored to every need) and because it is advantegeous to learn a language that might be popular in the future.  
+
 For the database technology we chose SQLite because of it's small computational needs and for it's simplicity (which is more than enough for the needed task).  
 Finally, for our bluetooth technology we chose to use the Eddystone protocol because it eliminates the need to pair with the beacon and , as such, enables a dynamic scan as the user moves arround the event-space.
 
 ### Prototype  
-In iteration #1, we spent a considerable amount of time learning about Flutter. Despite this,
-in order to start seeing results and verify our bet on the technologiws we chose, we quickly started implementing 
-the basis of the app to deal with our most important user stories. 
-Our first prototype consists essentially of the barebone of the agenda part of the app, and it allows
-the user to consult conference sessions by day and save the favourites in a personalized list.
-The implemented user stories were #1 and #2. These stories are closely related and were implemented by having
-a button in the main screen for each day of the conference, allowing the user to navigate to a screen where his
-favourite sessions for that given day are shown (user story #2). In this screen, by pressing the ADD button, 
-the attendee can consult information about all of the sessions for that day (user story #1), and add the ones that interest him the most
+
+In the **initial prototype iteration**, not much of the application was done, in terms of user stories. The main focus was arround what tecnologies and programming languages were going to be used to develop the app, and the final answer ended up being **Flutter**.
+
+It was also discussed, in a general and light way, what would be the **main logical architecture** of the application, and also what **external devices** were going to be used alongside the smartphone, which led to the inclusion of the **bluetooth beacons** in our project.
+
+In terms of the actual application, a very initial **prototype of the main page** was implemented, showcasing buttons to select each of the conference's days.
+
+### [inserir imagem do prototipo aqui]
+
+
+## Implementation  
+
+##### In this section, we opted to give a brief description about what was done in each of the following iterations.
+
+#### Iteration #1:
+
+In iteration #1, we spent a considerable amount of time learning about Flutter. Despite this, in order to start seeing results and verify our bet on the technologies we chose, we quickly started implementing the basis of the app to deal with our most important user stories. 
+
+Our **first real prototype of the app** consists essentially of the barebone of the agenda part of the app, and it allows the user to consult conference sessions by day and save the favourites in a personalized list.
+
+The **implemented user stories were #1 and #2**. These stories are closely related and were implemented by having a button in the main screen for each day of the conference, allowing the user to navigate to a screen where his favourite sessions for that given day are shown (user story #2). In this screen, by pressing the ADD button, the attendee can consult information about all of the sessions for that day (user story #1), and add the ones that interest him the most
 to his personal schedule.
 
-In iteration #2 the goal is to start developing the BLE(Bluetooth Low Energy) module and to continue the scheduling section. In the following iteration the architectural and design aspects of the product will be defined in detail.
-
-#### Images of prototype for iteration #1
+#### Images for iteration #1
 
 ![Iteration 1 Prototype - 1a](docs/i1_proto_1.jpg)
 ![Iteration 2 Prototype - 1b](docs/i1_proto_2.jpg)
@@ -391,26 +406,75 @@ In iteration #2 the goal is to start developing the BLE(Bluetooth Low Energy) mo
 ![Iteration 6 Prototype - 1f](docs/i1_proto_6.jpg)
 ![Iteration 7 Prototype - 1g](docs/i1_proto_7.jpg)
 
-## Implementation  
 
-Due to a big portion of the first iteration being spent learning Flutter, and although we have developed some features, the code that was implemented is not properly structured and is on a early development stage , as such, this section will be detailed in the following iteration. (This was written and updated in Iteration #1.)
+#### Iteration #2:
 
----
+In this iteration, the main focus revolved around 2 things: **the start of the implementation of the bluetooth functionality**, and **the organization and structuring of the code**, in order to follow the logical architectural patterns that were discussed in the beginning.
+
+### [inserir imagem da it #2 aqui]
+
+#### Iteration #3:
+
+On iteration #3, the main focus was the **implementation and usage of a local SQLite database**, in order to keep information about the conference and the user schedules for the different days. The **bluetooth functionality was fully implemented**, and **some visual aspects of the app were refactored**. Furthermore, **some additional information about the sessions, items and people also started to be shown to the user**.
+
+### [inserir imagem da it #3 aqui]
+
+#### Iteration #4:
+
+On iteration #4, some additional but also very important features were added, like the **generation of a notification roughly 10 mins before a session beggins**; the ability to create **custom sessions** and add them to a day's schedule; a **search bar** for the sessions, etc. **The display of information about the sessions, items and people was finalized**.
+
+### [inserir imagem da it #4 aqui]
+
+#### Iteration #5:
+
+### [completar]
+
 ## Test  
 
+Because the main focus of the testing aspect was mainly just to experiment and learn more about acceptance testing using Gherkin, we opted to choose a set of important functionalities and features and develop some tests to make sure they were working properly. The tests are all done automatically.
 
+Acceptance testing using Gherkin was used to verify if the **drawer of the main page** was working correctly, if the **page slider** in the main page was working correctly and if the **navigation between pages and the adding/removing of sessions in a schedule** was working correctly. For these tests, a special JSON file was used, with some custom sessions to better test the functionalities.
 
+### [acrescentar o que foi testado com unit testing]
 
----
+#### Drawer of the main page
+
+A test case was created for each of the different options that can be chosen in the drawer ("About", "Session Search", etc). In each test, the drawer is opened, the option is tapped and the title of the new screen is verified, to see if it corresponds to the expected output.
+
+### [acrescentar imagem dos testes a passar]
+
+#### Slider of the main page
+
+Some test cases were implemented in order to verify if the swiping in the main page was working correctly. There is one calendar icon in each section of the slider, each with a unique day identifier.
+
+It was tested the left swipe and the right swipe multiple times (all automated with Gherkin), verifying if the day identifier of the final section of the slider corresponded to the expected output.
+
+### [acrescentar imagem dos testes a passar]
+
+#### Navigation between pages and the adding/removing of sessions in a schedule
+
+It was tested, with the help of the custom JSON file, the adding and removing of session to a schedule, doing all the navigation from the main screen to the sessions screen, adding the session, verifying if the session is visible in the schedule screen, and returning to the main screen in order to check the number of activities for that day, displayed in the calender icon. (Again, all of this is done automatically using Gherkin).
+
+### [acrescentar imagem dos testes a passar]
+
+### [acrescentar parte do unit testing, quando for feita]
+
+### [links para as pastas de acceptance testing e unit testing]
+
 ## Configuration and change management
 
+As sugested, our team, throughout the development of the project, adopted the use of features and aspects from the Github Flow:
 
----
+* Use of **branches** for every new feature/change to the code, using easy-to-understand names
+* Use of **pull requests** when a certain branch was ready to be added to the master branch
+* Revision, discussion and testing of the code for those pull requests, in order to make sure that the pretended functionality was achieved
+* Controlled merge of branches to the master branch, so that everything that is implemented in the master branch is final and working correctly
+
 
 ## Project management
 
 The project management tool that we decided to adopt was Trello.
 
-The project management tool that we decided to adopt was Trello. Because it is simple to use, free and as a lot of usefull functionalities such as setting deadlines, adding attachements adding responsitbilities and notifications.
+We chose Trello because it is simple to use, free and as a lot of usefull functionalities such as setting deadlines, adding attachements adding responsibilities and notifications.
 
 ![Trello](docs/project_management_trello.png)
