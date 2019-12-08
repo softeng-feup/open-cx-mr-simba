@@ -365,7 +365,7 @@ For the logical structure of the code, and in order to separate the different co
 ### Physical architecture
 The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the JSON that contains the conference's info from the server, when its launched for the first time. After it parses the JSON, it will store its information in an SQLite database. The app also communicates with beacons as discussed previously ("Session Search" feature). Currently we have microbits serving as Eddystone Beacons.
 
-![Deployment Diagram](docs/Deployment_diagram.jpg)
+![Deployment Diagram](docs/Deployment_Diagram2.jpg)
 
 For this project the main discussion was about what environment/programming language to use to build the mobile app. The two choices were Flutter and React Native. Although React Native has been around for longer than Flutter and, as such, the support for the language is big, we chose Flutter because it was very easy to learn as it is very well documented, very powerfull (has built in widgets tailored to every need) and because it is advantegeous to learn a language that might be popular in the future.  
 
