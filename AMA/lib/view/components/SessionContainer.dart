@@ -111,7 +111,7 @@ class SessionContainer extends StatelessWidget {
 
     if (this.activity.description == "") {
       text = Text(
-        '- ' + "No description available",
+        "No description available",
         maxLines: 4,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.justify,
@@ -119,7 +119,7 @@ class SessionContainer extends StatelessWidget {
       );
     } else
       text = Text(
-        '- ' + this.activity.description,
+        this.activity.description,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.justify,
@@ -209,12 +209,22 @@ class SessionContainer extends StatelessWidget {
   Widget drawLocationCustom() {
     Text locationText;
 
-    locationText = Text(
-      this.activity.location,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      textAlign: TextAlign.justify,
-    );
+    if (this.activity.location != "") {
+      locationText = Text(
+        this.activity.location,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.justify,
+      );
+    } else {
+      locationText = Text(
+        "No location available",
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.justify,
+        style: TextStyle(color: Colors.black38),
+      );
+    }
 
     return Row(
       children: <Widget>[

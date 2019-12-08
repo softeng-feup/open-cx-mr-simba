@@ -49,7 +49,7 @@ class DatabaseMapper {
 
 
   static Future<List<String>> getLocationsByOrder(Database db) async {
-    var results = await db.rawQuery('SELECT DISTINCT location FROM Session ORDER BY location COLLATE NOCASE ASC');
+    var results = await db.rawQuery('SELECT DISTINCT location FROM Session WHERE isCustom = 0 ORDER BY location COLLATE NOCASE ASC');
     List<String> locations = [];
     for(int i = 0; i < results.length; i++) {
       locations.add(results.elementAt(i)['location']);

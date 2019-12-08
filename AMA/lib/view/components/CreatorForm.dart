@@ -105,7 +105,7 @@ class CreatorFormState extends State<CreatorForm> {
 
             Controller.instance().addSession(newSession);
             Controller.instance().addSessionToSchedule(newSession);
-
+            Navigator.of(context).pop();
           },
           tooltip: 'Scan',
           backgroundColor: bgColor,
