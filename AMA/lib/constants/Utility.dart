@@ -7,7 +7,7 @@ const String aboutText = "Hello, and welcome to AMA, an agenda mobile app for th
 
 const String noSessionsTitle = "This schedule has no sessions!";
 
-const String noSessionsText = "Tap the ADD button in order to discover all the sessions available to you on this day! Swipe left on a session and click the green button to add it to the schedule, or click on the session to learn more about it.";
+const String noSessionsText = "Tap the ADD button in order to discover all the sessions available to you on this day! \n\nSwipe left on a session and click the green button to add it to the schedule, or click on the session to learn more about it.\n\nAlternatively, you can go to the \"Activity Creator\" menu in order to create your own custom sessions!";
 
 const int scanTimeBLE = 5;
 const int numMinutesForSessionBLE = 30;

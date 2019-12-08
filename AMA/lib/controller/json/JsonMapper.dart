@@ -42,7 +42,6 @@ class JsonMapper {
 
   static Session session(Map<String, dynamic> json) {
 
-    print(json['Day'] + ' ' + json['Time'].substring(0, 5) + ':00');
     return Session(
       title: json['Title'] as String,
       key: json['Key'] as String,
