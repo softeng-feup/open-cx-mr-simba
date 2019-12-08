@@ -16,26 +16,26 @@ class MainScreenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        key: Key("Calendar page"),
-        onTap: () {
-          String routeOnTap = "/day" + dayNo.toString() + "Screen";
-          Navigator.pushNamed(context, routeOnTap);
-        },
-        child: Column(
-          children: <Widget>[
-            Align(
-                alignment: Alignment.topCenter,
+    return Column(
+      children: <Widget>[
+        Align(
+            alignment: Alignment.topCenter,
+            child: GestureDetector(
+                key: Key("Calendar page"),
+                onTap: () {
+                  String routeOnTap = "/day" + dayNo.toString() + "Screen";
+                  Navigator.pushNamed(context, routeOnTap);
+                },
                 child: new SmallCalendarPage(
                   date: date,
                   dayNo: dayNo,
-                )),
-            FeaturedSpeakersPage(
-              date: date,
-              dayNo: dayNo,
-            )
-          ],
-        ));
+                ))),
+        FeaturedSpeakersPage(
+          date: date,
+          dayNo: dayNo,
+        )
+      ],
+    );
   }
 }
 
@@ -56,7 +56,7 @@ class FeaturedSpeakersPage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15.0),
       child: Container(
         height: MediaQuery.of(context).size.height * 32 / 100,
-        width: MediaQuery.of(context).size.width *  65 / 100,
+        width: MediaQuery.of(context).size.width * 65 / 100,
         decoration: BoxDecoration(
           borderRadius: new BorderRadius.circular(20),
           color: AppColors.containerColor,
@@ -95,11 +95,6 @@ class FeaturedSpeakersPage extends StatelessWidget {
 
             if (this.people == null) this.people = dbSpeakers;
 
-            print(this.people.elementAt(0).name);
-            print(this.people.elementAt(1).name);
-            print(this.people.elementAt(2).name);
-            print(this.people.elementAt(3).name);
-
             Person speaker1 = this.people.elementAt(0);
             Person speaker2 = this.people.elementAt(1);
             Person speaker3 = this.people.elementAt(2);
@@ -112,8 +107,8 @@ class FeaturedSpeakersPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Flexible(flex: 1, child:printAvatar(speaker1) ),
-                    Flexible(flex: 1, child:printAvatar(speaker2) ),
+                    Flexible(flex: 1, child: printAvatar(context,speaker1)),
+                    Flexible(flex: 1, child: printAvatar(context,speaker2)),
                   ],
                 ),
                 Padding(
@@ -121,35 +116,43 @@ class FeaturedSpeakersPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Flexible(flex: 1, child:printAvatar(speaker3) ),
-                      Flexible(flex: 1, child:printAvatar(speaker4) ),
+                      Flexible(flex: 1, child: printAvatar(context,speaker3)),
+                      Flexible(flex: 1, child: printAvatar(context,speaker4)),
                     ],
                   ),
                 ),
               ],
             );
-          }
-          else{
-
+          } else {
             return Container();
           }
         });
   }
 
-  printAvatar(Person person) {
-
-
-
+  printAvatar(BuildContext context, Person person) {
     if (person.imageURL != null)
       return Column(
         children: <Widget>[
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: NetworkImage(person.imageURL),
+          GestureDetector(
+            key: Key("Calendar page"),
+            onTap: () {
+              String routeOnTap = "/profileScreen";
+              Navigator.pushNamed(context, routeOnTap,arguments: person);
+            },
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage: NetworkImage(person.imageURL),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(person.name,style: TextStyle(color: Colors.black87),maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,),
+            child: Text(
+              person.name,
+              style: TextStyle(color: Colors.black87),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              softWrap: false,
+            ),
           ),
         ],
       );
@@ -162,7 +165,10 @@ class FeaturedSpeakersPage extends StatelessWidget {
                 getInitials(person.name),
                 style: TextStyle(fontSize: 10),
               )),
-          Text(person.name,style: TextStyle(color: Colors.black87),),
+          Text(
+            person.name,
+            style: TextStyle(color: Colors.black87),
+          ),
         ],
       );
     }
