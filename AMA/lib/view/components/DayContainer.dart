@@ -16,25 +16,27 @@ class MainScreenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Align(
-            alignment: Alignment.topCenter,
-            child: GestureDetector(
-                key: Key("Calendar page"),
-                onTap: () {
-                  String routeOnTap = "/day" + dayNo.toString() + "Screen";
-                  Navigator.pushNamed(context, routeOnTap);
-                },
-                child: new SmallCalendarPage(
-                  date: date,
-                  dayNo: dayNo,
-                ))),
-        FeaturedSpeakersPage(
-          date: date,
-          dayNo: dayNo,
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Align(
+              alignment: Alignment.topCenter,
+              child: GestureDetector(
+                  key: Key("Calendar page"),
+                  onTap: () {
+                    String routeOnTap = "/day" + dayNo.toString() + "Screen";
+                    Navigator.pushNamed(context, routeOnTap);
+                  },
+                  child: new SmallCalendarPage(
+                    date: date,
+                    dayNo: dayNo,
+                  ))),
+              FeaturedSpeakersPage(
+            date: date,
+            dayNo: dayNo,
+          )
+        ],
+      ),
     );
   }
 }
@@ -55,32 +57,30 @@ class FeaturedSpeakersPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Container(
-        height: MediaQuery.of(context).size.height * 32 / 100,
-        width: MediaQuery.of(context).size.width * 65 / 100,
         decoration: BoxDecoration(
           borderRadius: new BorderRadius.circular(20),
           color: AppColors.containerColor,
           border: Border.all(width: 2),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: GenericTitle(
-                  title: "Featured Speakers:",
-                  backgroundColor: AppColors.containerColor,
-                  padding: EdgeInsets.all(6.0),
-                  margin: EdgeInsets.only(top: 10.0),
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18)),
-            ),
-            printSpeakers(),
-          ],
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: GenericTitle(
+                    title: "Featured Speakers:",
+                    backgroundColor: AppColors.containerColor,
+                    padding: EdgeInsets.all(6.0),
+                    margin: EdgeInsets.only(top: 10.0),
+                    style: TextStyle(
+                        color: AppColors.mainColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18)),
+              ),
+              printSpeakers(),
+            ],
+          ),
         ),
-      ),
     );
   }
 
@@ -100,28 +100,32 @@ class FeaturedSpeakersPage extends StatelessWidget {
             Person speaker3 = this.people.elementAt(2);
             Person speaker4 = this.people.elementAt(3);
 
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Flexible(flex: 1, child: printAvatar(context,speaker1)),
-                    Flexible(flex: 1, child: printAvatar(context,speaker2)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Flexible(flex: 1, child: printAvatar(context,speaker3)),
-                      Flexible(flex: 1, child: printAvatar(context,speaker4)),
+                      Flexible(flex: 1, child: printAvatar(context,speaker1)),
+                      Padding(padding: const EdgeInsets.only(bottom: 8.0)),
+                      Flexible(flex: 1, child: printAvatar(context,speaker2)),
                     ],
                   ),
-                ),
-              ],
+                  Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Flexible(flex: 1, child: printAvatar(context,speaker3)),
+                        Padding(padding: const EdgeInsets.only(bottom: 8.0)),
+                        Flexible(flex: 1, child: printAvatar(context,speaker4)),
+                      ],
+                    ),
+                ],
+              ),
             );
           } else {
             return Container();
