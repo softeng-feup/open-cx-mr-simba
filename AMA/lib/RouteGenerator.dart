@@ -1,11 +1,13 @@
 import 'package:ama/model/ListSessionsInfo.dart';
 import 'package:ama/view/screens/AboutScreens.dart';
 import 'package:ama/view/screens/BluetoothSearchScreen.dart';
+import 'package:ama/view/screens/CustomSessionScreen.dart';
 import 'package:ama/view/screens/DayScheduleScreen.dart';
 import 'package:ama/view/screens/ListSessionsScreen.dart';
 import 'package:ama/view/screens/DaysScreen.dart';
 import 'package:ama/view/screens/InitialLoadingScreen.dart';
 import 'package:ama/view/screens/ItemsScreen.dart';
+import 'package:ama/view/screens/ActivityCreator.dart';
 
 import 'package:ama/view/screens/LocationsScreen.dart';
 
@@ -62,7 +64,13 @@ class RouteGenerator {
 
       case '/sessionScreen':
         if(args is Session) {
-          return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
+
+          if(args.isCustom == 1)
+            return MaterialPageRoute(builder: (_) => CustomSessionScreen(session: args));
+          else
+            return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
+
+          
         }
         return _errorRoute();
 
@@ -97,12 +105,16 @@ class RouteGenerator {
         if(args is List<String>) {
           return MaterialPageRoute(builder: (_) => LocationsScreen(locations: args));
         }
+
         return _errorRoute();
       case '/profileScreen' :
         if(args is Person) {
           return MaterialPageRoute(builder: (_) => PersonScreen(person: args));
         }
         return _errorRoute();
+
+      case '/activityCreator' :
+        return MaterialPageRoute(builder: (_) => ActivityCreatorScreen() );
 
       default:
         return _errorRoute();

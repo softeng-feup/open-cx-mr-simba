@@ -40,7 +40,8 @@ CREATE TABLE Session (
     startTime        INTEGER,
     timeString       TEXT,
     location         TEXT,
-    description      TEXT
+    description      TEXT,
+    isCustom         INTEGER
 );
 
 
@@ -71,7 +72,6 @@ CREATE TABLE SessionItem (
     itemKey          TEXT REFERENCES Item(itemKey),
     PRIMARY KEY(sessionKey, itemKey)
 );
-
 
 
 -- Table: SessionChair

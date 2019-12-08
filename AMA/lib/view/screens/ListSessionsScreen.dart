@@ -72,6 +72,10 @@ class SearchSessionsState extends State<SearchSessions> {
                       left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
                   itemCount: sessionsInfo.length,
                   itemBuilder: (context, idx) {
+
+                    if(sessionsInfo.elementAt(idx).isCustom == 1)
+                      return Container();
+
                     if (filter == null ||
                         filter == "" ||
                         sessionsInfo.elementAt(idx).title.toLowerCase().contains(filter.toLowerCase()))

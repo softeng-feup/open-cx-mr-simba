@@ -10,6 +10,7 @@ class Session extends Comparable<dynamic> {
   String timeString;
   String location;
   String description;
+  int isCustom;
 
   Session({this.key,
            this.title,
@@ -21,7 +22,8 @@ class Session extends Comparable<dynamic> {
            this.startTime,
            this.timeString,
            this.location,
-           this.description
+           this.description,
+           this.isCustom
 
            });
 
@@ -55,6 +57,7 @@ class Session extends Comparable<dynamic> {
     this.timeString = mainMap['timeString'];
     this.location = mainMap['location'];
     this.description = mainMap['description'];
+    this.isCustom = mainMap['isCustom'];
     this.chairs = [];
     this.items = [];
     for(int j = 0; j < sessionItemMap.length; j++) {
@@ -76,7 +79,9 @@ class Session extends Comparable<dynamic> {
       'startTime': this.startTime.millisecondsSinceEpoch,
       'timeString': this.timeString,
       'location': this.location,
-      'description': this.description
+      'description': this.description,
+      'isCustom': this.isCustom
+
     };
     return sessionMap;
   }

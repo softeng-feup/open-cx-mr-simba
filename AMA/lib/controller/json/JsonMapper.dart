@@ -1,3 +1,4 @@
+import 'package:ama/constants/Dates.dart';
 import 'package:ama/model/Item.dart';
 import 'package:ama/model/Person.dart';
 import 'package:ama/model/Session.dart';
@@ -40,6 +41,8 @@ class JsonMapper {
   }
 
   static Session session(Map<String, dynamic> json) {
+
+    print(json['Day'] + ' ' + json['Time'].substring(0, 5) + ':00');
     return Session(
       title: json['Title'] as String,
       key: json['Key'] as String,
@@ -51,7 +54,9 @@ class JsonMapper {
       location: json['Location'] as String,
       startTime: DateTime.parse(json['Day'] + ' ' + json['Time'].substring(0, 5) + ':00'),
       timeString: json['Time'] as String,
-      day: json['Day'] as String
+      day: json['Day'] as String,
+      isCustom: 0,
+
     );
   }
 

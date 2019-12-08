@@ -10,15 +10,15 @@ class DaysScreen extends StatefulWidget {
   }
 }
 
-
 class DaysScreenState extends State<DaysScreen> {
-
   @override
   void initState() {
     super.initState();
     Controller.instance().getAppLaunchDetails().then((details) {
-      if(details.didNotificationLaunchApp && (details.payload != null)) {
-        Controller.instance().getSessionWithKey(details.payload).then((session) {
+      if (details.didNotificationLaunchApp && (details.payload != null)) {
+        Controller.instance()
+            .getSessionWithKey(details.payload)
+            .then((session) {
           Navigator.pushNamed(context, '/sessionScreen', arguments: session);
         });
       }
@@ -27,7 +27,6 @@ class DaysScreenState extends State<DaysScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -52,12 +51,13 @@ class DaysScreenState extends State<DaysScreen> {
               this.drawAboutTile(context),
               this.drawSessionSearch(context),
               this.drawLocations(context),
+              this.drawActivityCreator(context),
             ],
           ),
         ),
-        body: Container(color: AppColors.backgroundColor,child: MainScreenPager()));
+        body: Container(
+            color: AppColors.backgroundColor, child: MainScreenPager()));
   }
-
 
   Widget drawAboutTile(BuildContext context) {
     return ListTile(
@@ -69,7 +69,6 @@ class DaysScreenState extends State<DaysScreen> {
         leading: Icon(Icons.info));
   }
 
-
   Widget drawSessionSearch(BuildContext context) {
     return ListTile(
         key: Key("Session search tile"),
@@ -80,15 +79,26 @@ class DaysScreenState extends State<DaysScreen> {
         leading: Icon(Icons.bluetooth));
   }
 
-
   Widget drawLocations(BuildContext context) {
     return ListTile(
         key: Key("Locations tile"),
         title: Text('Locations', style: TextStyle(color: Colors.black)),
         onTap: () async {
-          List<String> locations = await Controller.instance().getLocationsByOrder();
-          Navigator.pushNamed(context, '/locationsScreen', arguments: locations);
+          List<String> locations =
+              await Controller.instance().getLocationsByOrder();
+          Navigator.pushNamed(context, '/locationsScreen',
+              arguments: locations);
         },
         leading: Icon(Icons.location_on));
+  }
+
+  Widget drawActivityCreator(BuildContext context) {
+    return ListTile(
+        key: Key("Activity creator tile"),
+        title: Text('Activity Creator', style: TextStyle(color: Colors.black)),
+        onTap: () async {
+          Navigator.pushNamed(context, '/activityCreator');
+        },
+        leading: Icon(Icons.local_activity));
   }
 }

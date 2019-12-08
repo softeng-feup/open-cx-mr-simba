@@ -91,12 +91,23 @@ class DatabaseMapper {
     return results[0]['scheduleDay'];
   }
 
+  static Future<int> getLastUsedCustomSessionIDNum(Database db) async {
+    var results = await db.rawQuery('SELECT count(*) as cnt FROM Session WHERE sessionKey LIKE "__AMA_Custom_Session_%"');
+
+    return results[0]['cnt'];
+  }
+
+  static Future<int> addSession(Database db,Session session) async{
+    await db.insert('Session', session.toMapSession());
+  }
+
   static Future removeSessionFromSchedule(Database db, int day, String sessionKey) async {
     await db.rawDelete('DELETE FROM ScheduleSession WHERE sessionKey = ? AND scheduleDay = ?', [sessionKey, day]);
   }
 
 
   static Future addSessionToSchedule(Database db, int day, String sessionKey) async {
+
     await db.rawInsert('INSERT INTO ScheduleSession(sessionKey, scheduleDay) VALUES (?, ?)', [sessionKey, day]);
   }
 
