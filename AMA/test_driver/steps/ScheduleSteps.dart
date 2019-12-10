@@ -72,14 +72,15 @@ class CheckNumDayActivitiesStepThen extends Then1WithWorld<String, FlutterWorld>
 
 
 
-class AddSessionStep extends WhenWithWorld<FlutterWorld> {
+class AddSessionStep extends When1WithWorld<int, FlutterWorld> {
   AddSessionStep()
     : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 40));
 
   @override
-  Future<void> executeStep() async {
+  Future<void> executeStep(int dayNumber) async {
+    String calendarPage = "Calendar page - " + dayNumber.toString();
 
-    final calendarLocator = find.byValueKey("Calendar page");
+    final calendarLocator = find.byValueKey(calendarPage);
     await world.driver.tap(calendarLocator);
     final addButtonLocator = find.byValueKey("Adding button");
     await world.driver.tap(addButtonLocator);
@@ -91,7 +92,7 @@ class AddSessionStep extends WhenWithWorld<FlutterWorld> {
   }
 
   @override
-  RegExp get pattern => RegExp(r"I add a certain session in that day's schedule");
+  RegExp get pattern => RegExp(r"I add a certain session in the day {int} schedule");
 }
 
 

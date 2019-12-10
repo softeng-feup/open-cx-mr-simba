@@ -36,6 +36,7 @@ class PersonScreen extends StatelessWidget {
           Center(
               child: Text(
             person.name + "\n" + person.affiliation,
+            key: Key("Person Identification"),
             style: TextStyle(
                 color: AppColors.mainColor,
                 fontWeight: FontWeight.w900,

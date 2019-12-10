@@ -4,7 +4,7 @@ import 'package:gherkin/gherkin.dart';
 
 class PagerStepWhen extends When2WithWorld<String, int, FlutterWorld> {
   PagerStepWhen()
-    : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 5));
+    : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
 
   @override
   Future<void> executeStep(String direction, int numberOfSwipes) async {
@@ -31,7 +31,7 @@ class PagerStepWhen extends When2WithWorld<String, int, FlutterWorld> {
 
 class PagerStepAnd extends And2WithWorld<String, int, FlutterWorld> {
   PagerStepAnd()
-      : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 5));
+      : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
 
   @override
   Future<void> executeStep(String direction, int numberOfSwipes) async {
