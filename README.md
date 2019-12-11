@@ -433,7 +433,7 @@ On iteration #4, some additional but also very important features were added, li
 
 Because the main focus of the testing aspect was mainly just to experiment and learn more about acceptance testing using Gherkin, we opted to choose a set of important functionalities and features and develop some tests to make sure they were working properly. The tests are all done automatically.
 
-Acceptance testing using Gherkin was used to verify if the **drawer of the main page** was working correctly, if the **page slider** in the main page was working correctly and if the **navigation between pages and the adding/removing of sessions in a schedule** was working correctly. For these tests, a special JSON file was used, with some custom sessions to better test the functionalities.
+Acceptance testing using Gherkin was used to verify if the **drawer of the main page** was working correctly, if the **page slider** in the main page was working correctly, if the **navigation between pages and the adding/removing of sessions in a schedule** was working correctly and if the **display and selecting of the featured speakers** for a certain day was working correctly. For these tests, a special JSON file was used, with some custom sessions to better test the functionalities.
 
 ### [acrescentar o que foi testado com unit testing]
 
@@ -456,6 +456,13 @@ It was tested the left swipe and the right swipe multiple times (all automated w
 It was tested, with the help of the custom JSON file, the adding and removing of session to a schedule, doing all the navigation from the main screen to the sessions screen, adding the session, verifying if the session is visible in the schedule screen, and returning to the main screen in order to check the number of activities for that day, displayed in the calender icon. (Again, all of this is done automatically using Gherkin).
 
 ### [acrescentar imagem dos testes a passar]
+
+#### Display and selection of a featured speaker for a certain day
+
+We also implemented a test case to verify if the display of the featured speakers was working correctly, tapping the speaker's profile icon in the main menu and checking if the app had navigated to his profile page.
+
+### [acrescentar imagem dos testes a passar]
+
 
 ### [acrescentar parte do unit testing, quando for feita]
 
