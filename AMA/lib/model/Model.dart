@@ -35,4 +35,8 @@ class Model {
   String getJsonURL() {
     return _jsonURL;
   }
+
+  void resetAllSchedules() {
+    _schedules = [];
+  }
 }

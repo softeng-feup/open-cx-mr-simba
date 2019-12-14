@@ -69,4 +69,8 @@ class NotifsController {
       return await this._flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
     }
 
+    Future removeAllNotifs() async {
+      await _flutterLocalNotificationsPlugin.cancelAll();
+    }
+
 }

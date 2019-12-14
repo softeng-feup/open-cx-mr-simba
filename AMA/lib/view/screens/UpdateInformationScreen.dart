@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:ama/controller/Controller.dart';
 import 'package:ama/view/components/GenericContainer.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,7 @@ class UpdateInformationScreenState extends State<UpdateInformationScreen> {
   @override
   void initState() {
     super.initState();
-    Controller.instance().initDatabase().then((success) {
+    Controller.instance().updateInformation().then((success) {
         if(success) {
           Navigator.of(context).pushReplacementNamed('/homeScreen');
         }
@@ -51,11 +49,11 @@ class UpdateInformationScreenState extends State<UpdateInformationScreen> {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text(Utility.noInternetTitle),
-                content: Text(Utility.noInternetText),
+                content: Text(Utility.noInternetTextUpdate),
                 actions: <Widget>[
                   FlatButton(
                     child: Text("OK"),
-                    onPressed: () => exit(0),
+                    onPressed: () => Navigator.of(context).pop(),
                   )
                 ],
               );

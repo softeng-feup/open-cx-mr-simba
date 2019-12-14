@@ -100,5 +100,42 @@ class DatabaseController {
     }
   }
 
+
+  Future dropForeignKeyConstraint() async {
+    await _database.execute("PRAGMA foreign_keys = off");
+  }
+
+
+  Future assertForeignKeyConstraint() async {
+    await _database.execute("PRAGMA foreign_keys = on");
+  }
+
+
+  Future deleteAllPeople() async {
+    await _database.rawQuery('DELETE FROM Person');
+  }
+
+  Future deleteAllItems() async {
+    await _database.rawQuery('DELETE FROM Item');
+    await _database.rawQuery('DELETE FROM ItemAuthor');
+  }
+
+  Future deleteAllConferenceSessions() async {
+    await _database.rawQuery('DELETE FROM SessionChair WHERE sessionKey in (SELECT sessionKey FROM Session WHERE isCustom = 0)');
+    await _database.rawQuery('DELETE FROM SessionItem WHERE sessionKey in (SELECT sessionKey FROM Session WHERE isCustom = 0)');
+    await _database.rawQuery('DELETE FROM Session WHERE isCustom = 0');
+  }
+
+  Future<List<String>> deleteAllSchedules() async {
+    var results = await _database.rawQuery('SELECT * FROM ScheduleSession WHERE sessionKey in (SELECT sessionKey FROM Session WHERE isCustom = 0)');
+    List<String> allSessionKeys = [];
+    for(int i = 0; i < results.length; i++) {
+      allSessionKeys.add(results.elementAt(i)['sessionKey']);
+    }
+
+    await _database.rawQuery('DELETE FROM ScheduleSession WHERE sessionKey in (SELECT sessionKey FROM Session WHERE isCustom = 0)');
+    return allSessionKeys;
+  }
+
 }
 
