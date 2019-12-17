@@ -17,7 +17,7 @@ const int numMinutesForNotif = 10;
 
 String sessionSearchAboutText = "Welcome to our Session Search feature, were you can discover all the exciting sessions around you, with just the tap of a button! Using Bluetooth Low Energy (BLE) beacons, we are able to tell you if there are any activities near you, that will start in under " + numMinutesForSessionBLE.toString() + " mins. Tap the \"scan\" button whenever you're ready!";
 
-const String jsonURL = 'assets/confero.json';
+const String jsonURL = 'https://2019.programming-conference.org/dataexport/810b23a0-737b-4f74-9170-75d515274859/confero.json';
 
 const urlPattern = r"(https?|http)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
 
