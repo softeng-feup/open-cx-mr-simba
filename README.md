@@ -58,7 +58,7 @@ Thank you!
 
 ## Product Vision
 
-"A mobile app connected with the event-space to not only let the atendees organize themselves better and allow them to better manage their time, but to also show them everything that the conference has to offer, so they can get the best out of it."
+"A mobile app connected with the event-space to not only let the attendees organize themselves better, but to also show them everything that the conference has to offer, so they can get the best out of it."
 
 ## Elevator Pitch
 
