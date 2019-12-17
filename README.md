@@ -399,31 +399,52 @@ to his personal schedule.
 #### Images for iteration #1
 
 ![Iteration 1 Prototype - 1a](docs/i1_proto_1.jpg)
-![Iteration 2 Prototype - 1b](docs/i1_proto_2.jpg)
-![Iteration 3 Prototype - 1c](docs/i1_proto_3.jpg)
-![Iteration 4 Prototype - 1d](docs/i1_proto_4.jpg)
-![Iteration 5 Prototype - 1e](docs/i1_proto_5.jpg)
-![Iteration 6 Prototype - 1f](docs/i1_proto_6.jpg)
-![Iteration 7 Prototype - 1g](docs/i1_proto_7.jpg)
+![Iteration 1 Prototype - 1b](docs/i1_proto_2.jpg)
+![Iteration 1 Prototype - 1c](docs/i1_proto_3.jpg)
+![Iteration 1 Prototype - 1d](docs/i1_proto_4.jpg)
+![Iteration 1 Prototype - 1e](docs/i1_proto_5.jpg)
+![Iteration 1 Prototype - 1f](docs/i1_proto_6.jpg)
+![Iteration 1 Prototype - 1g](docs/i1_proto_7.jpg)
 
 
 #### Iteration #2:
 
 In this iteration, the main focus revolved around 2 things: **the start of the implementation of the bluetooth functionality**, and **the organization and structuring of the code**, in order to follow the logical architectural patterns that were discussed in the beginning.
 
-### [inserir imagem da it #2 aqui]
+#### Images for iteration #2
+
+![Iteration 2 Prototype - 1a](docs/i2/i2_proto_1.jpg)
+![Iteration 2 Prototype - 1b](docs/i2/i2_proto_2.jpg)
+![Iteration 2 Prototype - 1c](docs/i2/i2_proto_3.jpg)
+![Iteration 2 Prototype - 1d](docs/i2/i2_proto_4.jpg)
+![Iteration 2 Prototype - 1e](docs/i2/i2_proto_5.jpg)
+
 
 #### Iteration #3:
 
 On iteration #3, the main focus was the **implementation and usage of a local SQLite database**, in order to keep information about the conference and the user schedules for the different days. The **bluetooth functionality was fully implemented**, and **some visual aspects of the app were refactored**. Furthermore, **some additional information about the sessions, items and people also started to be shown to the user**.
 
-### [inserir imagem da it #3 aqui]
+![Iteration 3 Prototype - 1a](docs/i3/i3_proto_1.jpg)
+![Iteration 3 Prototype - 1b](docs/i3/i3_proto_2.jpg)
+![Iteration 3 Prototype - 1c](docs/i3/i3_proto_3.jpg)
+![Iteration 3 Prototype - 1d](docs/i3/i3_proto_4.jpg)
+![Iteration 3 Prototype - 1e](docs/i3/i3_proto_5.jpg)
+![Iteration 3 Prototype - 1f](docs/i3/i3_proto_6.jpg)
+![Iteration 3 Prototype - 1g](docs/i3/i3_proto_7.jpg)
+![Iteration 3 Prototype - 1h](docs/i3/i3_proto_8.jpg)
 
 #### Iteration #4:
 
 On iteration #4, some additional but also very important features were added, like the **generation of a notification roughly 10 mins before a session beggins**; the ability to create **custom sessions** and add them to a day's schedule; a **search bar** for the sessions, etc. **The display of information about the sessions, items and people was finalized**.
 
-### [inserir imagem da it #4 aqui]
+![Iteration 4 Prototype - 1a](docs/i4/i4_proto_1.jpg)
+![Iteration 4 Prototype - 1b](docs/i4/i4_proto_2.jpg)
+![Iteration 4 Prototype - 1c](docs/i4/i4_proto_3.jpg)
+![Iteration 4 Prototype - 1d](docs/i4/i4_proto_4.jpg)
+![Iteration 4 Prototype - 1e](docs/i4/i4_proto_5.jpg)
+![Iteration 4 Prototype - 1f](docs/i4/i4_proto_7.jpg)
+![Iteration 4 Prototype - 1g](docs/i4/i4_proto_8.jpg)
+![Iteration 4 Prototype - 1h](docs/i4/i4_proto_8.jpg)
 
 #### Iteration #5:
 
