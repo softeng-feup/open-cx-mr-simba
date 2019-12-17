@@ -15,3 +15,8 @@ Feature: Drawer
     Given I open the drawer
     When I tap the "Locations tile" widget
     Then I expect the "Screen title" to be "All conference locations"
+
+  Scenario: Selecting the fourth drawer option
+    Given I open the drawer
+    When I tap the "Activity creator tile" widget
+    Then I expect the "Screen title" to be "Activity Creator"

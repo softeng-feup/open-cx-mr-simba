@@ -5,6 +5,7 @@ import 'package:glob/glob.dart';
 
 import 'steps/PagerSteps.dart';
 import 'steps/ScheduleSteps.dart';
+import 'steps/FeaturedSpeakersSteps.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
@@ -15,7 +16,7 @@ Future<void> main() {
       JsonReporter(path: './report.json')
     ] // you can include the "StdoutReporter()" without the message level parameter for verbose log information
     ..hooks = []
-    ..stepDefinitions = [PagerStepWhen(), PagerStepAnd(), CheckNumDayActivitiesStepGiven(), CheckNumDayActivitiesStepAnd(), CheckNumDayActivitiesStepThen(), AddSessionStep(), VerifySessionExistsStep(), RemoveSessionStep()]
+    ..stepDefinitions = [PagerStepWhen(), PagerStepAnd(), PagerStepGiven(), CheckNumDayActivitiesStepGiven(), CheckNumDayActivitiesStepAnd(), CheckNumDayActivitiesStepThen(), AddSessionStep(), VerifySessionExistsStep(), RemoveSessionStep(), FeaturedSpeakerClick(), FeaturedSpeakerCheckName()]
     ..customStepParameterDefinitions = []
     ..restartAppBetweenScenarios = true
     ..targetAppPath = "test_driver/Gherkin.dart"

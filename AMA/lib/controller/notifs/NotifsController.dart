@@ -21,7 +21,7 @@ class NotifsController {
     }
 
 
-    init(GlobalKey<NavigatorState> key) {
+    void init(GlobalKey<NavigatorState> key) {
       this._navKey = key;
       var initializationSettingsAndroid = new AndroidInitializationSettings('amalogo');
       var initializationSettingsIOS = IOSInitializationSettings(onDidReceiveLocalNotification: _onDidReceiveLocalNotification);

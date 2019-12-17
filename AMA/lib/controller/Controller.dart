@@ -148,6 +148,8 @@ class Controller {
 
   void updateURLPath(String url) {
     _model.setJsonURL(url);
+
+    print(_model.getJsonURL());
   }
 
   Future extractJson() async {

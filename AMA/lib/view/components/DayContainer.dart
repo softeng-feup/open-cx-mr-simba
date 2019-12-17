@@ -22,7 +22,7 @@ class MainScreenPage extends StatelessWidget {
           Align(
               alignment: Alignment.topCenter,
               child: GestureDetector(
-                  key: Key("Calendar page"),
+                  key: Key("Calendar page - " + dayNo.toString()),
                   onTap: () {
                     String routeOnTap = "/day" + dayNo.toString() + "Screen";
                     Navigator.pushNamed(context, routeOnTap);
@@ -95,10 +95,10 @@ class FeaturedSpeakersPage extends StatelessWidget {
 
             if (this.people == null) this.people = dbSpeakers;
 
-            Person speaker1 = this.people.elementAt(0);
-            Person speaker2 = this.people.elementAt(1);
-            Person speaker3 = this.people.elementAt(2);
-            Person speaker4 = this.people.elementAt(3);
+            Person speaker1 = this.people.length > 0 ? this.people.elementAt(0) : null;
+            Person speaker2 = this.people.length > 1 ? this.people.elementAt(1) : null;
+            Person speaker3 = this.people.length > 2 ? this.people.elementAt(2) : null;
+            Person speaker4 = this.people.length > 3 ? this.people.elementAt(3) : null;
 
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
@@ -110,18 +110,22 @@ class FeaturedSpeakersPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Flexible(flex: 1, child: printAvatar(context,speaker1)),
+                      if(speaker1 != null)
+                        Flexible(flex: 1, child: printAvatar(context,speaker1, 1)),
                       Padding(padding: const EdgeInsets.only(bottom: 8.0)),
-                      Flexible(flex: 1, child: printAvatar(context,speaker2)),
+                      if(speaker2 != null)
+                        Flexible(flex: 1, child: printAvatar(context,speaker2, 2)),
                     ],
                   ),
                   Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Flexible(flex: 1, child: printAvatar(context,speaker3)),
+                        if(speaker3 != null)
+                          Flexible(flex: 1, child: printAvatar(context,speaker3, 3)),
                         Padding(padding: const EdgeInsets.only(bottom: 8.0)),
-                        Flexible(flex: 1, child: printAvatar(context,speaker4)),
+                        if(speaker4 != null)
+                          Flexible(flex: 1, child: printAvatar(context,speaker4, 4)),
                       ],
                     ),
                 ],
@@ -133,12 +137,12 @@ class FeaturedSpeakersPage extends StatelessWidget {
         });
   }
 
-  printAvatar(BuildContext context, Person person) {
+  printAvatar(BuildContext context, Person person, int number) {
     if (person.imageURL != null)
       return Column(
         children: <Widget>[
           GestureDetector(
-            key: Key("Calendar page"),
+            key: Key("Featured Speaker - " + number.toString()),
             onTap: () {
               String routeOnTap = "/profileScreen";
               Navigator.pushNamed(context, routeOnTap,arguments: person);
