@@ -249,7 +249,7 @@ Description of the use cases shown:
 
 ### User stories
 
-![User story map](docs/user-story-map.jpg)
+![User story map](docs/user-story-map2.jpg)
 
 ### #1
 
