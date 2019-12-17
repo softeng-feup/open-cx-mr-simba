@@ -54,6 +54,7 @@ class SessionContainer extends StatelessWidget {
       constraints: BoxConstraints(minHeight: 150),
       child: Container(
         width: deviceWidth * 0.95,
+        height: 150,
         decoration: BoxDecoration(
             color: AppColors.customSessionContainerColor,
             borderRadius: BorderRadius.all(Radius.circular(18.0))),

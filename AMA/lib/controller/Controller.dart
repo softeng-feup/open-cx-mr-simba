@@ -38,7 +38,7 @@ class Controller {
 
   Future<String> addSessionToSchedule(Session session) async {
     int day = await DatabaseMapper.getScheduleDayFromDate(DatabaseController().getDatabase(), session.day);
-    
+
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
     if(added) {
       await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
