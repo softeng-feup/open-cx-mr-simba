@@ -398,13 +398,13 @@ to his personal schedule.
 
 #### Images for iteration #1
 
-![Iteration 1 Prototype - 1a](docs/i1_proto_1.jpg)
-![Iteration 1 Prototype - 1b](docs/i1_proto_2.jpg)
-![Iteration 1 Prototype - 1c](docs/i1_proto_3.jpg)
-![Iteration 1 Prototype - 1d](docs/i1_proto_4.jpg)
-![Iteration 1 Prototype - 1e](docs/i1_proto_5.jpg)
-![Iteration 1 Prototype - 1f](docs/i1_proto_6.jpg)
-![Iteration 1 Prototype - 1g](docs/i1_proto_7.jpg)
+![Iteration 1 Prototype - 1a](docs/i1/i1_proto_1.jpg)
+![Iteration 1 Prototype - 1b](docs/i1/i1_proto_2.jpg)
+![Iteration 1 Prototype - 1c](docs/i1/i1_proto_3.jpg)
+![Iteration 1 Prototype - 1d](docs/i1/i1_proto_4.jpg)
+![Iteration 1 Prototype - 1e](docs/i1/i1_proto_5.jpg)
+![Iteration 1 Prototype - 1f](docs/i1/i1_proto_6.jpg)
+![Iteration 1 Prototype - 1g](docs/i1/i1_proto_7.jpg)
 
 
 #### Iteration #2:
