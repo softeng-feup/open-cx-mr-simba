@@ -517,8 +517,31 @@ As sugested, our team, throughout the development of the project, adopted the us
 
 ## Project management
 
-The project management tool that we decided to adopt was Trello.
+The project management tool that we decided to adopt was ***Trello***.
 
-We chose Trello because it is simple to use, free and as a lot of usefull functionalities such as setting deadlines, adding attachements adding responsibilities and notifications.
+We chose Trello because it is simple to use, free and as a lot of usefull functionalities such as setting deadlines, adding attachments adding responsibilities and notifications. [Link to ***Trello*** board](https://trello.com/invite/b/OL0n3LpN/ce77ec2b856887bb03cf393cffc52317/esof)  
 
-![Trello](docs/project_management_trello.png)
+**Initial look at our ***Trello*** layout**:
+
+![Trello-Initial](docs/project_management_trello_1.png)
+
+We used labels in order to organize our cards by theme and iteration:
+
+![Trello-Labels](docs/project_management_trello_3.png)
+
+### Adopted ***Trello*** layout 
+
+During most of the project with adopted a simple layout that has the following lists:  
+
+* **Backlog** - Contains all of the features and tasks that must be done/implemented in the future.
+* **Minor Things** - To avoid cluttering of the **Backlog** and **Things To Do** lists, this list contains small bugfixes or ajustments that must be made. (also serves as a "brainstorming" list)
+* **Things To Do** - Contains features and tasks that must be done/implemented in the current iteration and/or nearby future
+* **Doing** - Contains features and tasks that are currently in development.
+* **Done** - Contains features and tasks that have been completed.
+* **Possible future user stories** - This list is not very "active" and only serves as a place where  future user-story ideas and plans and placed.
+* **Report** - Tasks, notes and discussion related to the report development. The report has it's own list because it is a ever-changing "large" element throughout the project development
+
+**Last iteration look at our ***Trello*** layout**:
+
+![Trello-Final](docs/project_management_trello_2.png)
+
