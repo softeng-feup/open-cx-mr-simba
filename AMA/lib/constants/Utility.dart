@@ -28,6 +28,7 @@ const String BTEnabledText = "Bluetooth is turned on! Tap on the \"scan\" in ord
 
 const String noInternetTitle = "No Internet Connection";
 const String noInternetText = "Internet connection is needed for the first time you open the app. \n Please try again when you are connected to the internet.";
+const String noInternetTextUpdate = "Internet connection is needed for updating the conference's information. \n Please try again when you are connected to the internet.";
 
 const String noLocationsTitle = "No locations available";
 const String noLocationsText = "Looks like there are no locations available... how strange!";

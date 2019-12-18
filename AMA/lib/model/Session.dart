@@ -24,7 +24,6 @@ class Session extends Comparable<dynamic> {
            this.location,
            this.description,
            this.isCustom
-
            });
 
   @override

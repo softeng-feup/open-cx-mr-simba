@@ -4,7 +4,7 @@ class Person {
   String affiliation;
   String bio;
   String url;
-  String imageURL; // use Image.network(linkFromJSONFile)
+  String imageURL;
   
   Person({this.key, this.name, this.affiliation, this.bio, this.url, this.imageURL});
 

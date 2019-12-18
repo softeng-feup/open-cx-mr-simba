@@ -35,4 +35,12 @@ class Model {
   String getJsonURL() {
     return _jsonURL;
   }
+
+  void resetAllSchedules() {
+    _schedules = [];
+    _schedules.add(DayScheduleInfo(1, Dates.date1));
+    _schedules.add(DayScheduleInfo(2, Dates.date2));
+    _schedules.add(DayScheduleInfo(3, Dates.date3));
+    _schedules.add(DayScheduleInfo(4, Dates.date4));
+  }
 }

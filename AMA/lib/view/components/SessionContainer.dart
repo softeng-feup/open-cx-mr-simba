@@ -54,59 +54,33 @@ class SessionContainer extends StatelessWidget {
       constraints: BoxConstraints(minHeight: 150),
       child: Container(
         width: deviceWidth * 0.95,
-        height: 150,
         decoration: BoxDecoration(
             color: AppColors.customSessionContainerColor,
             borderRadius: BorderRadius.all(Radius.circular(18.0))),
         child: Column(
-          children: <Widget>[
-            this.drawTitle(),
-            this.drawCustomSessionContents(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget drawCustomSessionContents() {
-    return Expanded(
-      flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
-        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  this.drawLocationCustom(),
-                  this.getDescription()
-                ],
-              ),
+            this.drawTitle(),
+            Row(
+              children: <Widget>[
+                this.drawLocationCustom(deviceWidth),
+                this.drawDay(),
+              ],
             ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                height: 120,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    this.drawDay(),
-                    this.drawTime(),
-                  ],
-                ),
-              ),
-            ),
+            Row(
+              children: <Widget>[
+                this.getDescription(deviceWidth),
+                this.drawTime(),
+              ],
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget getDescription() {
+
+  Widget getDescription(double deviceWidth) {
     Text text;
 
     if (this.activity.description == "") {
@@ -122,22 +96,26 @@ class SessionContainer extends StatelessWidget {
         this.activity.description,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.justify,
       );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Text("Description: ",
-              style: TextStyle(color: AppColors.mainColor, fontSize: 17)),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0),
-          child: text,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text("Description: ",
+                style: TextStyle(color: AppColors.mainColor, fontSize: 17)),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(
+                  width: deviceWidth * 0.45,
+                  child: text),
+          ),
+        ],
+      ),
     );
   }
 
@@ -206,7 +184,7 @@ class SessionContainer extends StatelessWidget {
     );
   }
 
-  Widget drawLocationCustom() {
+  Widget drawLocationCustom(double deviceWidth) {
     Text locationText;
 
     if (this.activity.location != "") {
@@ -214,7 +192,6 @@ class SessionContainer extends StatelessWidget {
         this.activity.location,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.justify,
       );
     } else {
       locationText = Text(
@@ -226,13 +203,29 @@ class SessionContainer extends StatelessWidget {
       );
     }
 
-    return Row(
-      children: <Widget>[
-        Text("Location: ",
-            style: TextStyle(color: AppColors.mainColor, fontSize: 17)),
-        Expanded(flex: 1, child: locationText)
-      ],
+    return Expanded(
+      flex: 6,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text("Location: ",
+                  style: TextStyle(color: AppColors.mainColor, fontSize: 17)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5.0),
+              child: Container(
+                  width: deviceWidth * 0.45,
+                  child: locationText),
+            ),
+          ],
+        ),
+      ),
     );
+
   }
 
   Widget drawTime() {

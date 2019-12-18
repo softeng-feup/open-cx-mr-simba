@@ -38,7 +38,7 @@ class Controller {
 
   Future<String> addSessionToSchedule(Session session) async {
     int day = await DatabaseMapper.getScheduleDayFromDate(DatabaseController().getDatabase(), session.day);
-    
+
     bool added = _model.getSchedules().elementAt(day - 1).getSessions().add(session);
     if(added) {
       await DatabaseMapper.addSessionToSchedule(DatabaseController().getDatabase(), day, session.key);
@@ -141,7 +141,56 @@ class Controller {
   Future<SplayTreeSet<Session>> getSessionsByLocation(String location) async {
     return await DatabaseMapper.getSessionsInLocation(DatabaseController().getDatabase(), location);
   }
-  
+
+  // ----------------------------
+  // update DB information
+  // ----------------------------
+
+  Future<bool> updateInformation() async {
+    Map<String, dynamic> json =
+        await JsonController().parseJsonFromURL(_model.getJsonURL());
+    if (json == null) return false;
+
+    List<Person.Person> allPeople = JsonMapper.getPeople(json);
+    List<Item> allItems = JsonMapper.getItems(json);
+    List<Session> allSessions = JsonMapper.getSessions(json);
+
+    await DatabaseController().dropForeignKeyConstraint();
+
+    // Person
+    await DatabaseController().deleteAllPeople();
+    await DatabaseController().fillDatabasePerson(allPeople);
+
+    // Items
+    await DatabaseController().deleteAllItems();
+    await DatabaseController().fillDatabaseItem(allItems);
+
+    // Sessions
+    List<String> sessionKeys = await DatabaseController().deleteAllSchedules();
+    await DatabaseController().deleteAllConferenceSessions();
+    await DatabaseController().fillDatabaseSession(allSessions);
+    _model.resetAllSchedules();
+
+    NotifsController.instance().removeAllNotifs();
+
+    for(int i = 0; i < sessionKeys.length; i++) {
+      String sessionKey = sessionKeys.elementAt(i);
+      Session currentSession = await DatabaseMapper.getSession(DatabaseController().getDatabase(), sessionKey);
+      if(currentSession != null)
+          addSessionToSchedule(currentSession);
+    }
+
+    DatabaseController().assertForeignKeyConstraint();
+
+    BluetoothController.instance().fillLocationMap(
+        await DatabaseMapper.getLocationsByOrder(
+            DatabaseController().getDatabase()));
+
+    return true;
+  }
+
+
+
   // ----------------------------
   // json methods
   // ----------------------------

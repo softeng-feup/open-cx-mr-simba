@@ -113,7 +113,7 @@ class DatabaseMapper {
     return results[0]['cnt'];
   }
 
-  static Future<int> addSession(Database db,Session session) async{
+  static Future addSession(Database db,Session session) async {
     await db.insert('Session', session.toMapSession());
   }
 
