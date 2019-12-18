@@ -34,7 +34,7 @@ class UpdateInformationScreenState extends State<UpdateInformationScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 50.0, right: 50.0, top: 200.0, bottom: 50.0),
             child: GenericContainer(
-              title: "Refrescando Los Dados",
+              title: "Updating information",
               text: "Please wait...",
             ),
           ),
