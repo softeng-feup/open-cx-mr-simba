@@ -52,6 +52,7 @@ class DaysScreenState extends State<DaysScreen> {
               this.drawSessionSearch(context),
               this.drawLocations(context),
               this.drawActivityCreator(context),
+              this.drawUpdateInfo(context),
             ],
           ),
         ),
@@ -100,5 +101,15 @@ class DaysScreenState extends State<DaysScreen> {
           Navigator.pushNamed(context, '/activityCreator');
         },
         leading: Icon(Icons.local_activity));
+  }
+
+  Widget drawUpdateInfo(BuildContext context) {
+    return ListTile(
+        key: Key("Update information"),
+        title: Text('Update Information', style: TextStyle(color: Colors.black)),
+        onTap: () async {
+          Navigator.pushNamed(context, '/updateInformation');
+        },
+        leading: Icon(Icons.refresh));
   }
 }

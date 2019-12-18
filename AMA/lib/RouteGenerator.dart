@@ -16,6 +16,7 @@ import 'package:ama/view/screens/ItemScreen.dart';
 import 'package:ama/view/screens/PeopleScreen.dart';
 import 'package:ama/view/screens/PersonScreen.dart';
 import 'package:ama/view/screens/SessionScreen.dart';
+import 'package:ama/view/screens/UpdateInformationScreen.dart';
 import 'package:flutter/material.dart';
 import './constants/AppColors.dart' as AppColors;
 import 'controller/Controller.dart';
@@ -32,10 +33,10 @@ class RouteGenerator {
     switch(settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => InitialLoadingScreen());
-  
+
       case '/homeScreen':
         return MaterialPageRoute(builder: (_) => DaysScreen());
-      
+
       case '/about':
         return MaterialPageRoute(builder: (_) => AboutScreen());
 
@@ -70,7 +71,7 @@ class RouteGenerator {
           else
             return MaterialPageRoute(builder: (_) => SessionScreen(session: args));
 
-          
+
         }
         return _errorRoute();
 
@@ -115,6 +116,9 @@ class RouteGenerator {
 
       case '/activityCreator' :
         return MaterialPageRoute(builder: (_) => ActivityCreatorScreen() );
+
+      case '/updateInformation' :
+        return MaterialPageRoute(builder: (_) => UpdateInformationScreen());
 
       default:
         return _errorRoute();

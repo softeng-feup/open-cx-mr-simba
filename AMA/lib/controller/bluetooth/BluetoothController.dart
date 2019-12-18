@@ -18,6 +18,7 @@ class BluetoothController {
 
 
   void fillLocationMap(List<String> locations) {
+    _locationMap.clear();
     for(int i = 0; i < locations.length; i++) {
       _locationMap.putIfAbsent(i, () => locations.elementAt(i));
     }
