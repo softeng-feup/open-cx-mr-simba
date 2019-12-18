@@ -23,7 +23,12 @@ You can find here detailed information about the (sub)product, hereby mentioned 
   * [Logical architecture](#Logical-architecture)
   * [Physical architecture](#Physical-architecture)
   * [Prototype](#Prototype)
-    * [Images of prototype for iteration #1](#Images-of-prototype-for-iteration-#1)
+  * [Implementation](#Implementation)
+    * [Iteration #1](#Iteration-#1)
+    * [Iteration #2](#Iteration-#2)
+    * [Iteration #3](#Iteration-#3)
+    * [Iteration #4](#Iteration-#4)
+    * [Iteration #5](#Iteration-#5)
 
 * Implementation
 
@@ -372,7 +377,7 @@ For this project the main discussion was about what environment/programming lang
 For the database technology we chose SQLite because of it's small computational needs and for it's simplicity (which is more than enough for the needed task).  
 Finally, for our bluetooth technology we chose to use the Eddystone protocol because it eliminates the need to pair with the beacon and , as such, enables a dynamic scan as the user moves arround the event-space.
 
-### Prototype  
+## Prototype  
 
 In the **initial prototype iteration**, not much of the application was done, in terms of user stories. The main focus was arround what tecnologies and programming languages were going to be used to develop the app, and the final answer ended up being **Flutter**.
 
@@ -396,6 +401,8 @@ Our **first real prototype of the app** consists essentially of the barebone of 
 The **implemented user stories were #1 and #2**. These stories are closely related and were implemented by having a button in the main screen for each day of the conference, allowing the user to navigate to a screen where his favourite sessions for that given day are shown (user story #2). In this screen, by pressing the ADD button, the attendee can consult information about all of the sessions for that day (user story #1), and add the ones that interest him the most
 to his personal schedule.
 
+[Link to the iteration #1 github release](https://github.com/softeng-feup/open-cx-mr-simba/releases/tag/iteration1)
+
 #### Images for iteration #1
 
 <img src="docs/i1/i1_proto_1.jpg" alt="Iteration 1 Prototype - 1a" width="378" height=777/>
@@ -406,11 +413,11 @@ to his personal schedule.
 <img src="docs/i1/i1_proto_6.jpg" alt="Iteration 1 Prototype - 1f" width="378" height=777/>
 <img src="docs/i1/i1_proto_7.jpg" alt="Iteration 1 Prototype - 1g" width="378" height=777/>
 
-
-
 #### Iteration #2:
 
 In this iteration, the main focus revolved around 2 things: **the start of the implementation of the bluetooth functionality**, and **the organization and structuring of the code**, in order to follow the logical architectural patterns that were discussed in the beginning.
+
+[Link to the iteration #2 github release](https://github.com/softeng-feup/open-cx-mr-simba/releases/tag/iteration2)
 
 #### Images for iteration #2
 
@@ -425,6 +432,10 @@ In this iteration, the main focus revolved around 2 things: **the start of the i
 
 On iteration #3, the main focus was the **implementation and usage of a local SQLite database**, in order to keep information about the conference and the user schedules for the different days. The **bluetooth functionality was fully implemented**, and **some visual aspects of the app were refactored**. Furthermore, **some additional information about the sessions, items and people also started to be shown to the user**.
 
+[Link to the iteration #3 github release](https://github.com/softeng-feup/open-cx-mr-simba/releases/tag/iteration3)
+
+#### Images for iteration #3
+
 <img src="docs/i3/i3_proto_1.jpg" alt="Iteration 3 Prototype - 1a" width="378" height=777/>
 <img src="docs/i3/i3_proto_2.jpg" alt="Iteration 3 Prototype - 1b" width="378" height=777/>
 <img src="docs/i3/i3_proto_3.jpg" alt="Iteration 3 Prototype - 1c" width="378" height=777/>
@@ -437,6 +448,10 @@ On iteration #3, the main focus was the **implementation and usage of a local SQ
 #### Iteration #4:
 
 On iteration #4, some additional but also very important features were added, like the **generation of a notification roughly 10 mins before a session beggins**; the ability to create **custom sessions** and add them to a day's schedule; a **search bar** for the sessions, etc. **The display of information about the sessions, items and people was finalized**.
+
+[Link to the iteration #4 github release](https://github.com/softeng-feup/open-cx-mr-simba/releases/tag/iteration4)
+
+#### Images for iteration #4
 
 <img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="378" height=777/>
 <img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="378" height=777/>
