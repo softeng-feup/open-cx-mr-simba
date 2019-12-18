@@ -365,7 +365,7 @@ In this section, we will be talking and showing more about our architecture, fro
 ### Logical architecture
 For the logical structure of the code, and in order to separate the different components of the software, we opted to implement the MVC design: the Model contains all the relevant information, the View displays it, and the Controller serves as a kind of "middle man" between them, getting the information from the Model and passing it to the View, and handling the user input from the View buttons, modifying the Model accordingly. We opted to use a design where the Controller is subdivided into smaller Controller modules (having kind of a layered architecture), each having their own roles and methods (JSON Controller, Database Controller, etc), and where a general Controller module is used to connect all the smaller controllers, functioning as a common interface.
 
-![Component Diagram](docs/ComponentDiagramImage.png)
+![Component Diagram](docs/ComponentDiagramImage2.jpg)
 
 ### Physical architecture
 The physical structure of our solutions is very straightforward. The AMA app will be installed in the user's smarthphone. The app requests the JSON that contains the conference's info from the server, when its launched for the first time. After it parses the JSON, it will store its information in an SQLite database. The app also communicates with beacons as discussed previously ("Session Search" feature). Currently we have microbits serving as Eddystone Beacons.
