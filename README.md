@@ -329,7 +329,7 @@ Description of the use cases shown:
 > * **Importance:** Should have
 > * **Effort to implement:** L 
 
-### UI-Mockups
+### UI mockups
 
 Based on the user-stories described above the following mockups were made. To make them we chose the pencil-and-paper approach as it seemed to have more advantages. First, it lacks the need of having to learn a new mockup-drawing environment (like Adobe XD), second, it allows for a more hands-on workflow of editing the mockups in a group and, lastly, we thought that the cleaner look provided by other mockup-drawing options wouldn't really be an advantage as the general look and feel of the app is generaly determined by the environment where it is developed.
 As the development moves forward the mockups will be tailored to specific user-stories and will be shown next to them, as such, this sections will be deleted.
