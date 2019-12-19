@@ -495,8 +495,7 @@ We also implemented a test case to verify if the display of the featured speaker
 
 <img src="docs/accep-tests/print-9.png"/>
 
-
-### [links para as pastas de acceptance testing e unit testing]
+[Code for the acceptance tests](https://github.com/softeng-feup/open-cx-mr-simba/tree/master/AMA/test_driver)
 
 ## Configuration and change management
 
