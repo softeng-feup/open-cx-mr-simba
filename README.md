@@ -459,8 +459,6 @@ Because the main focus of the testing aspect was mainly just to experiment and l
 
 Acceptance testing using Gherkin was used to verify if the **drawer of the main page** was working correctly, if the **page slider** in the main page was working correctly, if the **navigation between pages and the adding/removing of sessions in a schedule** was working correctly and if the **display and selecting of the featured speakers** for a certain day was working correctly. For these tests, a special JSON file was used, with some custom sessions to better test the functionalities.
 
-### [acrescentar o que foi testado com unit testing]
-
 #### Drawer of the main page
 
 A test case was created for each of the different options that can be chosen in the drawer ("About", "Session Search", etc). In each test, the drawer is opened, the option is tapped and the title of the new screen is verified, to see if it corresponds to the expected output.
