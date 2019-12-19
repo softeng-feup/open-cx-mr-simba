@@ -465,6 +465,16 @@ A test case was created for each of the different options that can be chosen in 
 
 ### [acrescentar imagem dos testes a passar]
 
+<img src="docs/accep-tests/print-1.png"/>
+<img src="docs/accep-tests/print-2.png"/>
+<img src="docs/accep-tests/print-3.png"/>
+<img src="docs/accep-tests/print-4.png"/>
+<img src="docs/accep-tests/print-5.png"/>
+<img src="docs/accep-tests/print-6.png"/>
+<img src="docs/accep-tests/print-7.png"/>
+<img src="docs/accep-tests/print-8.png"/>
+<img src="docs/accep-tests/print-9.png"/>
+
 #### Slider of the main page
 
 Some test cases were implemented in order to verify if the swiping in the main page was working correctly. There is one calendar icon in each section of the slider, each with a unique day identifier.
@@ -484,9 +494,6 @@ It was tested, with the help of the custom JSON file, the adding and removing of
 We also implemented a test case to verify if the display of the featured speakers was working correctly, tapping the speaker's profile icon in the main menu and checking if the app had navigated to his profile page.
 
 ### [acrescentar imagem dos testes a passar]
-
-
-### [acrescentar parte do unit testing, quando for feita]
 
 ### [links para as pastas de acceptance testing e unit testing]
 
