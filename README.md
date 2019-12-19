@@ -29,17 +29,10 @@ You can find here detailed information about the (sub)product, hereby mentioned 
   * [Iteration #4](#Iteration-4)
   * [Iteration #5](#Iteration-5)
   
-* Test
+* [Test](#Test)
+* [Configuration and change management](#Configuration-and-change-management)
+* [Project management](#Project-management)
 
-  * [Automated tests](): Functional tests, integration tests, acceptance tests, as much automated as possible.
-
-* Change management
-
-  * [Issues at Github]()
-
-* Project management
-
-  * [Tasks management tool](#Project-management) 
 
 So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
