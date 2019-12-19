@@ -28,9 +28,7 @@ You can find here detailed information about the (sub)product, hereby mentioned 
   * [Iteration #3](#Iteration-3)
   * [Iteration #4](#Iteration-4)
   * [Iteration #5](#Iteration-5)
-  * [Source code]()
-  * [Issues](): Feature requests, bug fixes, improvements.
-
+  
 * Test
 
   * [Automated tests](): Functional tests, integration tests, acceptance tests, as much automated as possible.
