@@ -463,17 +463,11 @@ Acceptance testing using Gherkin was used to verify if the **drawer of the main 
 
 A test case was created for each of the different options that can be chosen in the drawer ("About", "Session Search", etc). In each test, the drawer is opened, the option is tapped and the title of the new screen is verified, to see if it corresponds to the expected output.
 
-### [acrescentar imagem dos testes a passar]
 
 <img src="docs/accep-tests/print-1.png"/>
 <img src="docs/accep-tests/print-2.png"/>
 <img src="docs/accep-tests/print-3.png"/>
-<img src="docs/accep-tests/print-4.png"/>
-<img src="docs/accep-tests/print-5.png"/>
 <img src="docs/accep-tests/print-6.png"/>
-<img src="docs/accep-tests/print-7.png"/>
-<img src="docs/accep-tests/print-8.png"/>
-<img src="docs/accep-tests/print-9.png"/>
 
 #### Slider of the main page
 
@@ -481,19 +475,26 @@ Some test cases were implemented in order to verify if the swiping in the main p
 
 It was tested the left swipe and the right swipe multiple times (all automated with Gherkin), verifying if the day identifier of the final section of the slider corresponded to the expected output.
 
-### [acrescentar imagem dos testes a passar]
+<img src="docs/accep-tests/print-4.png"/>
+<img src="docs/accep-tests/print-5.png"/>
+
 
 #### Navigation between pages and the adding/removing of sessions in a schedule
 
 It was tested, with the help of the custom JSON file, the adding and removing of session to a schedule, doing all the navigation from the main screen to the sessions screen, adding the session, verifying if the session is visible in the schedule screen, and returning to the main screen in order to check the number of activities for that day, displayed in the calender icon. (Again, all of this is done automatically using Gherkin).
 
-### [acrescentar imagem dos testes a passar]
+
+<img src="docs/accep-tests/print-7.png"/>
+<img src="docs/accep-tests/print-8.png"/>
+
 
 #### Display and selection of a featured speaker for a certain day
 
 We also implemented a test case to verify if the display of the featured speakers was working correctly, tapping the speaker's profile icon in the main menu and checking if the app had navigated to his profile page.
 
-### [acrescentar imagem dos testes a passar]
+
+<img src="docs/accep-tests/print-9.png"/>
+
 
 ### [links para as pastas de acceptance testing e unit testing]
 
