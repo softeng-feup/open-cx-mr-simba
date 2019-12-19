@@ -18,20 +18,16 @@ You can find here detailed information about the (sub)product, hereby mentioned 
   * [Domain model](#Domain-model)
 
 * Architecture and Design
-  * [Architectural and design decisions]()
-  * [Technological architecture]()
   * [Logical architecture](#Logical-architecture)
   * [Physical architecture](#Physical-architecture)
   * [Prototype](#Prototype)
-  * [Implementation](#Implementation)
+  
+* Implementation
     * [Iteration #1](#Iteration-1)
     * [Iteration #2](#Iteration-2)
     * [Iteration #3](#Iteration-3)
     * [Iteration #4](#Iteration-4)
     * [Iteration #5](#Iteration-5)
-
-* Implementation
-
   * [Source code]()
   * [Issues](): Feature requests, bug fixes, improvements.
 
