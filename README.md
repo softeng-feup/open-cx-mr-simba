@@ -387,13 +387,13 @@ to his personal schedule.
 
 #### Images for iteration #1
 
-<img src="docs/i1/i1_proto_1.jpg" alt="Iteration 1 Prototype - 1a" width="378" height=777/>
-<img src="docs/i1/i1_proto_2.jpg" alt="Iteration 1 Prototype - 1b" width="378" height=777/>
-<img src="docs/i1/i1_proto_3.jpg" alt="Iteration 1 Prototype - 1c" width="378" height=777/>
-<img src="docs/i1/i1_proto_4.jpg" alt="Iteration 1 Prototype - 1d" width="378" height=777/>
-<img src="docs/i1/i1_proto_5.jpg" alt="Iteration 1 Prototype - 1e" width="378" height=777/>
-<img src="docs/i1/i1_proto_6.jpg" alt="Iteration 1 Prototype - 1f" width="378" height=777/>
-<img src="docs/i1/i1_proto_7.jpg" alt="Iteration 1 Prototype - 1g" width="378" height=777/>
+<img src="docs/i1/i1_proto_1.jpg" alt="Iteration 1 Prototype - 1a" width="189" height="379"/>
+<img src="docs/i1/i1_proto_2.jpg" alt="Iteration 1 Prototype - 1b" width="189" height="379"/>
+<img src="docs/i1/i1_proto_3.jpg" alt="Iteration 1 Prototype - 1c" width="189" height="379"/>
+<img src="docs/i1/i1_proto_4.jpg" alt="Iteration 1 Prototype - 1d" width="189" height="379"/>
+<img src="docs/i1/i1_proto_5.jpg" alt="Iteration 1 Prototype - 1e" width="189" height="379"/>
+<img src="docs/i1/i1_proto_6.jpg" alt="Iteration 1 Prototype - 1f" width="189" height="379"/>
+<img src="docs/i1/i1_proto_7.jpg" alt="Iteration 1 Prototype - 1g" width="189" height="379"/>
 
 #### Iteration #2:
 
@@ -403,11 +403,11 @@ In this iteration, the main focus revolved around 2 things: **the start of the i
 
 #### Images for iteration #2
 
-<img src="docs/i2/i2_proto_1.jpg" alt="Iteration 2 Prototype - 1a" width="378" height=777/>
-<img src="docs/i2/i2_proto_2.jpg" alt="Iteration 2 Prototype - 1b" width="378" height=777/>
-<img src="docs/i2/i2_proto_3.jpg" alt="Iteration 2 Prototype - 1c" width="378" height=777/>
-<img src="docs/i2/i2_proto_4.jpg" alt="Iteration 2 Prototype - 1d" width="378" height=777/>
-<img src="docs/i2/i2_proto_5.jpg" alt="Iteration 2 Prototype - 1e" width="378" height=777/>
+<img src="docs/i2/i2_proto_1.jpg" alt="Iteration 2 Prototype - 1a" width="189" height="379"/>
+<img src="docs/i2/i2_proto_2.jpg" alt="Iteration 2 Prototype - 1b" width="189" height="379"/>
+<img src="docs/i2/i2_proto_3.jpg" alt="Iteration 2 Prototype - 1c" width="189" height="379"/>
+<img src="docs/i2/i2_proto_4.jpg" alt="Iteration 2 Prototype - 1d" width="189" height="379"/>
+<img src="docs/i2/i2_proto_5.jpg" alt="Iteration 2 Prototype - 1e" width="189" height="379"/>
 
 
 #### Iteration #3:
@@ -418,14 +418,14 @@ On iteration #3, the main focus was the **implementation and usage of a local SQ
 
 #### Images for iteration #3
 
-<img src="docs/i3/i3_proto_1.jpg" alt="Iteration 3 Prototype - 1a" width="378" height=777/>
-<img src="docs/i3/i3_proto_2.jpg" alt="Iteration 3 Prototype - 1b" width="378" height=777/>
-<img src="docs/i3/i3_proto_3.jpg" alt="Iteration 3 Prototype - 1c" width="378" height=777/>
-<img src="docs/i3/i3_proto_4.jpg" alt="Iteration 3 Prototype - 1d" width="378" height=777/>
-<img src="docs/i3/i3_proto_5.jpg" alt="Iteration 3 Prototype - 1e" width="378" height=777/>
-<img src="docs/i3/i3_proto_6.jpg" alt="Iteration 3 Prototype - 1f" width="378" height=777/>
-<img src="docs/i3/i3_proto_7.jpg" alt="Iteration 3 Prototype - 1g" width="378" height=777/>
-<img src="docs/i3/i3_proto_8.jpg" alt="Iteration 3 Prototype - 1h" width="378" height=777/>
+<img src="docs/i3/i3_proto_1.jpg" alt="Iteration 3 Prototype - 1a" width="189" height="379"/>
+<img src="docs/i3/i3_proto_2.jpg" alt="Iteration 3 Prototype - 1b" width="189" height="379"/>
+<img src="docs/i3/i3_proto_3.jpg" alt="Iteration 3 Prototype - 1c" width="189" height="379"/>
+<img src="docs/i3/i3_proto_4.jpg" alt="Iteration 3 Prototype - 1d" width="189" height="379"/>
+<img src="docs/i3/i3_proto_5.jpg" alt="Iteration 3 Prototype - 1e" width="189" height="379"/>
+<img src="docs/i3/i3_proto_6.jpg" alt="Iteration 3 Prototype - 1f" width="189" height="379"/>
+<img src="docs/i3/i3_proto_7.jpg" alt="Iteration 3 Prototype - 1g" width="189" height="379"/>
+<img src="docs/i3/i3_proto_8.jpg" alt="Iteration 3 Prototype - 1h" width="189" height="379"/>
 
 #### Iteration #4:
 
@@ -435,13 +435,13 @@ On iteration #4, some additional but also very important features were added, li
 
 #### Images for iteration #4
 
-<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="189" height=379/>
-<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="189" height=379/>
-<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="189" height=379/>
-<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="189" height=379/>
-<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="189" height=379/>
-<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="189" height=379/>
-<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="189" height=379/>
+<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="189" height="379"/>
+<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="189" height="379"/>
+<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="189" height="379"/>
+<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="189" height="379"/>
+<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="189" height="379"/>
+<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="189" height="379"/>
+<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="189" height="379"/>
 
 
 #### Iteration #5:
