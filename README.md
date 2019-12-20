@@ -93,7 +93,7 @@ Description of the use cases shown:
 
 ####  **Visualize all the conference activities in my schedule, for each day**
 
-* **Actor**: Atendee and conference participant 
+* **Actor**: Attendee and conference participant 
 
 * **Description**: The users of our application need to see and know what are the various sessions in each day's schedule.
 
@@ -109,7 +109,7 @@ Description of the use cases shown:
 
 ####  **Add an activity to the schedule of a certain day**
 
-* **Actor**: Atendee and conference participant 
+* **Actor**: Attendee and conference participant 
 
 * **Description**: The users of our application need to be able to add sessions and activities to their schedule, so they can customize it as they wish.
 
@@ -126,7 +126,7 @@ Description of the use cases shown:
 
 ####  **Create a custom activity for the schedule**
 
-* **Actor**: Atendee and conference participant
+* **Actor**: Attendee and conference participant
 
 * **Description**: This can be considered as a sub-use case of adding an activity. The goal is to let the users of the application have in their schedule not only the sessions that they want to attend, but also every other activity related to the conference, such as, for example, a meeting, a reunion, having lunch, etc.
 
@@ -143,7 +143,7 @@ Description of the use cases shown:
 
 ####  **Remove an activity from the schedule of a certain day**
 
-* **Actor**: Atendee and conference participant 
+* **Actor**: Attendee and conference participant 
 
 * **Description**: The users of our application need to be able to remove sessions and activities from their schedule, so they can customize it as they wish.
 
@@ -160,7 +160,7 @@ Description of the use cases shown:
 
 ####  **Get a notification when an activity in the schedule is about to start**
 
-* **Actor**: Atendee and conference participant 
+* **Actor**: Attendee and conference participant
 
 * **Description**: In order to remind the user that an activity in the schedule is about to start, roughly 10 minutes before said activity the app will generate a notification with that information.
 
@@ -175,25 +175,10 @@ Description of the use cases shown:
 
 * **Alternative Flows and Exceptions**: As said before, if the application doesn't know the start time of the session (no reason for that to happen) no notification is going to be generated.
 
-####  **Get custom translated information to help me navigate in a foreign place**
-
-* **Actor**: Foreign atendee 
-
-* **Description**: In order to accommodate and help foreign atendees, the app should be able to display its content in several languages.
-
-* **Preconditions and Postconditions**: There are no major preconditions for this use case. In terms of postconditions, after the language change, all text the system displays will be in that language.
-
-* **Normal Flow**:
-        
-    1. User goes to the "language select" menu.
-    2. User selects the desired language.
-    3. System changes content to be displayed in that language.
-
-* **Alternative Flows and Exceptions**: No major alternative flows and exceptions are expected.
 
 ####  **Search activities about to start, ocurring in a nearby place**
 
-* **Actor**: Atendee and bluetooth beacon network
+* **Actor**: Attendee
 
 * **Description**: In order to integrate the user in the conference environment and inform him/her about some activities that might be of his/her interest, the app offers a "Session Search" mode that, through the use of the bluetooth beacon network, shows sessions that will happen in a nearby location and time.
 
@@ -213,7 +198,7 @@ Description of the use cases shown:
 
 ####  **Access the information about the conference sessions, people and items**
 
-* **Actor**: Atendee, conference participant and server/internet. 
+* **Actor**: Attendee, conference participant 
 
 * **Description**: The users of our application need to see and know what are the various sessions offered by the conference, the items that will be presented in them, and the people that will participate in them, so they can understand what activities they are interested in, in order to build a schedule.
 
@@ -231,12 +216,22 @@ Description of the use cases shown:
 
 ####  **Update the app's information about an event im organizing**
 
-* **Actor**: Conference participant
+* **Actor**: Conference participant/organizer
 
 * **Description**: In order to maintain and keep all the information about the sessions as recent as possible, the conference participants and speakers should be able to update that information whenever is necessary.
 
-(we are still unsure about how we're going to implement this use case, so we have decided to leave the rest of the fields blank for now).
+NOTE: Right now, the way to do this is by changing the information in the JSON file (the time/day of a session, speaker information, deleting/adding new stuff, etc), so that the app can get the new information from the server and update its local database. In the future, a user interface could be implemented in the app, that allows the organizer to change the information from there, updating the JSON file and, consequently, updating the database.
 
+* **Preconditions and Postconditions**: The app needs to be connected to the internet, in order to get from the server the updated JSON file.
+
+* **Normal Flow**:
+        
+    1. User chooses option to update the conference information.
+    2. App gets, from the server, the new JSON file.
+    3. App updates the database information accordingly.
+    5. User is now presented with the updated information about the conference.
+
+* **Alternative Flows and Exceptions**: If the phone cannot reach the server to get the JSON file, the app will inform the user and will tell him/her to try again later, when internet connection is available.
 
 
 ### User stories
@@ -440,13 +435,13 @@ On iteration #4, some additional but also very important features were added, li
 
 #### Images for iteration #4
 
-<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="378" height=777/>
-<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="378" height=777/>
-<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="378" height=777/>
-<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="378" height=777/>
-<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="378" height=777/>
-<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="378" height=777/>
-<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="378" height=777/>
+<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="189" height=379/>
+<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="189" height=379/>
+<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="189" height=379/>
+<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="189" height=379/>
+<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="189" height=379/>
+<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="189" height=379/>
+<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="189" height=379/>
 
 
 #### Iteration #5:

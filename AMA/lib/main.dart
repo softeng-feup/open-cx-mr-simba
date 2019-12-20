@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     Controller.instance().initNotifsController(navigatorKey);
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'AMA',
       navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
