@@ -435,13 +435,13 @@ On iteration #4, some additional but also very important features were added, li
 
 #### Images for iteration #4
 
-<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="378" height=777/>
-<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="378" height=777/>
-<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="378" height=777/>
-<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="378" height=777/>
-<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="378" height=777/>
-<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="378" height=777/>
-<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="378" height=777/>
+<img src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a" width="189" height=379/>
+<img src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b" width="189" height=379/>
+<img src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c" width="189" height=379/>
+<img src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d" width="189" height=379/>
+<img src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e" width="189" height=379/>
+<img src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f" width="189" height=379/>
+<img src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g" width="189" height=379/>
 
 
 #### Iteration #5:
