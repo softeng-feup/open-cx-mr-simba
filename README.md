@@ -238,9 +238,25 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 
 ![User story map](docs/user-story-map2.jpg)
 
+
+NOTE: Acceptance tests are only shown for the user stories that we implemented. All mockups and acceptance tests can be viewed in their respective sections.
+
 ### #1
 
 > "As a participant or speaker in the conference, I want the application to help me find activities that might be of my interest, and keep my schedule for the different days of the conference so that I can be more organized."
+>
+> * **UI Mockup:**
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_1.jpg" alt="Mockup 1"  width="189" height="379"/>
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
+>
+> * **Acceptance Tests:**
+>
+> Scenario: checking the daily schedules\
+> Given the conference has 4 days\
+> When I go into the main menu\
+> Then it should be presented to me 4 different schedules 
 >
 > * **Importance:** Must have
 > * **Effort to implement:** M 
@@ -250,12 +266,30 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 
 > "As a user I want to make my own personalized schedule for each day, according to my interests."
 >
+> * **UI Mockup:**
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_5.jpg" alt="Mockup 5"  width="189" height="379"/>
+>
+> * **Acceptance Tests:**
+> <img src="docs/accep-tests/print-7.png"/>
+> <img src="docs/accep-tests/print-8.png"/>
+> 
+>
 > * **Importance:** Must have
 > * **Effort to implement:** M 
 
 ### #3
 
 > "As a user I want to be informed, minutes before, that a session that is in my schedule is going to start, so that I don't miss activities that are of my interest."
+>
+> * **Acceptance Tests:**
+>
+> Scenario: checking if a notification is received\
+Given I have on my schedule the session "XYZ"\
+When there is 10 mins left for that session\
+Then I should receive a notification reminding me of session "XYZ"
 >
 > * **Importance:** Should have
 > * **Effort to implement:** M 
@@ -264,12 +298,37 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 ### #4
 > "As a participant of the conference that is not familiar with the surroundings of the conference, I would like to know when i'm passing through locations or rooms that are hosting events that begin shortly or have already started."
 >
+> * **UI Mockup:**
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_8.jpg" alt="Mockup 8"  width="189" height="379"/> 
+>
+> * **Acceptance Tests:**
+>
+> Scenario: Bluetooth functionality checking nearby sessions\
+Given I am close to the location "X"\
+And the session "Y" will begin in "X" shortly\
+When I use the Session Search functionality\
+Then I should be informed of session "Y"
+>
 > * **Importance:** Should have
 > * **Effort to implement:** L 
 
 
 ### #5
 > "As a participant in the conference, I would like to to create and add my own custom activities to my schedule (eg: having, lunch, meeting with friends, business-meetings, etc), so I can have in my schedule everything that is related to the conference."
+>
+> * **UI Mockup:**
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_7.jpg" alt="Mockup 7"  width="189" height="379"/>
+>
+> * **Acceptance Tests:**
+>
+> Scenario: creating and saving a custom session\
+Given I inserted in the title of the custom session "Meeting with Bill Gates"\
+And I inserted in the date and time "16/10/2020, 15:30"\
+When I go to my schedule for that day\
+Then I should see a custom session with title "Meeting with Bill Gates"\
+And date and time "16/10/2020, 15:30"
 >
 > * **Importance:** Could have
 > * **Effort to implement:** S 
@@ -278,7 +337,20 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 ### #6
 > "As an application user, I would like to obtain updated information about the sessions of the conference, as well as their contents (items being presented) and the people participating, so I can know more about the activities and choose those which interest me."
 >
-> * **Importance:** Should have
+> * **UI Mockup:**
+>
+> <img style="margin: 20px 0" src="docs/mockups/screen_2.jpg" alt="Mockup 2"  width="189" height="379"/>
+> <img style="margin: 20px 0" src="docs/mockups/screen_3.jpg" alt="Mockup 3"  width="189" height="379"/>
+>
+> * **Acceptance Tests:**
+>
+> Scenario: updating the information about a session\
+Given a certain session has title "X"\
+But it was updated to "Y"\
+When I select the option to update the conference information\
+Then the session should be displayed with title "Y"
+>
+> * **Importance:** Must have
 > * **Effort to implement:** M
 
 ### #7
@@ -288,41 +360,41 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 > * **Effort to implement:** S
 
 
-### #7
+### #8
 > "As a foreign atendee, I would like that the application showed its contents in my language, so I can have a better understanding of the information displayed."
 >
 > * **Importance:** Could have
 > * **Effort to implement:** M 
 
-### #8
+### #9
 > As an atendee of the conference I would like to be able to find my exact location in the venue so that I don't get lost.
 >
 > * **Importance:** Could have
 > * **Effort to implement:** L
 
-### #9
-> As an organizer of the conference I would like to get insights on the conference (attending numbers, heat maps of concentration of people, favorite topics ) so that I may know how I can improve the experience at the conference and any future ones
+### #10
+> As an organizer of the conference I would like to get insights on the conference (attending numbers, heat maps of concentration of people, favorite topics) so that I may know how I can improve the experience at the conference and any future ones
 >
 > * **Importance:** Could have
 > * **Effort to implement:** M 
 
-### #10
+### #11
 > As an atendee of the conference I would like to be able to add my friends and collegues to a friend's list in the app so that I am aware if people I know are attending the same conference as I am.
 >
 > * **Importance:** Could have
 > * **Effort to implement:** L 
 
-### #11
+### #12
 > As a conference organizer I would like to be able to give sponsors a place where they can advertise to the atendees of the conference so that I have a away of finance the conference and any future events.
 > 
 > * **Importance:** Could have
 > * **Effort to implement:** L 
 
-### #12
+### #13
 > As a speaker in the conference I would like to be able to change the information about lectures or activities that I am organizing.
 > 
 > * **Importance:** Should have
-> * **Effort to implement:** L 
+> * **Effort to implement:** M 
 
 ### UI mockups
 
@@ -334,9 +406,11 @@ As the development moves forward the mockups will be tailored to specific user-s
     <img style="margin: 20px 0" src="docs/mockups/screen_2.jpg" alt="Mockup 2"  width="189" height="379"/>
     <img style="margin: 20px 0" src="docs/mockups/screen_3.jpg" alt="Mockup 3"  width="189" height="379"/>
     <img style="margin: 20px 0" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_5.jpg" alt="Mockup 5"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_6.jpg" alt="Mockup 6"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_7.jpg" alt="Mockup 7"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_8.jpg" alt="Mockup 8"  width="189" height="379"/>
 </div>
-
-[ACRESCENTAR O RESTO DOS MOCKUPS]
 
 ### Domain model
 
