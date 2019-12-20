@@ -367,7 +367,7 @@ It was also discussed, in a general and light way, what would be the **main logi
 
 In terms of the actual application, a very initial **prototype of the main page** was implemented, showcasing buttons to select each of the conference's days.
 
-### [inserir imagem do prototipo aqui]
+<img src="docs/i0/i0_proto_1.jpg" alt="Iteration 0 Prototype - 1a" width="189" height="379"/>
 
 
 ## Implementation  
