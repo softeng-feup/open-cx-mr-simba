@@ -446,7 +446,9 @@ On iteration #4, some additional but also very important features were added, li
 
 #### Iteration #5:
 
-### [completar]
+The development of our own application ended in iteration #4. For iteration #5, we were asked to **merge one distinctive feature** of our app into a **global open-cx app**, in which all groups of students would participate.
+
+For the merge, we chose our **"Session Search" feature**, that uses BLE technology in order to show the user all the nearby conference sessions that are about to start.
 
 ## Test  
 
