@@ -329,11 +329,11 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 Based on the user-stories described above the following mockups were made. To make them we chose the pencil-and-paper approach as it seemed to have more advantages. First, it lacks the need of having to learn a new mockup-drawing environment (like Adobe XD), second, it allows for a more hands-on workflow of editing the mockups in a group and, lastly, we thought that the cleaner look provided by other mockup-drawing options wouldn't really be an advantage as the general look and feel of the app is generaly determined by the environment where it is developed.
 As the development moves forward the mockups will be tailored to specific user-stories and will be shown next to them, as such, this sections will be deleted.
 
-<div style="display: flex; flex-wrap: wrap; ">
-    <img style="margin: 10px 20px" src="docs/mockups/screen_1.jpg" alt="Mockup 1"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/mockups/screen_2.jpg" alt="Mockup 2"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/mockups/screen_3.jpg" alt="Mockup 3"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+    <img style="margin: 20px 0" src="docs/mockups/screen_1.jpg" alt="Mockup 1"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_2.jpg" alt="Mockup 2"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_3.jpg" alt="Mockup 3"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
 </div>
 
 [ACRESCENTAR O RESTO DOS MOCKUPS]
@@ -390,14 +390,14 @@ to his personal schedule.
 
 #### Images for iteration #1
 
-<div style="display: flex; flex-wrap: wrap; ">
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_1.jpg" alt="Iteration 1 Prototype - 1a"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_2.jpg" alt="Iteration 1 Prototype - 1b"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_3.jpg" alt="Iteration 1 Prototype - 1c"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_4.jpg" alt="Iteration 1 Prototype - 1d"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_5.jpg" alt="Iteration 1 Prototype - 1e"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_6.jpg" alt="Iteration 1 Prototype - 1f"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i1/i1_proto_7.jpg" alt="Iteration 1 Prototype - 1g"  width="189" height="379"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_1.jpg" alt="Iteration 1 Prototype - 1a"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_2.jpg" alt="Iteration 1 Prototype - 1b"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_3.jpg" alt="Iteration 1 Prototype - 1c"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_4.jpg" alt="Iteration 1 Prototype - 1d"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_5.jpg" alt="Iteration 1 Prototype - 1e"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_6.jpg" alt="Iteration 1 Prototype - 1f"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i1/i1_proto_7.jpg" alt="Iteration 1 Prototype - 1g"  width="189" height="379"/>
 </div>
 
 #### Iteration #2:
@@ -408,12 +408,12 @@ In this iteration, the main focus revolved around 2 things: **the start of the i
 
 #### Images for iteration #2
 
-<div style="display: flex; flex-wrap: wrap; ">
-    <img style="margin: 10px 20px" src="docs/i2/i2_proto_1.jpg" alt="Iteration 2 Prototype - 1a"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i2/i2_proto_2.jpg" alt="Iteration 2 Prototype - 1b"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i2/i2_proto_3.jpg" alt="Iteration 2 Prototype - 1c"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i2/i2_proto_4.jpg" alt="Iteration 2 Prototype - 1d"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i2/i2_proto_5.jpg" alt="Iteration 2 Prototype - 1e"  width="189" height="379"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+    <img style="margin: 20px 0" src="docs/i2/i2_proto_1.jpg" alt="Iteration 2 Prototype - 1a"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i2/i2_proto_2.jpg" alt="Iteration 2 Prototype - 1b"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i2/i2_proto_3.jpg" alt="Iteration 2 Prototype - 1c"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i2/i2_proto_4.jpg" alt="Iteration 2 Prototype - 1d"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i2/i2_proto_5.jpg" alt="Iteration 2 Prototype - 1e"  width="189" height="379"/>
 </div>
 
 
@@ -425,15 +425,15 @@ On iteration #3, the main focus was the **implementation and usage of a local SQ
 
 #### Images for iteration #3
 
-<div style="display: flex; flex-wrap: wrap; ">
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_1.jpg" alt="Iteration 3 Prototype - 1a"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_2.jpg" alt="Iteration 3 Prototype - 1b"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_3.jpg" alt="Iteration 3 Prototype - 1c"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_4.jpg" alt="Iteration 3 Prototype - 1d"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_5.jpg" alt="Iteration 3 Prototype - 1e"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_6.jpg" alt="Iteration 3 Prototype - 1f"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_7.jpg" alt="Iteration 3 Prototype - 1g"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i3/i3_proto_8.jpg" alt="Iteration 3 Prototype - 1h"  width="189" height="379"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_1.jpg" alt="Iteration 3 Prototype - 1a"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_2.jpg" alt="Iteration 3 Prototype - 1b"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_3.jpg" alt="Iteration 3 Prototype - 1c"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_4.jpg" alt="Iteration 3 Prototype - 1d"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_5.jpg" alt="Iteration 3 Prototype - 1e"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_6.jpg" alt="Iteration 3 Prototype - 1f"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_7.jpg" alt="Iteration 3 Prototype - 1g"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i3/i3_proto_8.jpg" alt="Iteration 3 Prototype - 1h"  width="189" height="379"/>
 </div>
 #### Iteration #4:
 
@@ -442,14 +442,14 @@ On iteration #4, some additional but also very important features were added, li
 [Link to the iteration #4 github release](https://github.com/softeng-feup/open-cx-mr-simba/releases/tag/iteration4)
 
 #### Images for iteration #4
-<div style="display: flex; flex-wrap: wrap; ">
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f"  width="189" height="379"/>
-    <img style="margin: 10px 20px" src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g"  width="189" height="379"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_1.jpg" alt="Iteration 4 Prototype - 1a"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_2.jpg" alt="Iteration 4 Prototype - 1b"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_3.jpg" alt="Iteration 4 Prototype - 1c"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_4.jpg" alt="Iteration 4 Prototype - 1d"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_5.jpg" alt="Iteration 4 Prototype - 1e"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_6.jpg" alt="Iteration 4 Prototype - 1f"  width="189" height="379"/>
+    <img style="margin: 20px 0" src="docs/i4/i4_proto_7.jpg" alt="Iteration 4 Prototype - 1g"  width="189" height="379"/>
 </div>
 
 #### Iteration #5:
@@ -461,7 +461,7 @@ For the merge, we chose our **"Session Search" feature**, that uses BLE technolo
 In terms of development for our own app, in iteration #5 we added the **ability to update the conference information displayed** (by fetching the updated JSON file from the server and overwriting some data in the database), and some minor changes and tweaks.
 
 #### Images for iteration #5
-<img style="margin: 10px" src="docs/i5/i5_proto_1.jpg" alt="Iteration 5 Prototype - 1a"  width="189" height="379"/>
+<img style="margin: 20px 0" src="docs/i5/i5_proto_1.jpg" alt="Iteration 5 Prototype - 1a"  width="189" height="379"/>
 
 ## Test  
 
