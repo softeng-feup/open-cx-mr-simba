@@ -329,11 +329,14 @@ NOTE: Right now, the way to do this is by changing the information in the JSON f
 Based on the user-stories described above the following mockups were made. To make them we chose the pencil-and-paper approach as it seemed to have more advantages. First, it lacks the need of having to learn a new mockup-drawing environment (like Adobe XD), second, it allows for a more hands-on workflow of editing the mockups in a group and, lastly, we thought that the cleaner look provided by other mockup-drawing options wouldn't really be an advantage as the general look and feel of the app is generaly determined by the environment where it is developed.
 As the development moves forward the mockups will be tailored to specific user-stories and will be shown next to them, as such, this sections will be deleted.
 
-![Mockup 1](docs/screen_1.jpg)
-![Mockup 2](docs/screen_2.jpg)
-![Mockup 3](docs/screen_3.jpg)
-![Mockup 4](docs/screen_4.jpg)
+<div style="display: flex; flex-wrap: wrap; ">
+    <img style="margin: 10px" src="docs/mockups/screen_1.jpg" alt="Mockup 1"  width="189" height="379"/>
+    <img style="margin: 10px" src="docs/mockups/screen_2.jpg" alt="Mockup 2"  width="189" height="379"/>
+    <img style="margin: 10px" src="docs/mockups/screen_3.jpg" alt="Mockup 3"  width="189" height="379"/>
+    <img style="margin: 10px" src="docs/mockups/screen_4.jpg" alt="Mockup 4"  width="189" height="379"/>
+</div>
 
+[ACRESCENTAR O RESTO DOS MOCKUPS]
 
 ### Domain model
 
