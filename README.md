@@ -458,7 +458,7 @@ For the merge, we chose our **"Session Search" feature**, that uses BLE technolo
 In terms of development for our own app, in iteration #5 we added the **ability to update the conference information displayed** (by fetching the updated JSON file from the server and overwriting some data in the database), and some minor changes and tweaks.
 
 #### Images for iteration #5
-<img style="margin: 10px" src="docs/i4/i4_proto_7.jpg" alt="Iteration 5 Prototype - 1a"  width="189" height="379"/>
+<img style="margin: 10px" src="docs/i5/i5_proto_1.jpg" alt="Iteration 5 Prototype - 1a"  width="189" height="379"/>
 
 ## Test  
 
